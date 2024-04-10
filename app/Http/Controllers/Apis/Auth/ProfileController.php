@@ -12,26 +12,19 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 
 class ProfileController extends Controller
 {
-    use InteractsWithMedia;
+    use InteractsWithMedia,ApiTrait;
     public function profile(Request $request)
     {
-
-        $token = $request->header('Authorization');
         $user = Auth::guard('sanctum')->user();
-
-        $user->token = $token;
-        return ApiTrait::data(compact('user'), 'Profile retrieved successfully');
+        return $this->data(compact('user'), 'Profile retrieved successfully');
 
     }
 
     public function updateProfile(UpdateProfileRequest $request)
     {
-
-        $token = $request->header('Authorization');
-
         $user = Auth::guard('sanctum')->user(); //Currently authenticated user
         if (!$user) {
-            return ApiTrait::errorMessage([], 'User not found', 404);
+            return $this->errorMessage([], 'User not found', 404);
         }
 
         $data = $request->safe()->except('password', 'password_confirmation');
@@ -48,10 +41,9 @@ class ProfileController extends Controller
                 $user->update($data);
                 $user->getFirstMediaUrl('users_images','preview');    //Retrieve image
 
-                return ApiTrait::data(compact('user'), 'Profile updated successfully');
+                return $this->data(compact('user'), 'Profile updated successfully');
             } catch (\Exception $exception) {
-                $user->token = $token;
-                return ApiTrait::data(compact('user'), 'Failed to update user profile. Please try again later.', 422);
+                return $this->data(compact('user'), 'Failed to update user profile. Please try again later.', 422);
             }
         }
 

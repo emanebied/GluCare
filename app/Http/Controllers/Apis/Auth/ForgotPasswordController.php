@@ -9,15 +9,16 @@ use App\Models\User;
 
 class ForgotPasswordController extends Controller
 {
+    use ApiTrait;
     public function forgotPassword(ForgotPasswordRequest $request){
 
         $user = User::where('email', $request->email)->first();
         if (!$user) {
-            return ApiTrait::errorMessage(['email' => 'User not found'], 'User not found', 404);
+            return $this->errorMessage(['email' => 'User not found'], 'User not found', 404);
         }
         //Generate token
         $user->token = "Bearer " . $user->createToken($request->device_name)->plainTextToken;
-        return ApiTrait::data(compact('user'), 'Mail Valid');
+        return $this->data(compact('user'), 'Mail Valid');
 
 
 

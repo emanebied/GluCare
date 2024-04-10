@@ -11,10 +11,10 @@ use Illuminate\Support\Facades\Hash;
 
 class ResetPasswordController extends Controller
 {
+    use ApiTrait;
     public function resetPassword(ResetPasswordRequest $request)
     {
-        $user= Auth::guard('sanctum')->user(); //currently authenticated user
-
+        $user= Auth::guard('sanctum')->user();
         if (!$user) {
             return ApiTrait::errorMessage([], 'User not authenticated', 401);
         }
@@ -22,7 +22,7 @@ class ResetPasswordController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
 
-            return ApiTrait::successMessage('Password Updated Successfully');
+            return $this->successMessage('Password Updated Successfully');
         }
 
 }

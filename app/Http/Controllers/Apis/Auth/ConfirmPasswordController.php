@@ -1,90 +1,41 @@
 <?php
 
 namespace App\Http\Controllers\Apis\Auth;
-
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Apis\Auth\CheckCodeRequest;
 use App\Http\traits\ApiTrait;
-use App\Models\User;
-use App\Notifications\Auth\ConfirmPasswordNotification;
-use App\Notifications\Auth\EmailVerificationNotification;
+use App\Http\traits\HandlesVerificationCode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\Auth\ConfirmPasswordNotification;
 
 class ConfirmPasswordController extends Controller
 {
-    private function generateAndSendVerificationCode($user, $token) {
 
-        $code = rand(10000, 99999);
-        $code_expired_at = now()->addSeconds(config('auth.code_timeout'));
+    use ApiTrait,HandlesVerificationCode;
+    private function handleCodeSending(Request $request, bool $isResend)
+    {
+        $user = Auth::guard('sanctum')->user();
+        $errorMsg = $isResend ? 'No unverified user found with this email.' : 'User not authenticated';
+        $errorCode = $isResend ? 404 : 401;
 
-        // Update user with new code and expiration
-        $user->code = $code;
-        $user->code_expired_at = $code_expired_at;
-        $user->save();
+        if (!$user) {
+            return $this->errorMessage([], $errorMsg, $errorCode);
+        }
 
-
-//        try {
-//            $user->notify(new EmailVerificationNotification($user));
-//        } catch (\Exception $e) {
-//            return ApiTrait::errorMessage(['mail' => $e->getMessage()], 'An error occurred while sending the email notification. Please try again.', 500);
-//        }
-
-        $user->token = $token;
-        return ApiTrait::data(compact('user'), 'Code sent successfully. Please check your email.');
+        try {
+            $this->generateAndSendVerificationCode($user,'password_reset');
+            return $this->data(compact('user'), 'Code sent successfully. Please check your email.');
+        } catch (\Exception $e) {
+            return $this->errorMessage(['mail' => $e->getMessage()], 'An error occurred while sending the email notification. Please try again.', 500);
+        }
     }
-
     public function sendCode(Request $request)
     {
-        $token = $request->header('Authorization');
-
-        $user = Auth::guard('sanctum')->user();
-        if (!$user) {
-            return ApiTrait::errorMessage([], 'User not authenticated', 401);
-        }
-
-        return $this->generateAndSendVerificationCode($user, $token);
+        return $this->handleCodeSending($request, false);
     }
 
-
-    public function resendCode(Request $request) {
-        $token = $request->header('Authorization');
-
-        $user = Auth::guard('sanctum')->user();
-        if (!$user) {
-            return ApiTrait::errorMessage([], 'No unverified user found with this email.', 404);
-        }
-
-        return $this->generateAndSendVerificationCode($user, $token);
-    }
-
-
-    public function CheckCode(CheckCodeRequest $request)
+    public function resendCode(Request $request)
     {
-        $now = date('Y-m-d H:i:s');
-        $token = $request->header('Authorization');
-
-        $user = Auth::guard('sanctum')->user();
-        if (!$user) {
-            return ApiTrait::errorMessage([], 'User not authenticated', 401);
-        }
-
-        if ($user->code != $request->code) {
-            $user->token = $token;
-            return ApiTrait::data(compact('user'), 'Code Invalid',422);
-        }
-        if ($user->code_expired_at < $now) {
-            $user->token = $token;
-            return ApiTrait::data(compact('user'), 'Code Expired',422);
-
-        } else {
-
-            $user->email_verified_at = $now;
-            $user->save();
-
-            $user->token = $token;
-            return ApiTrait::data(compact('user'), 'Correct Code');
-        }
+        return $this->handleCodeSending($request, true);
     }
-
 }

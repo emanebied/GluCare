@@ -16,7 +16,6 @@ class EmailVerificationRequest extends FormRequest
     {
         return [
             'email'=>['required','email','exists:users,email'],
-            'otp'=>['required','numeric','digits:4']
         ];
     }
 }

@@ -64,13 +64,10 @@ class Kernel extends HttpKernel
         'signed' => \App\Http\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'userVerified'=>\App\Http\Middleware\userVerified::class,
-        'check.role' => \App\Http\Middleware\CheckRole::class,
-         'protectDashboard'=>\App\Http\Middleware\ProtectDashboard::class,
         'role' => \App\Http\Middleware\EnsureUserRoleIsAllowed::class,
     ];
-//    protected function schedule(Schedule $schedule)
-//    {
-//        $schedule->command('otp:clean')->daily();
-//    }
+    protected function schedule(Schedule $schedule)
+    {
+        $schedule->command('queue:work')->everyMinute();
+    }
 }

@@ -10,6 +10,11 @@ use App\Http\Controllers\Apis\Auth\ResetPasswordController;
 use App\Http\Controllers\Apis\Dashboard\RolesAndPermissionsController;
 use App\Http\Controllers\Apis\Dashboard\WebsiteSettingController;
 use App\Http\Controllers\Apis\Dashboard\UserController;
+use App\Mail\VerificationMail;
+use App\Models\User;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -17,12 +22,11 @@ use Illuminate\Http\Request;
   // User routes
 //  Route::group(['prefix'=>'users'],function() {
 
-      Route::group(['middleware' => 'guest'], function () {
+        Route::group(['middleware' => 'guest'], function () {
           Route::post('register', RegisterController::class);
           Route::post('login', [LoginController::class, 'login']);
           Route::post('forgot-password', [ForgotPasswordController::class, 'forgotPassword']);
-      });
-
+        });
 
         Route::group(['middleware' => 'auth:sanctum'], function () {
 
@@ -32,7 +36,6 @@ use Illuminate\Http\Request;
 
             Route::delete('logout', [LoginController::class, 'logout']);
             Route::delete('logout-all-devices', [LoginController::class, 'logoutAllDevices']);
-
 
             Route::get('send-password-reset-code', [ConfirmPasswordController::class, 'sendCode']);
             Route::post('check-password-reset-code', [ConfirmPasswordController::class, 'checkCode']);
@@ -72,10 +75,12 @@ use Illuminate\Http\Request;
             Route::delete('/destroy/{website_setting}', [WebsiteSettingController::class, 'destroy']);
         });
 
-
-
-
-
-
-
     });
+//
+   Route::get('/preview-mail', function () {
+    $user = App\Models\User::findOrFail(73);
+    return (new App\Notifications\VerificationMailNotification($user))
+        ->toMail($user);
+     });
+
+
