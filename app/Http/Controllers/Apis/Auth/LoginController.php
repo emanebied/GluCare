@@ -8,8 +8,6 @@ use App\Http\traits\ApiTrait;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -27,21 +25,18 @@ class LoginController extends Controller
         }
         $user->token = "Bearer " . $user->createToken($request->device_name)->plainTextToken;
 
-      //check verification
+         //check verification
         if(is_null($user->email_verified_at)){
             return $this->data(compact('user'),'User Not Verified',401);
         }
 
         try{
-            event(new LoginEvent($user));   //Mail Notification
+            event(new LoginEvent($user)); //Dispatch Event
         } catch(\Exception $e) {
             return ApiTrait::errorMessage([], $e->getMessage(), 500);
         }
-               return$this->data(compact('user'), 'You Logged in Successfully.');
+               return $this->data(compact('user'), 'You Logged in Successfully.');
         }
-
-
-
 
 
 
@@ -52,13 +47,8 @@ class LoginController extends Controller
             return$this->errorMessage(['email' => 'User not found'], 'User not found', 404);
         }
       $user->currentAccessToken()->delete();      //Revoke Token
-
-      //Notification mail
-     // $user->notify(new LogoutNotification());
        return$this->successMessage('You have logged out successfully');
     }
-
-
 
 
 

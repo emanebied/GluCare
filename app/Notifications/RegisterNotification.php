@@ -30,7 +30,12 @@ class RegisterNotification extends Notification
             ->greeting('Hello ' . $notifiable->first_name . '!')
             ->line('Your registration was successful.');
     }
-
+    public function toDatabase($notifiable)
+    {
+        return [
+            'message' => 'Your registration was successful.',
+        ];
+    }
 
 
     public function toArray($notifiable)

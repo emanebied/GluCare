@@ -27,5 +27,7 @@ class SendEmailLoginListener implements ShouldQueue
             Log::error('Failed to send login notification to user ID: ' . $event->user->id . ' Error: ' . $e->getMessage());
             throw $e;
         }
+
     }
 }
+

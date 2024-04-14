@@ -10,19 +10,14 @@ use App\Http\Controllers\Apis\Auth\ResetPasswordController;
 use App\Http\Controllers\Apis\Dashboard\RolesAndPermissionsController;
 use App\Http\Controllers\Apis\Dashboard\WebsiteSettingController;
 use App\Http\Controllers\Apis\Dashboard\UserController;
-use App\Mail\VerificationMail;
-use App\Models\User;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Notification;
+use App\Http\Controllers\Apis\NotificationController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
 
 
   // User routes
 //  Route::group(['prefix'=>'users'],function() {
 
-        Route::group(['middleware' => 'guest'], function () {
+        Route::group(['middleware' => 'guest:sanctum'], function () {
           Route::post('register', RegisterController::class);
           Route::post('login', [LoginController::class, 'login']);
           Route::post('forgot-password', [ForgotPasswordController::class, 'forgotPassword']);
@@ -76,11 +71,20 @@ use Illuminate\Http\Request;
         });
 
     });
-//
-   Route::get('/preview-mail', function () {
-    $user = App\Models\User::findOrFail(73);
-    return (new App\Notifications\VerificationMailNotification($user))
-        ->toMail($user);
-     });
+////
+//   Route::get('/preview-mail', function () {
+//    $user = App\Models\User::findOrFail(73);
+//    return (new App\Notifications\VerificationMailNotification($user))
+//        ->toMail($user);
+//     });
+
+
+    Route::group(['prefix' => 'notifications', 'middleware' => 'auth:sanctum'], function () {
+        Route::get('/', [NotificationController::class, 'getUserNotifications']);
+        Route::get('details/{notificationId}', [NotificationController::class, 'getNotificationDetails']);
+        Route::post('/mark-as-read/{notificationId}', [NotificationController::class, 'markNotificationAsRead']);
+        Route::delete('destroy/{notificationId}', [NotificationController::class, 'deleteNotification']);
+});
+
 
 
