@@ -8,8 +8,11 @@ trait AuthorizeCheckTrait {
 
     public function authorizeCheck($permission)
     {
-        if (!Auth::user()->can($permission)) {
+        $user = Auth::guard('sanctum')->user();
+
+        if (!$user || !$user->can($permission)) {
             throw new AccessDeniedHttpException('Admin Only, Unauthorized');
         }
     }
+
 }

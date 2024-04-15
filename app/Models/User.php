@@ -74,7 +74,7 @@ class User extends Authenticatable implements HasMedia
             ->registerMediaConversions(function (Media $media) {
                 $this
                     ->addMediaConversion('preview')
-                    ->width(100)
+                    ->withResponsiveImages()
                     ->nonQueued();
             });
     }

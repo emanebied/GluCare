@@ -7,9 +7,7 @@ use App\Http\Requests\Apis\Dashboard\SettingsStoreRequest;
 use App\Http\Requests\Apis\Dashboard\SettingsUpdateRequest;
 use App\Http\traits\ApiTrait;
 use App\Models\WebsiteSetting;
-use Illuminate\Http\Request;
 use App\Http\traits\AuthorizeCheckTrait;
-use Illuminate\Support\Facades\Auth;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
 class WebsiteSettingController extends Controller
@@ -31,10 +29,9 @@ class WebsiteSettingController extends Controller
         $settings = WebsiteSetting::create($data);
 
         $settings->addMediaFromRequest('image')
-            ->withResponsiveImages()
-            ->toMediaCollection('settings_images');
+                 ->toMediaCollection('settings_images');
 
-      $settings->getFirstMediaUrl('settings_images', 'preview');
+        $settings->getFirstMediaUrl('settings_images', 'preview');
 
         $settings->refresh();
         return ApiTrait::data(compact('settings'), 'Setting Created Successfully', 201);
@@ -47,9 +44,7 @@ class WebsiteSettingController extends Controller
 
         if ($request->hasFile('image')) {
             $settings->clearMediaCollection('settings_images');
-            $settings->addMediaFromRequest('image')
-                ->withResponsiveImages()
-                ->toMediaCollection('settings_images');
+            $settings->addMediaFromRequest('image')->toMediaCollection('settings_images');
         }
         try {
             $settings->update($request->validated());

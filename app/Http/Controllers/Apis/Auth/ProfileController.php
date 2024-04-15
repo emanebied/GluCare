@@ -32,16 +32,14 @@ class ProfileController extends Controller
 
         //upload Image
         if ($request->hasFile('image')) {
-            $user->addMediaFromRequest('image')
-                ->withResponsiveImages()
-                ->toMediaCollection('users_images');
+            $user->addMediaFromRequest('image')->toMediaCollection('users_images');
         }
 
         try {
                 $user->update($data);
-                $user->getFirstMediaUrl('users_images','preview');    //Retrieve image
-
+                $user->getFirstMediaUrl('users_images','preview');
                 return $this->data(compact('user'), 'Profile updated successfully');
+
             } catch (\Exception $exception) {
                 return $this->data(compact('user'), 'Failed to update user profile. Please try again later.', 422);
             }

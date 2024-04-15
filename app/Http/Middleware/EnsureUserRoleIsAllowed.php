@@ -6,17 +6,22 @@ use App\Http\traits\ApiTrait;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class EnsureUserRoleIsAllowed
 {
 
     public function handle(Request $request, Closure $next, ...$roles)
     {
-        $user =Auth::guard('sanctum')->user();
-        if (in_array($user->role, $roles)) {
-            return $next($request);
+        $user = Auth::guard('sanctum')->user();
+
+        foreach ($roles as $role) {
+            if ($user->hasRole($role)) {
+                return $next($request);
+            }
         }
-          return ApiTrait::errorMessage(['role'=>'You do not have permission to access.'],'Unauthorized',401);
+
+        throw new AccessDeniedHttpException('You do not have permission to access.');
     }
 }
 

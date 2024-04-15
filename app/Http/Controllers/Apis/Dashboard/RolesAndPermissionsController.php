@@ -51,8 +51,6 @@ class RolesAndPermissionsController extends Controller
     public function edit($id)
     {
         $this->AuthorizeCheck('role-permissions-edit');
-
-        // Retrieve the specific role by ID, including its current permissions
         $role = Role::with('permissions')->select('id', 'name')->findOrFail($id);
 
         return ApiTrait::data(compact('role'), 'Role and Permissions fetched successfully.');

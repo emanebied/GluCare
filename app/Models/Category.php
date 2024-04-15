@@ -4,32 +4,40 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
-use Spatie\Permission\Traits\HasRoles;
 
-class WebsiteSetting extends Model implements HasMedia
+class Category extends Model implements HasMedia
 {
-    use HasApiTokens,HasRoles, HasFactory, Notifiable ,InteractsWithMedia;
+    use HasFactory, InteractsWithMedia;
 
-    protected $table = 'website_settings';
 
-    protected $fillable = [
-        'name',
-        'image',
-        'email',
-        'description',
-        'facebook_link',
-        'twitter_link',
-        'instagram_link',
-    ];
-    protected $guarded =['id'];
+    protected $fillable =   //whitelist
+        [
+            'name',
+            'slug',
+            'description',
+            'image',
+            'status',
+            'parent_id'
+        ];
+
+
+    /* public function parent()
+     {
+         return $this->belongsTo(Category::class, 'parent_id');
+     }
+
+     public function children()
+     {
+         return $this->hasMany(Category::class, 'parent_id');
+     }*/
+    protected $guarded = ['id']; //blacklist
+
     public function getImageAttribute()
     {
-        $mediaItems = $this->getMedia('settings_images');
+        $mediaItems = $this->getMedia('categories_images');
         $images = [];
         foreach ($mediaItems as $mediaItem) {
             array_push($images, $mediaItem->getUrl());
@@ -40,17 +48,15 @@ class WebsiteSetting extends Model implements HasMedia
     public function registerMediaCollections(): void
     {
         $this
-            ->addMediaCollection('settings_images')
+            ->addMediaCollection('categories_images')
             ->singleFile()
             ->useDisk('media')
             ->registerMediaConversions(function (Media $media) {
                 $this
                     ->addMediaConversion('preview')
                     ->withResponsiveImages()
+                    ->quality(80)
                     ->nonQueued();
             });
-    }
-
-
+   }
 }
-

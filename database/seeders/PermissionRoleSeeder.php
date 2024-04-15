@@ -22,38 +22,39 @@ class PermissionRoleSeeder extends Seeder
 
             // Define permissions for each role
             $rolesPermissions = [
-                'user' => ['services'],
+                'user' => [
+                    'categories_view', 'categories_show',
+                ],
                 'admin' => [
                     'role-permissions-create', 'role-permissions-view', 'role-permissions-edit', 'role-permissions-delete',
                     'users_create', 'users_view', 'users_edit', 'users_delete',
-                    'settings_create', 'settings_view', 'settings_edit', 'settings_delete',
+                    'settings_create', 'settings_view','categories_show','settings_edit', 'settings_delete',
+                    'categories_create', 'categories_view',  'categories_show', 'categories_edit', 'categories_delete',
+
                     'invoices_create', 'invoices_view', 'invoices_edit', 'invoices_delete',
                     'services',
                     'reports_patient', 'reports_doctors',
                     'email_answers'
                 ],
                 'employee' => [
+                    'categories_view', 'categories_show',
+
                     'reports_patient', 'reports_doctors',
                     'invoices',
                     'email_answers'
                 ],
                 'doctor' => [
+                    'categories_view', 'categories_show',
+
                     'services', 'reports_patient'
                 ],
             ];
 
             foreach ($rolesPermissions as $roleName => $permissions) {
-                // Create or retrieve role
                 $role = Role::firstOrCreate(['name' => $roleName]);
-
-                // Assign permissions to role
                 foreach ($permissions as $permissionName) {
-                    // Find or create the permission
                     $permission = Permission::firstOrCreate(['name' => $permissionName, 'guard_name' => 'web']);
-
-                    // Check if the role already has this permission
                     if (!$role->hasPermissionTo($permission)) {
-                        // Assign permission to role
                         $role->givePermissionTo($permission);
                     }
                 }
