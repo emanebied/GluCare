@@ -27,7 +27,7 @@ class CategoriesStoreRequest extends FormRequest
             'description' => ['nullable', 'string'],
             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg,webp', 'max:2048'],
             'status' => ['required', 'in:active,archived'],
-            'parent_id' => ['nullable', 'exists:categories,id']
+            'parent_id' => ['nullable', 'exists:categories,id'],
         ];
     }
 

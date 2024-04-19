@@ -8,7 +8,9 @@ use App\Http\Requests\Apis\Website\blog\CategoriesUpdateRequest;
 use App\Http\traits\ApiTrait;
 use App\Http\traits\AuthorizeCheckTrait;
 use App\Models\Category;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
@@ -18,15 +20,33 @@ class CategoryController extends Controller
 
     public function index()
     {
-        $categories = Category::all();
+        $request = request();
+
+  /*      $categories = Category::leftJoin('categories as parents', 'parents.id', '=', 'categories.parent_id')
+            ->select([
+                'categories.*',
+                'parents.name as parent_name'
+            ])
+            ->filter($request->query())
+            ->orderBy('categories.name', 'desc')
+            ->paginate(10, ['*'], 'page', $request->query('page'));
+  */
+
+
+        $categories = Category::with('parent')->filter($request->query())->latest()->paginate(8);
         return $this->data(compact('categories'), 'Categories fetched successfully');
     }
 
-     public function store(CategoriesStoreRequest $request)
+
+
+
+
+    public function store(CategoriesStoreRequest $request)
      {
          $request->merge([
                 'slug' => Str::slug($request->post('name'))
             ]);
+
          $category = Category::create( $request->all());
 
          //upload image
@@ -42,14 +62,27 @@ class CategoryController extends Controller
      }
 
 
-     public function show($id)
-     {
-         $category = Category::findOrFail($id);
-         return $this->data(compact('category'), 'Category fetched successfully');
-     }
+    public function show(Category $category)
+    {
+/*        $category = Category::leftJoin('categories as parents', 'parents.id', '=', 'categories.parent_id')
+            ->select([
+                'categories.*',
+                'parents.name as parent_name'
+            ])
+            ->where('categories.id', $category->id)
+            ->first();
+
+        if (!$category) {
+            return $this->errorMessage([], 'Category not found', 404);
+        }*/
+        $parent = $category->parent;
+        return $this->data(compact('category','parent'), 'Category fetched successfully');
+    }
 
 
-       public function update(CategoriesUpdateRequest $request, $id)
+
+
+       public function update(CategoriesUpdateRequest $request,$id)
        {
            $category = Category::findOrFail($id);
            $request->merge([
@@ -58,25 +91,54 @@ class CategoryController extends Controller
 
            if ($request->hasFile('image')) {
                try {
-                   $category->clearMediaCollection('categories_images');
+                   $category->clearMediaCollection('categories_images');// still remain in your storage disk
                    $category->addMediaFromRequest('image')->toMediaCollection('categories_images');
                } catch (\Exception $e) {
                    Log::error('Error uploading image: ' . $e->getMessage());
                }
            }
+
            $category->update($request->all());
            $category->getFirstMediaUrl('categories_images');
            $category->refresh();
            return $this->data(compact('category'), 'Category updated successfully');
        }
 
-        public function destroy($id)
+
+         /*/Soft delete means that the record is not actually removed from the database
+              but is instead marked as deleted by setting a timestamp in the deleted_at column.
+           destroy() soft deletes the record, making it possible to restore it later if needed.
+           forceDelete() permanently removes the record from the database, and it cannot be restored.*/
+
+        public function destroy(Category $category)
         {
             $this->authorizeCheck('categories_delete');
-
-            $category = Category::findOrFail($id);
             $category->delete();
             return $this->SuccessMessage( 'Category deleted successfully');
+        }
+        public function trash()
+        {
+            $this->authorizeCheck('categories_delete');
+            $categories = Category::onlyTrashed()->paginate(10);
+            return $this->data(compact('categories'), 'Trashed categories fetched successfully');
+        }
+        public function restore(Request $request,$id)
+        {
+            $this->authorizeCheck('categories_delete');
+            $category = Category::withTrashed()->findOrFail($id);
+            $category->restore();
+            return $this->SuccessMessage( 'Category restored successfully');
+        }
+        public function forceDelete($id)
+        {
+            $this->authorizeCheck('categories_delete');
+            $category = Category::withTrashed()->findOrFail($id);
+            $category->forceDelete();
+
+            if($category->image){
+                Storage::disk('media')->delete($category->image);
+            }
+            return $this->SuccessMessage( 'Category deleted permanently');
         }
 
 

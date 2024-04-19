@@ -21,10 +21,9 @@ class CategoriesUpdateRequest extends FormRequest
 
     public function rules()
     {
-        // Get the category model instance from the route parameter
         $category = Category::find($this->route('category'));
         if (!$category) {
-            return []; // empty array for rules
+            return [];
         }
         return [
             'name' => ['required', 'string', 'max:255', Rule::unique('categories')->ignore($category->id)],

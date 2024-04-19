@@ -2,15 +2,17 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Category extends Model implements HasMedia
 {
-    use HasFactory, InteractsWithMedia;
+    use HasFactory, InteractsWithMedia ,SoftDeletes;
 
 
     protected $fillable =   //whitelist
@@ -20,11 +22,12 @@ class Category extends Model implements HasMedia
             'description',
             'image',
             'status',
-            'parent_id'
+            'parent_id',
         ];
+    protected $guarded = ['id']; //blacklist
 
 
-    /* public function parent()
+   public function parent()
      {
          return $this->belongsTo(Category::class, 'parent_id');
      }
@@ -32,8 +35,19 @@ class Category extends Model implements HasMedia
      public function children()
      {
          return $this->hasMany(Category::class, 'parent_id');
-     }*/
-    protected $guarded = ['id']; //blacklist
+     }
+/*    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }*/
+
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? null, function ($query, $value) {
+            $query->where('categories.name', 'like', '%' . $value . '%')
+                ->orWhere('categories.description', 'like', '%' . $value . '%');
+        });
+    }
 
     public function getImageAttribute()
     {

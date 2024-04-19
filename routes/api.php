@@ -12,6 +12,7 @@ use App\Http\Controllers\Apis\Dashboard\UserController;
 use App\Http\Controllers\Apis\Dashboard\WebsiteSettingController;
 use App\Http\Controllers\Apis\NotificationController;
 use App\Http\Controllers\Apis\Website\Blog\CategoryController;
+use App\Http\Controllers\Apis\Website\Blog\PostController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -92,26 +93,26 @@ use Illuminate\Support\Facades\Route;
                 Route::post('/store', [CategoryController::class, 'store']);
                 Route::put('/update/{category}', [CategoryController::class, 'update']);
                 Route::delete('/destroy/{category}', [CategoryController::class, 'destroy']);
+                Route::get('/trash', [CategoryController::class, 'trash']);
+                Route::put('/restore/{category}', [CategoryController::class, 'restore']);
+                Route::delete('/force-delete/{category}', [CategoryController::class, 'forceDelete']);
             });
             //  accessible to all users
             Route::get('/', [CategoryController::class, 'index']);
             Route::get('/show/{category}', [CategoryController::class, 'show']);
         });
 
+        Route::prefix('posts')->group(function () {
+            Route::middleware(['role:admin','auth:sanctum'])->group(function () {
+                Route::post('/store', [PostController::class, 'store']);
+                Route::put('/update/{post}', [PostController::class, 'update']);
+                Route::delete('/destroy/{post}', [PostController::class, 'destroy']);
+                Route::get('/trash', [PostController::class, 'trash']);
+                Route::put('/restore/{post}', [PostController::class, 'restore']);
+                Route::delete('/force-delete/{post}', [PostController::class, 'forceDelete']);
+            });
+            Route::get('/', [PostController::class, 'index']);
+            Route::get('show/{post}', [PostController::class, 'show']);
+        });
 
 
-
-
-
-
-
-
-
-
-/*    Route::group(['prefix' => 'posts', 'middleware' => 'auth:sanctum', 'role:admin'], function () {
-Route::post('/store', [PostController::class, 'store']);
-Route::put('update/{post}', [PostController::class, 'update']);
-Route::delete('/destroy/{post}', [PostController::class, 'destroy']);
-      Route::get('/posts', [PostController::class, 'index']);
-        Route::get('/posts/{post}', [PostController::class, 'show']);
-*/

@@ -23,13 +23,15 @@ class PermissionRoleSeeder extends Seeder
             // Define permissions for each role
             $rolesPermissions = [
                 'user' => [
-                    'categories_view', 'categories_show',
+                    'categories_view',
+                    'posts_view',
                 ],
                 'admin' => [
                     'role-permissions-create', 'role-permissions-view', 'role-permissions-edit', 'role-permissions-delete',
                     'users_create', 'users_view', 'users_edit', 'users_delete',
-                    'settings_create', 'settings_view','categories_show','settings_edit', 'settings_delete',
-                    'categories_create', 'categories_view',  'categories_show', 'categories_edit', 'categories_delete',
+                    'settings_create', 'settings_view','settings_edit', 'settings_delete',
+                    'categories_create', 'categories_view', 'categories_edit', 'categories_delete',
+                    'posts_create', 'posts_view','posts_edit', 'posts_delete',
 
                     'invoices_create', 'invoices_view', 'invoices_edit', 'invoices_delete',
                     'services',
@@ -38,6 +40,7 @@ class PermissionRoleSeeder extends Seeder
                 ],
                 'employee' => [
                     'categories_view', 'categories_show',
+                    'posts_view', 'posts_show',
 
                     'reports_patient', 'reports_doctors',
                     'invoices',
@@ -45,6 +48,7 @@ class PermissionRoleSeeder extends Seeder
                 ],
                 'doctor' => [
                     'categories_view', 'categories_show',
+                    'posts_view', 'posts_show',
 
                     'services', 'reports_patient'
                 ],
