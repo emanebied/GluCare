@@ -31,9 +31,11 @@ class CategoryController extends Controller
             ->orderBy('categories.name', 'desc')
             ->paginate(10, ['*'], 'page', $request->query('page'));
   */
-
-
         $categories = Category::with('parent')->filter($request->query())->latest()->paginate(8);
+
+        if ($categories->isEmpty()) {
+            return $this->errorMessage([], 'No categories found', 404);
+        }
         return $this->data(compact('categories'), 'Categories fetched successfully');
     }
 
@@ -75,8 +77,8 @@ class CategoryController extends Controller
         if (!$category) {
             return $this->errorMessage([], 'Category not found', 404);
         }*/
-        $parent = $category->parent;
-        return $this->data(compact('category','parent'), 'Category fetched successfully');
+        $category->load('parent');
+        return $this->data(compact('category'), 'Category fetched successfully');
     }
 
 
@@ -91,7 +93,7 @@ class CategoryController extends Controller
 
            if ($request->hasFile('image')) {
                try {
-                   $category->clearMediaCollection('categories_images');// still remain in your storage disk
+                   $category->clearMediaCollection('categories_images');// still remain in storage disk
                    $category->addMediaFromRequest('image')->toMediaCollection('categories_images');
                } catch (\Exception $e) {
                    Log::error('Error uploading image: ' . $e->getMessage());

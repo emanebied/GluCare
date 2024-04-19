@@ -27,19 +27,20 @@ class Category extends Model implements HasMedia
     protected $guarded = ['id']; //blacklist
 
 
-   public function parent()
-     {
-         return $this->belongsTo(Category::class, 'parent_id');
-     }
+       public function parent()
+         {
+             return $this->belongsTo(Category::class, 'parent_id');
+         }
 
-     public function children()
-     {
-         return $this->hasMany(Category::class, 'parent_id');
-     }
-/*    public function posts()
-    {
-        return $this->hasMany(Post::class);
-    }*/
+         public function children()
+         {
+             return $this->hasMany(Category::class, 'parent_id');
+         }
+        public function posts()
+        {
+            return $this->hasMany(Post::class);
+
+        }
 
     public function scopeFilter($query, array $filters)
     {

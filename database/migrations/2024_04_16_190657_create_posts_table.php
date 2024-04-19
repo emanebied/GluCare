@@ -12,11 +12,11 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug')->unique();
-            $table->text('content');
+            $table->text('body');
             $table->foreignId('category_id')->nullable()->constrained('categories')->nullOnDelete();
             $table->string('image')->nullable();
-            $table->boolean('is_published')->default(false);
-            $table->timestamp('published_at')->nullable();
+            $table->enum('is_published',['published','draft'])->default('published');
+            $table->dateTime('published_at')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
