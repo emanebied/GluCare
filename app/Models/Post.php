@@ -2,11 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Builder;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Carbon;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -21,26 +20,22 @@ class Post extends Model implements HasMedia
         'body',
         'image',
         'category_id',
+        'user_id',
         'is_published',
         'published_at',
 
     ];
 
-    public function category()
-    {
-        return $this->belongsTo(Category::class);
-    }
-
-
+    protected $guarded = ['id'];
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? null, function ($query, $value) {
-            $query->where('posts.title', 'like', '%' . $value . '%')
-                ->orWhere('posts.content', 'like', '%' . $value . '%');
+            $query->where('title', 'like', '%' . $value . '%')
+                ->orWhere('body', 'like', '%' . $value . '%');
         });
     }
 
-    public function getImageAttribute()
+public function getImageAttribute()
     {
         $mediaItems = $this->getMedia('posts_images');
         $images = [];
@@ -64,6 +59,24 @@ class Post extends Model implements HasMedia
                     ->nonQueued();
             });
     }
+    public function category()
+    {
+        return $this->belongsTo(Category::class)-> withDefault([
+            'name' => 'Unknown',
+        ]);
+    }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class)->withDefault([
+            'first_name' => 'Unknown',
+            'last_name' => 'Unknown',
+        ]);
+    }
+
+    public function tags(){
+
+        return $this->belongsToMany(Tag::class);
+    }
 
 }

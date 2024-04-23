@@ -28,8 +28,10 @@ class PostStoreRequest extends FormRequest
             'body' => ['required', 'string', 'max:255'],
             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg,webp', 'max:2048'],
             'category_id' => ['nullable', 'exists:categories,id'],
+            'user_id'=> ['required','exists:users,id'],
             'is_published' => ['required', 'in:published,draft'],
             'published_at' => ['nullable', 'date_format:Y-m-d H:i:s'],
+
         ];
     }
 

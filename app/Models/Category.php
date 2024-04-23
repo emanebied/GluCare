@@ -29,7 +29,10 @@ class Category extends Model implements HasMedia
 
        public function parent()
          {
-             return $this->belongsTo(Category::class, 'parent_id');
+             return $this->belongsTo(Category::class, 'parent_id')->withDefault([
+                        'name' => 'No Parent'
+                    ]
+             );
          }
 
          public function children()
@@ -45,8 +48,8 @@ class Category extends Model implements HasMedia
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? null, function ($query, $value) {
-            $query->where('categories.name', 'like', '%' . $value . '%')
-                ->orWhere('categories.description', 'like', '%' . $value . '%');
+            $query->where('name', 'like', '%' . $value . '%')
+                ->orWhere('description', 'like', '%' . $value . '%');
         });
     }
 

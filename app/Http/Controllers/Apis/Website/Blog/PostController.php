@@ -8,6 +8,7 @@ use App\Http\Requests\Apis\Website\blog\PostUpdateRequest;
 use App\Http\traits\ApiTrait;
 use App\Http\traits\AuthorizeCheckTrait;
 use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -22,7 +23,7 @@ class PostController extends Controller
     {
         $request = request();
 
-        $posts = Post::with('category')
+        $posts = Post::with('category','tags')
             ->filter($request->query())
             ->latest()
             ->paginate(8);
@@ -33,6 +34,8 @@ class PostController extends Controller
 
         return $this->data(compact('posts'), 'Posts fetched successfully');
     }
+
+
     public function store(PostStoreRequest $request)
     {
         $request->merge([
@@ -41,7 +44,6 @@ class PostController extends Controller
         ]);
 
         $post = Post::create($request->all());
-
         // Upload image
         if ($request->hasFile('image')) {
             try {
@@ -51,13 +53,24 @@ class PostController extends Controller
             }
         }
         $post->getFirstMediaUrl('posts_images');
+
+        if($post) {
+            $tags = explode(',', $request->post('tags')); //turn string to array
+            $tag_ids = [];
+                foreach ($tags as $t_name) {
+                    $slug = Str::slug($t_name);
+                    $tag = Tag::firstOrCreate(['slug' => $slug], ['name' => $t_name]);
+                    $tag_ids[] = $tag->id;
+                }
+            $post->tags()->sync($tag_ids);
+        }
         return $this->data(compact('post'), 'Post created successfully',201);
 
     }
 
     public function show(Post $post)
     {
-        $post->load('category');
+        $post->load('category','tags');
         return $this->data(compact('post'), 'Post fetched successfully');
 
     }
@@ -80,9 +93,19 @@ class PostController extends Controller
             }
         }
 
-        $post->update($request->all());
+        $post->update($request->except('tags'));
         $post->getFirstMediaUrl('posts_images');
         $post->refresh();
+
+        $tags = explode(',', $request->post('tags')); //turn string to array
+        $tag_ids = [];
+        foreach ($tags as $t_name) {
+            $slug = Str::slug($t_name);
+            $tag = Tag::firstOrCreate(['slug' => $slug], ['name' => $t_name]);
+            $tag_ids[] = $tag->id;
+        }
+        $post->tags()->sync($tag_ids);
+
         return $this->data(compact('post'), 'post updated successfully');
     }
 
