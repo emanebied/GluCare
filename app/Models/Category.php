@@ -32,7 +32,7 @@ class Category extends Model implements HasMedia
              return $this->belongsTo(Category::class, 'parent_id')->withDefault([
                         'name' => 'No Parent'
                     ]
-             );
+             )->select('id', 'name');
          }
 
          public function children()

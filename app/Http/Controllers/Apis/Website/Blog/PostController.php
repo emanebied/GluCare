@@ -23,7 +23,7 @@ class PostController extends Controller
     {
         $request = request();
 
-        $posts = Post::with('category','tags')
+        $posts = Post::with('category','tags','user','comments')
             ->filter($request->query())
             ->latest()
             ->paginate(8);
@@ -32,6 +32,10 @@ class PostController extends Controller
             return $this->errorMessage([], 'No posts found', 404);
         }
 
+         foreach ($posts as $post){
+             $post->increment('views');
+
+         }
         return $this->data(compact('posts'), 'Posts fetched successfully');
     }
 
@@ -40,10 +44,13 @@ class PostController extends Controller
     {
         $request->merge([
             'slug' => Str::slug($request->post('title')),
-            'published_at' => $request->post('is_published') === 'published' ? now() : null
+            'published_at' => $request->post('is_published') === 'published' ? now() : null,
+//            'user_id' => auth()->id(),
+              'user_id' => $request->user()->id,
         ]);
 
         $post = Post::create($request->all());
+
         // Upload image
         if ($request->hasFile('image')) {
             try {
@@ -64,6 +71,7 @@ class PostController extends Controller
                 }
             $post->tags()->sync($tag_ids);
         }
+
         return $this->data(compact('post'), 'Post created successfully',201);
 
     }

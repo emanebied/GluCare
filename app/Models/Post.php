@@ -68,15 +68,18 @@ public function getImageAttribute()
 
     public function user()
     {
-        return $this->belongsTo(User::class)->withDefault([
-            'first_name' => 'Unknown',
-            'last_name' => 'Unknown',
-        ]);
+        return $this->belongsTo(User::class)
+            ->select('id','first_name','last_name')->withDefault('Unknown');
     }
 
     public function tags(){
 
         return $this->belongsToMany(Tag::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 
 }

@@ -12,6 +12,7 @@ use App\Http\Controllers\Apis\Dashboard\UserController;
 use App\Http\Controllers\Apis\Dashboard\WebsiteSettingController;
 use App\Http\Controllers\Apis\NotificationController;
 use App\Http\Controllers\Apis\Website\Blog\CategoryController;
+use App\Http\Controllers\Apis\Website\Blog\CommentsController;
 use App\Http\Controllers\Apis\Website\Blog\PostController;
 use Illuminate\Support\Facades\Route;
 
@@ -115,4 +116,20 @@ use Illuminate\Support\Facades\Route;
             Route::get('show/{post}', [PostController::class, 'show']);
         });
 
+        Route::prefix('comments')->group(function () {
+            Route::middleware(['auth:sanctum'])->group(function () {
+                Route::get('/', [CommentsController::class, 'index']);
+                Route::get('show/{comment}', [CommentsController::class, 'show']);
+                Route::post('/store', [CommentsController::class, 'store']);
+                Route::put('/update/{comment}', [CommentsController::class, 'update']);
+                Route::delete('/destroy/{comment}', [CommentsController::class, 'destroy']);
+            Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
+                Route::put('/approve/{comment}', [CommentsController::class, 'approve']);
+                Route::put('/reject/{comment}', [CommentsController::class, 'reject']);
+
+            });
+
+         });
+
+   });
 
