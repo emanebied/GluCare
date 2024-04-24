@@ -9,11 +9,7 @@ use Spatie\Permission\Models\Role;
 
 class PermissionRoleSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+
     public function run()
     {
 
@@ -25,7 +21,11 @@ class PermissionRoleSeeder extends Seeder
                 'user' => [
                     'categories_view',
                     'posts_view',
-                    'comments_create','comments_view','comments_edit','comments_delete',
+                    'comments_create','comments_edit','comments_delete',
+                    'likes_create',
+
+
+
                 ],
                 'admin' => [
                     'role-permissions-create', 'role-permissions-view', 'role-permissions-edit', 'role-permissions-delete',
@@ -33,8 +33,9 @@ class PermissionRoleSeeder extends Seeder
                     'settings_create', 'settings_view','settings_edit', 'settings_delete',
                     'categories_create', 'categories_view', 'categories_edit', 'categories_delete',
                     'posts_create', 'posts_view','posts_edit', 'posts_delete',
-                    'comments_create','comments_view','comments_edit','comments_delete',
+                    'comments_create','comments_edit','comments_delete',
                     'comments_approve', 'comments_reject',
+                    'likes_create',
 
 
                     'invoices_create', 'invoices_view', 'invoices_edit', 'invoices_delete',
@@ -45,7 +46,9 @@ class PermissionRoleSeeder extends Seeder
                 'employee' => [
                     'categories_view', 'categories_show',
                     'posts_view', 'posts_show',
-                    'comments_create','comments_view','comments_edit','comments_delete',
+                    'comments_create','comments_edit','comments_delete',
+                    'likes_create',
+
 
                     'reports_patient', 'reports_doctors',
                     'invoices',
@@ -54,7 +57,9 @@ class PermissionRoleSeeder extends Seeder
                 'doctor' => [
                     'categories_view', 'categories_show',
                     'posts_view', 'posts_show',
-                    'comments_create','comments_view','comments_edit','comments_delete',
+                    'comments_create','comments_edit','comments_delete',
+                    'likes_create',
+
 
                     'services', 'reports_patient'
                 ],

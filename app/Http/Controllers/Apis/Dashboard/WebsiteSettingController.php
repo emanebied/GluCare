@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Apis\Dashboard\SettingsStoreRequest;
 use App\Http\Requests\Apis\Dashboard\SettingsUpdateRequest;
 use App\Http\traits\ApiTrait;
-use App\Models\WebsiteSetting;
 use App\Http\traits\AuthorizeCheckTrait;
+use App\Models\website\WebsiteSetting;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
 class WebsiteSettingController extends Controller

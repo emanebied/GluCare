@@ -7,27 +7,13 @@ use App\Http\Requests\Apis\Website\blog\CommentStoreRequest;
 use App\Http\Requests\Apis\Website\blog\CommentUpdateRequest;
 use App\Http\traits\ApiTrait;
 use App\Http\traits\AuthorizeCheckTrait;
-use App\Models\Comment;
-use App\Models\Post;
-use Illuminate\Http\Request;
+use App\Models\website\blog\Comment;
+use App\Models\website\blog\Post;
 
 class CommentsController extends Controller
 {
 
     use ApiTrait , AuthorizeCheckTrait;
-
-    public function index()
-    {
-        $this->authorizeCheck('comments_view');
-
-        $comments = Comment::with('user','post')->latest()->paginate(8);
-
-        if ($comments->isEmpty()) {
-            return $this->errorMessage([], 'No comments found', 404);
-        }
-
-        return $this->data(compact('comments'), 'Comments fetched successfully');
-    }
 
 
     public function store(CommentStoreRequest $request)
@@ -48,23 +34,13 @@ class CommentsController extends Controller
 
 
 
-    public function show(Comment $comment)
-    {
-
-        $this->authorizeCheck('comments_view');
-
-//        $comment = Comment::with('user','post')->findOrFail($id); //if i use id instead of comment model
-        $comment->load('user', 'post');
-
-        return $this->data(compact('comment'), 'Comment fetched successfully');
-    }
-
     public function update(CommentUpdateRequest $request, Comment $comment)
     {
 
         $comment->update($request->validated());
         return $this->data(compact('comment'), 'Comment updated successfully');
     }
+
 
     public function destroy(Comment $comment)
     {

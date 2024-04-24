@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\website\blog;
 
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -81,5 +83,13 @@ public function getImageAttribute()
     {
         return $this->hasMany(Comment::class);
     }
+
+
+    public function likes()
+    {
+        return $this->morphToMany(User::class, 'likeable', 'likes')
+            ->select('users.id', 'first_name', 'last_name');
+    }
+
 
 }

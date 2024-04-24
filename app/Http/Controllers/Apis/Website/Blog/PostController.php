@@ -7,8 +7,8 @@ use App\Http\Requests\Apis\Website\blog\PostStoreRequest;
 use App\Http\Requests\Apis\Website\blog\PostUpdateRequest;
 use App\Http\traits\ApiTrait;
 use App\Http\traits\AuthorizeCheckTrait;
-use App\Models\Post;
-use App\Models\Tag;
+use App\Models\website\blog\Post;
+use App\Models\website\blog\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -23,21 +23,23 @@ class PostController extends Controller
     {
         $request = request();
 
-        $posts = Post::with('category','tags','user','comments')
-            ->filter($request->query())
-            ->latest()
-            ->paginate(8);
+        $posts = Post::withCount('likes','comments')
+         ->with('category', 'tags', 'user', 'comments','likes')
+         ->filter($request->query())
+         ->latest()
+         ->paginate(8);
 
         if ($posts->isEmpty()) {
             return $this->errorMessage([], 'No posts found', 404);
         }
 
-         foreach ($posts as $post){
-             $post->increment('views');
+        foreach ($posts as $post) {
+            $post->increment('views');
+        }
 
-         }
         return $this->data(compact('posts'), 'Posts fetched successfully');
     }
+
 
 
     public function store(PostStoreRequest $request)
@@ -78,7 +80,7 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
-        $post->load('category','tags');
+        $post->load('category','tags','user','comments','likes');
         return $this->data(compact('post'), 'Post fetched successfully');
 
     }

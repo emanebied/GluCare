@@ -1,8 +1,7 @@
 <?php
 
 namespace Database\Seeders;
-use App\Models\WebsiteSetting;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\website\WebsiteSetting;
 use Illuminate\Database\Seeder;
 
 class WebsiteSettingSeeder extends Seeder

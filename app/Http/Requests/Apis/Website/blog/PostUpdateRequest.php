@@ -3,7 +3,7 @@
 namespace App\Http\Requests\Apis\Website\blog;
 
 use App\Http\traits\ApiTrait;
-use App\Models\Post;
+use App\Models\website\blog\Post;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
