@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Apis\Website\Blog;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Apis\Website\blog\LikeStoreRequest;
 use App\Http\traits\ApiTrait;
-use App\Models\website\blog\Comment;
-use App\Models\website\blog\Post;
+use App\Models\GluCare\blog\Comment;
+use App\Models\GluCare\blog\Post;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 

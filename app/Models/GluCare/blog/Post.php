@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\website\blog;
+namespace App\Models\GluCare\blog;
 
 
 use App\Models\User;

@@ -3,7 +3,7 @@
 namespace App\Http\Requests\Apis\Website\blog;
 
 use App\Http\traits\ApiTrait;
-use App\Models\website\blog\Category;
+use App\Models\GluCare\blog\Category;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 

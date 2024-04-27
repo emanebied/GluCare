@@ -10,12 +10,12 @@ use App\Http\Controllers\Apis\Auth\ResetPasswordController;
 use App\Http\Controllers\Apis\Dashboard\RolesAndPermissionsController;
 use App\Http\Controllers\Apis\Dashboard\UserController;
 use App\Http\Controllers\Apis\Dashboard\WebsiteSettingController;
-use App\Http\Controllers\Apis\NotificationController;
+use App\Http\Controllers\Apis\GluCare\Detection\PatientData\PatientController;
+use App\Http\Controllers\Apis\Notifications\NotificationController;
 use App\Http\Controllers\Apis\Website\Blog\CategoryController;
 use App\Http\Controllers\Apis\Website\Blog\CommentController;
 use App\Http\Controllers\Apis\Website\Blog\LikeController;
 use App\Http\Controllers\Apis\Website\Blog\PostController;
-use App\Http\Controllers\PatientController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -76,9 +76,9 @@ use Illuminate\Support\Facades\Route;
 
         });
 
-        /*  Route::get('/preview-mail', function () {
-            $user = App\Models\User::findOrFail(73);
-           return (new App\Notifications\VerificationMailNotification($user))
+   /*      Route::get('/preview-mail', function () {
+            $user = App\Models\User::findOrFail(4);
+           return (new App\Notifications\PatientDataAddedNotification($user))
                ->toMail($user);
             });*/
 

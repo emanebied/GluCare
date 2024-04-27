@@ -1,7 +1,7 @@
 <?php
 
 namespace Database\Seeders;
-use App\Models\website\WebsiteSetting;
+use App\Models\Dashboard\WebsiteSetting;
 use Illuminate\Database\Seeder;
 
 class WebsiteSettingSeeder extends Seeder

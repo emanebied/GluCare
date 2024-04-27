@@ -35,6 +35,7 @@ class LoginController extends Controller
         } catch(\Exception $e) {
             return ApiTrait::errorMessage([], $e->getMessage(), 500);
         }
+
         return $this->data([
             'id' => $user->id,
             'name' => $user->name,

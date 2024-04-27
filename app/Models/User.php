@@ -4,8 +4,9 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
-use App\Models\website\blog\Comment;
-use App\Models\website\blog\Post;
+use App\Models\GluCare\blog\Comment;
+use App\Models\GluCare\blog\Post;
+use App\Models\GluCare\Detection\PatientDataOfDiabetes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;

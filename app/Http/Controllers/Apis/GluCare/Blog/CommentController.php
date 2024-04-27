@@ -7,8 +7,8 @@ use App\Http\Requests\Apis\Website\blog\CommentStoreRequest;
 use App\Http\Requests\Apis\Website\blog\CommentUpdateRequest;
 use App\Http\traits\ApiTrait;
 use App\Http\traits\AuthorizeCheckTrait;
-use App\Models\website\blog\Comment;
-use App\Models\website\blog\Post;
+use App\Models\GluCare\blog\Comment;
+use App\Models\GluCare\blog\Post;
 
 class CommentController extends Controller
 {

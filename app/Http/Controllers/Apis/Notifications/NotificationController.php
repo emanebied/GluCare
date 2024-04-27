@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Apis;
+namespace App\Http\Controllers\Apis\Notifications;
 
 use App\Http\Controllers\Controller;
 use App\Http\traits\ApiTrait;

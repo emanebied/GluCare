@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Apis\GluCare\Detection\PatientData;
 
+use App\Events\PatientDataAddedEvent;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\PatientStoreRequest;
 use App\Http\Requests\PatientUpdateRequest;
 use App\Http\traits\ApiTrait;
 use App\Http\traits\AuthorizeCheckTrait;
-use App\Models\PatientDataOfDiabetes;
+use App\Models\GluCare\Detection\PatientDataOfDiabetes;
 
 class PatientController extends Controller
 {
@@ -37,33 +39,40 @@ class PatientController extends Controller
 
 
 
-        public function store(PatientStoreRequest $request)
-        {
-            $userId = $request->user()->id;
-            $bmi = $this->calculateBMI($request->post('height'), $request->post('weight'));
+    public function store(PatientStoreRequest $request)
+    {
+        $user = $request->user(); // Retrieve authenticated user
+        $userId = $user->id;
+        $bmi = $this->calculateBMI($request->post('height'), $request->post('weight'));
 
-            // Check if similar data already exists for the user
-            $existingData = PatientDataOfDiabetes::where('user_id', $userId)
-                ->where('bmi', $bmi)
-                ->first();
+        // Check if similar data already exists for the user
+        $existingData = PatientDataOfDiabetes::where('user_id', $userId)
+            ->where('bmi', $bmi)
+            ->first();
 
-            // If similar data exists, return an error response
-            if ($existingData) {
-                return $this->errorMessage([], 'Similar patient data already exists.', 400);
-            }
-
-            $request->merge([
-                'user_id' => $userId,
-                'bmi' => $bmi,
-            ]);
-
-            $PatientDataOfDiabetes = PatientDataOfDiabetes::create($request->all());
-
-            return $this->data(compact('PatientDataOfDiabetes'), 'Patient data added successfully');
+        // If similar data exists, return an error response
+        if ($existingData) {
+            return $this->errorMessage([], 'Similar patient data already exists.', 400);
         }
 
+        $request->merge([
+            'user_id' => $userId,
+            'bmi' => $bmi,
+        ]);
 
-        public function show($id)
+        $PatientDataOfDiabetes = PatientDataOfDiabetes::create($request->all());
+
+        try{
+            event(new PatientDataAddedEvent($user)); //Dispatch Event
+        } catch(\Exception $e) {
+            return ApiTrait::errorMessage([], $e->getMessage(), 500);
+        }
+
+        return $this->data(compact('PatientDataOfDiabetes'), 'Patient data added successfully');
+    }
+
+
+    public function show($id)
         {
             $this->authorizeCheck('PatientDataOfDiabetes_show');
             $patient = PatientDataOfDiabetes::with('user')->findOrFail($id);

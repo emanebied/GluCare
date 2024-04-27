@@ -7,7 +7,7 @@ use App\Http\Requests\Apis\Website\blog\CategoriesStoreRequest;
 use App\Http\Requests\Apis\Website\blog\CategoriesUpdateRequest;
 use App\Http\traits\ApiTrait;
 use App\Http\traits\AuthorizeCheckTrait;
-use App\Models\website\blog\Category;
+use App\Models\GluCare\blog\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;

@@ -33,6 +33,9 @@ class EventServiceProvider extends ServiceProvider
         \App\Events\PasswordResetCodeEvent::class => [
             \App\Listeners\SendEmailPasswordResetCodeListener::class,
         ],
+        \App\Events\PatientDataAddedEvent::class => [
+            \App\Listeners\SendMailPatientDataAddedListener::class,
+        ],
  ];
 
 
