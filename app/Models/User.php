@@ -21,6 +21,7 @@ class User extends Authenticatable implements HasMedia
 {
     use HasApiTokens,HasRoles,HasFactory, Notifiable ,InteractsWithMedia;
     protected $fillable = [
+        'name',
         'first_name',
         'last_name',
         'username',
@@ -92,5 +93,9 @@ class User extends Authenticatable implements HasMedia
         return $this->hasMany(Comment::class);
     }
 
+
+    public function patientDataOfDiabetes(){
+        return $this->hasOne(PatientDataOfDiabetes::class);
+    }
 
 }

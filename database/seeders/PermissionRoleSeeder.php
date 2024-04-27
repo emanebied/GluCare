@@ -23,6 +23,7 @@ class PermissionRoleSeeder extends Seeder
                     'posts_view',
                     'comments_create','comments_edit','comments_delete',
                     'likes_create',
+                    'PatientDataOfDiabetes_create','PatientDataOfDiabetes_show','PatientDataOfDiabetes_edit','PatientDataOfDiabetes_delete',
 
 
 
@@ -36,6 +37,7 @@ class PermissionRoleSeeder extends Seeder
                     'comments_create','comments_edit','comments_delete',
                     'comments_approve', 'comments_reject',
                     'likes_create',
+                    'PatientDataOfDiabetes_view','PatientDataOfDiabetes_create','PatientDataOfDiabetes_show','PatientDataOfDiabetes_edit','PatientDataOfDiabetes_delete',
 
 
                     'invoices_create', 'invoices_view', 'invoices_edit', 'invoices_delete',

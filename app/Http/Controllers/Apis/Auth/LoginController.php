@@ -21,9 +21,9 @@ class LoginController extends Controller
 
         // Check Password
         if (!password_verify($request->password, $user->password)) {
-            return $this->errorMessage(['password' => 'The provided credentials are incorrect'], 'Wrong Attempt', 401);
+            return $this->errorMessage(['message' => 'Invalid email or password'], 'Authentication failed', 401);
         }
-        $user->token = "Bearer " . $user->createToken($request->device_name)->plainTextToken;
+       $token= $user->token = "Bearer " . $user->createToken($request->device_name)->plainTextToken;
 
          //check verification
         if(is_null($user->email_verified_at)){
@@ -35,7 +35,11 @@ class LoginController extends Controller
         } catch(\Exception $e) {
             return ApiTrait::errorMessage([], $e->getMessage(), 500);
         }
-               return $this->data(compact('user'), 'You Logged in Successfully.');
+        return $this->data([
+            'id' => $user->id,
+            'name' => $user->name,
+            'token' => $token,
+        ], 'You Logged in Successfully.');
         }
 
 

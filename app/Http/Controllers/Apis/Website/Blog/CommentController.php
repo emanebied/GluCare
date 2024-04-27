@@ -10,7 +10,7 @@ use App\Http\traits\AuthorizeCheckTrait;
 use App\Models\website\blog\Comment;
 use App\Models\website\blog\Post;
 
-class CommentsController extends Controller
+class CommentController extends Controller
 {
 
     use ApiTrait , AuthorizeCheckTrait;

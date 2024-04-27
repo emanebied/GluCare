@@ -11,7 +11,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
 
-class LikesController extends Controller
+class LikeController extends Controller
 {
     use ApiTrait;
 

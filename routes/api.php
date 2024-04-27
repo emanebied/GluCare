@@ -12,9 +12,10 @@ use App\Http\Controllers\Apis\Dashboard\UserController;
 use App\Http\Controllers\Apis\Dashboard\WebsiteSettingController;
 use App\Http\Controllers\Apis\NotificationController;
 use App\Http\Controllers\Apis\Website\Blog\CategoryController;
-use App\Http\Controllers\Apis\Website\Blog\CommentsController;
-use App\Http\Controllers\Apis\Website\Blog\LikesController;
+use App\Http\Controllers\Apis\Website\Blog\CommentController;
+use App\Http\Controllers\Apis\Website\Blog\LikeController;
 use App\Http\Controllers\Apis\Website\Blog\PostController;
+use App\Http\Controllers\PatientController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -119,14 +120,14 @@ use Illuminate\Support\Facades\Route;
 
         Route::prefix('comments')->group(function () {
             Route::middleware(['auth:sanctum'])->group(function () {
-                Route::get('/', [CommentsController::class, 'index']);
-                Route::get('show/{comment}', [CommentsController::class, 'show']);
-                Route::post('/store', [CommentsController::class, 'store']);
-                Route::put('/update/{comment}', [CommentsController::class, 'update']);
-                Route::delete('/destroy/{comment}', [CommentsController::class, 'destroy']);
+                Route::get('/', [CommentController::class, 'index']);
+                Route::get('show/{comment}', [CommentController::class, 'show']);
+                Route::post('/store', [CommentController::class, 'store']);
+                Route::put('/update/{comment}', [CommentController::class, 'update']);
+                Route::delete('/destroy/{comment}', [CommentController::class, 'destroy']);
                 Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
-                    Route::put('/approve/{comment}', [CommentsController::class, 'approve']);
-                    Route::put('/reject/{comment}', [CommentsController::class, 'reject']);
+                    Route::put('/approve/{comment}', [CommentController::class, 'approve']);
+                    Route::put('/reject/{comment}', [CommentController::class, 'reject']);
 
                 });
 
@@ -135,10 +136,18 @@ use Illuminate\Support\Facades\Route;
 
         Route::prefix('likes')->group(function () {
             Route::middleware(['auth:sanctum'])->group(function () {
-                Route::post('/like', [LikesController::class, 'toggleLike']);
-                Route::post('/dislike', [LikesController::class, 'toggleDislike']);
+                Route::post('/like', [LikeController::class, 'toggleLike']);
+                Route::post('/dislike', [LikeController::class, 'toggleDislike']);
             });
         });
 
-
+        Route::prefix('patients')->group(function () {
+            Route::middleware(['auth:sanctum'])->group(function () {
+                Route::get('/', [PatientController::class, 'index'])->middleware('role:admin');
+                Route::get('show/{patient}', [PatientController::class, 'show']);
+                Route::post('/store', [PatientController::class, 'store']);
+                Route::put('/update/{patient}', [PatientController::class, 'update']);
+                Route::delete('/destroy/{patient}', [PatientController::class, 'destroy']);
+            });
+        });
 
