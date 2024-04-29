@@ -2,25 +2,19 @@
 
 namespace App\Http\Requests\Apis\GluCare\LiveChat;
 
+use App\Http\traits\ApiTrait;
 use Illuminate\Foundation\Http\FormRequest;
 
 class SendTextMessageRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
+    use ApiTrait;
     public function authorize()
     {
-        return true;
+        if($this->user()->can('chat_send_text_message')){
+            return true;
+        }
+        return $this->errorMessage([],'Admin Only, Unauthorized .', 403);
     }
-
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, mixed>
-     */
     public function rules()
     {
         return [

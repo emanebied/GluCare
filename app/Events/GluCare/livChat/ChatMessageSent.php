@@ -1,6 +1,8 @@
 <?php
 
 
+namespace App\Events\GluCare\livChat;
+
 use App\Http\Resources\MassageResource;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -15,17 +17,20 @@ class ChatMessageSent implements ShouldBroadcastNow
 
     public $message;
 
-    public function __construct(MassageResource $message) {
+    public function __construct(MassageResource $message)
+    {
         $this->message = $message;
     }
-    public function broadcastWith(){
-        return ['message'=> $this->message];
+
+    public function broadcastWith()
+    {
+        return ['message' => $this->message];
     }
 
     public function broadcastOn(): array
     {
         return [
-            new PresenceChannel('chat.'.$this->message->chat_id),
+            new PresenceChannel('chat.' . $this->message->chat_id),
         ];
     }
 }

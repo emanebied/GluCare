@@ -1,6 +1,8 @@
 <?php
 
 
+namespace App\Events\GluCare\livChat;
+
 use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use Illuminate\Foundation\Events\Dispatchable;
@@ -31,12 +33,6 @@ class UserOnlineEvent implements ShouldBroadcastNow
     {
         return new PresenceChannel('presence-online');
     }
-
-
-
-
-
-
 
 
 }

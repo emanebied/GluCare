@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Apis\GluCare\LiveChat;
 
+use App\Events\GluCare\livChat\ChatMessageSent;
+use App\Events\GluCare\livChat\ChatMessageStatus;
+use App\Events\GluCare\livChat\UserOnlineEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Apis\GluCare\LiveChat\CreateChatRequest;
 use App\Http\Requests\Apis\GluCare\LiveChat\SendTextMessageRequest;
@@ -13,10 +16,7 @@ use App\Models\GluCare\LiveChat\Chat;
 use App\Models\GluCare\LiveChat\ChatMessages;
 use App\Models\User;
 use App\Notifications\GluCare\LiveChat\NewMessage;
-use ChatMessageSent;
-use ChatMessageStatus;
 use Illuminate\Http\Request;
-use UserOnlineEvent;
 
 class ChatController extends Controller
 {
@@ -43,6 +43,7 @@ class ChatController extends Controller
 
         public function getChats(Request $request)
         {
+            $this->authorizeCheck('chat_get_chats');
             $user = $request->user();
             $chats = $user->chats()->with('participants')->get();
             return $this->data(['chats' => $chats], 'Chats retrieved successfully', 200);
@@ -80,6 +81,8 @@ class ChatController extends Controller
 
         public function messageStatus(Request $request, ChatMessages $message)
         {
+
+            $this->authorizeCheck('chat_message_status');
             if ($message->chat->isParticipant($request->user()->id)) {
                 $messageData = json_decode($message->data);
                 array_push($messageData->seenBy, $request->user()->id);
@@ -105,6 +108,8 @@ class ChatController extends Controller
 
         public function getChatById(Chat $chat, Request $request)
         {
+
+            $this->authorizeCheck('chat_get_chat_by_id');
             if ($chat->isParticipant($request->user()->id)) {
                 $messages = $chat->messages()->with('sender')->orderBy('created_at', 'asc')->paginate('150');
                 return $this->data([
@@ -118,6 +123,8 @@ class ChatController extends Controller
 
         public function searchUsers(Request $request)
         {
+
+            $this->authorizeCheck('chat_search_user');
             $users = User::where('email', 'like', "%{$request->email}%")->limit(3)->get();
             return $this->data(['users' => $users], 'Users retrieved successfully');
         }
@@ -125,12 +132,14 @@ class ChatController extends Controller
 
         public function userJoinsChat(User $user)
         {
+            $this->authorizeCheck('chat_user/join_chat');
             $user->update(['is_online' => true]);
             broadcast(new UserOnlineEvent($user));  // Dispatch the UserOnlineEvent
         }
 
         public function userLeavesChat(User $user)
         {
+            $this->authorizeCheck('chat_user/leave_chat');
             $user->update(['is_online' => false]);
     //        broadcast(new UserOnlineEvent($user));  // Dispatch the UserOnlineEvent
         }
