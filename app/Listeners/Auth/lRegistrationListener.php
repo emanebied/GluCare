@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Listeners;
+namespace App\Listeners\Auth;
 
-use App\Events\RegisterEvent;
-use App\Notifications\RegisterNotification;
+use App\Events\Auth\RegisterEvent;
+use App\Notifications\Auth\RegisterNotification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Log;
 use Throwable;
 
-class SendEmailRegistrationListener implements ShouldQueue
+class lRegistrationListener implements ShouldQueue
 {
     use InteractsWithQueue;
     public function __construct()

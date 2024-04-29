@@ -11,16 +11,21 @@ use App\Http\Controllers\Apis\Dashboard\RolesAndPermissionsController;
 use App\Http\Controllers\Apis\Dashboard\UserController;
 use App\Http\Controllers\Apis\Dashboard\WebsiteSettingController;
 use App\Http\Controllers\Apis\GluCare\Detection\PatientData\PatientController;
+use App\Http\Controllers\Apis\GluCare\LiveChat\ChatController;
 use App\Http\Controllers\Apis\Notifications\NotificationController;
 use App\Http\Controllers\Apis\Website\Blog\CategoryController;
 use App\Http\Controllers\Apis\Website\Blog\CommentController;
 use App\Http\Controllers\Apis\Website\Blog\LikeController;
 use App\Http\Controllers\Apis\Website\Blog\PostController;
+use Illuminate\Support\Facades\Broadcast;
 use Illuminate\Support\Facades\Route;
+
 
 
 // User routes
 //  Route::group(['prefix'=>'users'],function() {
+
+            Broadcast::routes(['middleware' => ['auth:sanctum']]);
 
             Route::group(['middleware' => 'guest:sanctum'], function () {
               Route::post('register', RegisterController::class);
@@ -29,25 +34,21 @@ use Illuminate\Support\Facades\Route;
             });
 
             Route::group(['middleware' => 'auth:sanctum'], function () {
-
                 Route::get('send-email-verification-code', [EmailVerificationController::class, 'sendCode']);
                 Route::post('check-email-verification-code', [EmailVerificationController::class, 'checkCode']);
                 Route::get('resend-email-verification-code',[EmailVerificationController::class,'resendCode']);
-
                 Route::delete('logout', [LoginController::class, 'logout']);
                 Route::delete('logout-all-devices', [LoginController::class, 'logoutAllDevices']);
-
                 Route::get('send-password-reset-code', [ConfirmPasswordController::class, 'sendCode']);
                 Route::post('check-password-reset-code', [ConfirmPasswordController::class, 'checkCode']);
                 Route::get('resend-password-reset-code',[ConfirmPasswordController::class,'resendCode']);
                 Route::post('reset-password', [ResetPasswordController::class, 'resetPassword']);
-
-                Route::get('/profile', [ProfileController::class,'profile']);
+                Route::get('/profile', [ProfileController::class, 'profile']);
                 Route::put('update-profile', [ProfileController::class, 'updateProfile']);
+
             });
 
          Route::middleware(['role:admin','auth:sanctum'])->group(function () {
-
             Route::group(['prefix' => 'user-management'], function (){
                 Route::group(['prefix' => 'role-permissions'], function (){
                     Route::get('/', [RolesAndPermissionsController::class, 'index']);
@@ -89,7 +90,6 @@ use Illuminate\Support\Facades\Route;
             Route::post('/mark-as-read/{notificationId}', [NotificationController::class, 'markNotificationAsRead']);
             Route::delete('destroy/{notificationId}', [NotificationController::class, 'deleteNotification']);
         });
-
 
         Route::prefix('categories')->group(function () {
             Route::middleware(['role:admin','auth:sanctum'])->group(function () {
@@ -150,4 +150,19 @@ use Illuminate\Support\Facades\Route;
                 Route::delete('/destroy/{patient}', [PatientController::class, 'destroy']);
             });
         });
+
+        Route::prefix('chat')->group(function () {
+            Route::middleware(['auth:sanctum'])->group(function () {
+
+                Route::get('/get-chats',[ChatController::class, 'getChats']);
+                Route::post('/create-chat',[ChatController::class, 'createChat']);
+                Route::get('/get-chat-by-id/{chat}',[ChatController::class, 'getChatById']);
+                Route::post('/send-text-message',[ChatController::class, 'sendTextMessage']);
+                Route::post('/search-user',[ChatController::class, 'searchUsers']);
+                Route::get('/message-status/{message}',[ChatController::class, 'messageStatus']);
+                Route::post('/user/join-chat/{user}', [ChatController::class, 'userJoinsChat']);
+                Route::post('/user/leave-chat/{user}', [ChatController::class, 'userLeavesChat']);
+            });
+        });
+
 

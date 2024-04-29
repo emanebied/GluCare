@@ -1,16 +1,13 @@
 <?php
 
-namespace App\Listeners;
+namespace App\Listeners\GluCare\Detection;
 
-use App\Events\PatientDataAddedEvent;
-use App\Notifications\PatientDataAddedNotification;
-use App\Notifications\VerificationMailNotification;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
+use App\Events\GluCare\Detection\PatientDataAddedEvent;
+use App\Notifications\GluCare\Detection\PatientDataAddedNotification;
 use Illuminate\Support\Facades\Log;
 use Throwable;
 
-class SendMailPatientDataAddedListener
+class PatientDataAddedListener
 {
     /**
      * Create the event listener.

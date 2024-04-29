@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Apis\Auth;
 
-use App\Events\RegisterEvent;
+use App\Events\Auth\RegisterEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Apis\Auth\RegisterRequest;
 use App\Http\traits\ApiTrait;

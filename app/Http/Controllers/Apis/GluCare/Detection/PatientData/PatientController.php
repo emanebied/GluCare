@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Apis\GluCare\Detection\PatientData;
 
-use App\Events\PatientDataAddedEvent;
+use App\Events\GluCare\Detection\PatientDataAddedEvent;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\PatientStoreRequest;
-use App\Http\Requests\PatientUpdateRequest;
+use App\Http\Requests\Apis\GluCare\Detection\PatientStoreRequest;
+use App\Http\Requests\Apis\GluCare\Detection\PatientUpdateRequest;
 use App\Http\traits\ApiTrait;
 use App\Http\traits\AuthorizeCheckTrait;
 use App\Models\GluCare\Detection\PatientDataOfDiabetes;

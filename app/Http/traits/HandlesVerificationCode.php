@@ -2,8 +2,8 @@
 namespace App\Http\traits;
 
 
-use App\Events\EmailVerificationCodeEvent;
-use App\Events\PasswordResetCodeEvent;
+use App\Events\Auth\EmailVerificationCodeEvent;
+use App\Events\Auth\PasswordResetCodeEvent;
 use App\Http\Requests\Apis\Auth\CheckCodeRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;

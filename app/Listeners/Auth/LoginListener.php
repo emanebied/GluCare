@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Listeners;
+namespace App\Listeners\Auth;
 
-use App\Events\LoginEvent;
-use App\Notifications\LoginNotification;
+use App\Events\Auth\LoginEvent;
+use App\Notifications\Auth\LoginNotification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Log;
 use Throwable;
 
-class SendEmailLoginListener implements ShouldQueue
+class LoginListener implements ShouldQueue
 {
     use InteractsWithQueue;
     public function __construct()

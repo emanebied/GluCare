@@ -1,27 +1,23 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Apis\GluCare\Detection;
 
 use App\Http\traits\ApiTrait;
 use Illuminate\Foundation\Http\FormRequest;
 
-class PatientUpdateRequest extends FormRequest
+class PatientStoreRequest extends FormRequest
 {
     use ApiTrait;
     public function authorize()
     {
-        if($this->user()->can('PatientDataOfDiabetes_edit')){
+        if ($this->user()->hasAnyRole(['admin', 'user'])) {
             return true;
         }
-        return $this->errorMessage([],'Admin Only, Unauthorized .', 403);
+
+        return $this->errorMessage([], 'Unauthorized access.', 403);
     }
 
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, mixed>
-     */
     public function rules()
     {
         return [

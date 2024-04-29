@@ -7,6 +7,7 @@ namespace App\Models;
 use App\Models\GluCare\blog\Comment;
 use App\Models\GluCare\blog\Post;
 use App\Models\GluCare\Detection\PatientDataOfDiabetes;
+use App\Models\GluCare\LiveChat\Chat;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -28,6 +29,7 @@ class User extends Authenticatable implements HasMedia
         'username',
         'email',
         'password',
+        'is_online',
         'device_name',
         'code',
         'role',
@@ -97,6 +99,11 @@ class User extends Authenticatable implements HasMedia
 
     public function patientDataOfDiabetes(){
         return $this->hasOne(PatientDataOfDiabetes::class);
+    }
+
+    public function chats()
+    {
+        return $this->belongsToMany(Chat::class);
     }
 
 }

@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Listeners;
+namespace App\Listeners\Auth;
 
-use App\Events\EmailVerificationCodeEvent;
-use App\Notifications\VerificationMailNotification;
+use App\Events\Auth\EmailVerificationCodeEvent;
+use App\Notifications\Auth\VerificationMailNotification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Log;
 use Throwable;
 
-class SendEmailVerificationCodeListener implements shouldQueue
+class VerificationCodeListener implements shouldQueue
 
 {
     use InteractsWithQueue;

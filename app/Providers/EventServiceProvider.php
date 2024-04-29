@@ -2,12 +2,9 @@
 
 namespace App\Providers;
 
-use App\Events\RegisterEvent;
-use App\Listeners\SendEmailRegistrationListener;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -21,20 +18,20 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
 
-      \App\Events\RegisterEvent::class => [
-          \App\Listeners\SendEmailRegistrationListener::class,
+      \App\Events\Auth\RegisterEvent::class => [
+          \App\Listeners\Auth\lRegistrationListener::class,
       ],
-        \App\Events\LoginEvent::class => [
-            \App\Listeners\SendEmailLoginListener::class,
+        \App\Events\Auth\LoginEvent::class => [
+            \App\Listeners\Auth\LoginListener::class,
         ],
-        \App\Events\EmailVerificationCodeEvent::class => [
-            \App\Listeners\SendEmailVerificationCodeListener::class,
+        \App\Events\Auth\EmailVerificationCodeEvent::class => [
+            \App\Listeners\Auth\VerificationCodeListener::class,
             ],
-        \App\Events\PasswordResetCodeEvent::class => [
-            \App\Listeners\SendEmailPasswordResetCodeListener::class,
+        \App\Events\Auth\PasswordResetCodeEvent::class => [
+            \App\Listeners\Auth\PasswordResetCodeListener::class,
         ],
-        \App\Events\PatientDataAddedEvent::class => [
-            \App\Listeners\SendMailPatientDataAddedListener::class,
+        \App\Events\GluCare\Detection\PatientDataAddedEvent::class => [
+            \App\Listeners\GluCare\Detection\PatientDataAddedListener::class,
         ],
  ];
 

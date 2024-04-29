@@ -1,24 +1,28 @@
 <?php
 
-namespace App\Notifications;
+namespace App\Notifications\Auth;
 
 use App\Models\User;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class PatientDataAddedNotification extends Notification
+class VerificationMailNotification extends Notification
 {
     use Queueable;
 
-    public $user;
+   public $user;
     public function __construct(User $user)
     {
-        $this->user = $user;
+        $this->user =$user;
     }
 
-
+    /**
+     * Get the notification's delivery channels.
+     *
+     * @param  mixed  $notifiable
+     * @return array
+     */
     public function via($notifiable)
     {
         return ['mail'];
@@ -28,10 +32,11 @@ class PatientDataAddedNotification extends Notification
     {
         return (new MailMessage)
             ->from('no-reply@example.com', 'GlueCare')
-            ->subject('add new Data')
-            ->greeting('Hello ' . $notifiable->name. '!')
-            ->line('Your Data added successfully.')
-            ->line('Thank you for using our GluCare app !');
+            ->subject('Email Verification Notification')
+            ->greeting('Hello ' . $notifiable->first_name . '!')
+            ->line('Your Verification Code is'. ' ' .$notifiable->code)
+            ->line('It Will Expire at '. ' ' . $notifiable->code_expired_at)
+            ->line('After '. ' ' .config('auth.code_timeout'). ' ' . 'seconds');
     }
 
     /**

@@ -13,6 +13,8 @@ class UserSeeder extends Seeder
     {
         // Define user data
         $users = [
+
+
             [
                 'name' => 'Admin',
                 'email' => 'admin@admin.com',

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Apis\Auth;
-use App\Events\LoginEvent;
+use App\Events\Auth\LoginEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Apis\Auth\LoginRequest;
 use App\Http\traits\ApiTrait;
@@ -23,25 +23,47 @@ class LoginController extends Controller
         if (!password_verify($request->password, $user->password)) {
             return $this->errorMessage(['message' => 'Invalid email or password'], 'Authentication failed', 401);
         }
-       $token= $user->token = "Bearer " . $user->createToken($request->device_name)->plainTextToken;
 
-         //check verification
-        if(is_null($user->email_verified_at)){
-            return $this->data(compact('user'),'User Not Verified',401);
+        // Check if the user is admin, employee, or doctor
+        if (in_array($user->role, ['admin', 'employee', 'doctor'])) {
+
+//            $token = $user->createToken($request->device_name)->plainTextToken;
+            $token = "Bearer " . $user->createToken($request->device_name)->plainTextToken;// Generate token without verifying email
+
+            try {
+                event(new LoginEvent($user)); // Dispatch LoginEvent
+            } catch (\Exception $e) {
+                return $this->errorMessage([], $e->getMessage(), 500);
+            }
+
+            return $this->data([
+                'id' => $user->id,
+                'name' => $user->name,
+                'token' => $token,
+            ], 'You logged in successfully.');
         }
 
-        try{
-            event(new LoginEvent($user)); //Dispatch Event
-        } catch(\Exception $e) {
-            return ApiTrait::errorMessage([], $e->getMessage(), 500);
+        // Regular user login process
+        // Check if the user is verified
+        if (is_null($user->email_verified_at)) {
+            return $this->data(compact('user'), 'User not verified', 401);
+        }
+
+        // Generate token for regular users
+        $token = "Bearer " . $user->createToken($request->device_name)->plainTextToken;
+
+        try {
+            event(new LoginEvent($user)); // Dispatch LoginEvent
+        } catch (\Exception $e) {
+            return $this->errorMessage([], $e->getMessage(), 500);
         }
 
         return $this->data([
             'id' => $user->id,
             'name' => $user->name,
             'token' => $token,
-        ], 'You Logged in Successfully.');
-        }
+        ], 'You logged in successfully.');
+    }
 
 
 

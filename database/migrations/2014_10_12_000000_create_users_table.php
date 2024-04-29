@@ -23,6 +23,8 @@ return new class extends Migration
             $table->integer('code')->nullable();
             $table->timestamp('code_expired_at')->nullable();
             $table->timestamp('email_verified_at')->nullable();
+            $table->boolean('is_online')->default(false);
+
             $table->rememberToken();
             $table->timestamps();
 
