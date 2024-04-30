@@ -11,6 +11,7 @@ use App\Http\Controllers\Apis\Dashboard\RolesAndPermissionsController;
 use App\Http\Controllers\Apis\Dashboard\UserController;
 use App\Http\Controllers\Apis\Dashboard\WebsiteSettingController;
 use App\Http\Controllers\Apis\GluCare\Detection\PatientData\PatientController;
+use App\Http\Controllers\Apis\GluCare\Doctors\DoctorController;
 use App\Http\Controllers\Apis\GluCare\LiveChat\ChatController;
 use App\Http\Controllers\Apis\Notifications\NotificationController;
 use App\Http\Controllers\Apis\Website\Blog\CategoryController;
@@ -165,4 +166,10 @@ use Illuminate\Support\Facades\Route;
             });
         });
 
+        Route::prefix('doctors')->group(function () {
+            Route::middleware(['auth:sanctum'])->group(function () {
+                Route::get('/', [DoctorController::class, 'index']);
+                Route::get('/show/{doctor}', [DoctorController::class, 'show']);
+            });
+        });
 

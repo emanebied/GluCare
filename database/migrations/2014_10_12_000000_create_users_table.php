@@ -24,14 +24,11 @@ return new class extends Migration
             $table->timestamp('code_expired_at')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->boolean('is_online')->default(false);
-
-            $table->rememberToken();
-            $table->timestamps();
-
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
             $table->string('username')->nullable();
             $table->string('phone')->unique()->nullable();
+            $table->timestamp('phone_verified_at')->nullable();
             $table->enum('gender',['female','male'])->nullable();
             $table->enum('status',['active','inactive'])->default('active');
             $table->string('image')->nullable();
@@ -39,6 +36,11 @@ return new class extends Migration
             $table->integer('experience_years')->nullable();
             $table->text('qualifications')->nullable();
             $table->string('specialization')->nullable();
+            $table->softDeletes();
+            $table->rememberToken();
+            $table->timestamps();
+
+
 
 
         });
