@@ -106,4 +106,5 @@ class User extends Authenticatable implements HasMedia
         return $this->belongsToMany(Chat::class);
     }
 
+
 }

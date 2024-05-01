@@ -8,19 +8,16 @@ use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
-
     public function run()
     {
         // Define user data
         $users = [
-
-
             [
                 'name' => 'Admin',
                 'email' => 'admin@admin.com',
                 'password' => 'admin@1234',
                 'role' => 'admin',
-                'status'=>'active',
+                'status' => 'active',
                 'device_name' => 'iphone',
             ],
             [
@@ -28,17 +25,19 @@ class UserSeeder extends Seeder
                 'email' => 'employee@employee.com',
                 'password' => 'employee@1234',
                 'role' => 'employee',
-                'status'=>'active',
-            'device_name' => 'iphone',
+                'status' => 'active',
+                'device_name' => 'iphone',
             ],
             [
                 'name' => 'Doctor',
                 'email' => 'doctor@doctor.com',
                 'password' => 'doctor@1234',
                 'role' => 'doctor',
-                'status'=>'active',
+                'status' => 'active',
                 'device_name' => 'iphone',
-
+                'experience_years' => 5,
+                'qualifications' => 'MD, MBBS',
+                'specialization' => 'Cardiology',
             ],
         ];
 
@@ -49,6 +48,9 @@ class UserSeeder extends Seeder
                 'password' => Hash::make($userData['password']),
                 'device_name' => $userData['device_name'],
                 'role' => $userData['role'],
+                'experience_years' => $userData['experience_years'] ?? null,
+                'qualifications' => $userData['qualifications'] ?? null,
+                'specialization' => $userData['specialization'] ?? null,
             ]);
 
             // Assign role to user
@@ -56,4 +58,3 @@ class UserSeeder extends Seeder
         }
     }
 }
-

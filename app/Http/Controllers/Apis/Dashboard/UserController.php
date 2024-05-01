@@ -31,24 +31,23 @@ class UserController extends Controller
 
    }
 
+
     public function store(UserStoreRequest $request)
     {
-        // Create user
-        $user = new User();
-        $user->first_name = $request->first_name;
-        $user->last_name = $request->last_name;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
-        $user->role = $request->role;
-
-        if (!$user->role) {
+        // Validate role
+        $role = Role::where('name', $request->role)->first();
+        if (!$role) {
             return ApiTrait::errorMessage(['error' => 'Role not found'], 'Role not found');
         }
 
-        $user->save();
+        // Create user
+        $userData = $request->all();
+        $userData['password'] = Hash::make($request->password);
+        $user = User::create($userData);
 
-        return ApiTrait::data(compact('user'),'User updated successfully');
+        return ApiTrait::data(compact('user'), 'User Created successfully');
     }
+
 
     public function edit($id){
 
@@ -61,8 +60,7 @@ class UserController extends Controller
     public function update(UserUpdateRequest $request, $id)
     {
         $user = User::findOrFail($id);
-
-        // Update user details
+        $user->name = $request->name;
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
         $user->email = $request->email;

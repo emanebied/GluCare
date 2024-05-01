@@ -2,35 +2,39 @@
 
 namespace App\Http\Requests\Apis\Dashboard;
 
+use App\Http\traits\ApiTrait;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UserUpdateRequest extends FormRequest
 {
-
+    use ApiTrait;
     public function authorize()
     {
         if($this->user()->can('users_edit')){
             return true;
         }
-        //return false;
-        return abort(403, 'Admin Only, Unauthorized .');
+        return $this->errorMessage([],'Admin Only, Unauthorized .', 403);
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, mixed>
-     */
     public function rules()
     {
-        return [
-            'first_name' => ['required','string','between:3,32'],
-            'last_name' => ['required','string','between:3,32'],
-            'email' => ['required|email|unique:users,email,' . $this->route('user') . ',id'],
-            'password' => ['required', 'confirmed','string','min:8'],
-//            'status'
+        $rules = [
+            'name' => ['required', 'string', 'between:3,32'],
+            'first_name' => ['required', 'string', 'between:3,32'],
+            'last_name' => ['required', 'string', 'between:3,32'],
+            'email' => ['required', 'email', 'unique:users,email'],
+            'password' => ['required', 'confirmed', 'string', 'min:8'],
             'role' => ['required', 'max:60'],
             'role.*' => ['exists:roles,name'],
         ];
+
+        // Check if the user is a doctor
+        if ($this->role == 'doctor') {
+            $rules['experience_years'] = ['nullable', 'integer'];
+            $rules['qualifications'] = ['nullable', 'string'];
+            $rules['specialization'] = ['nullable', 'string'];
+        }
+
+        return $rules;
     }
 }

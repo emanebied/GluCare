@@ -10,6 +10,7 @@ use App\Http\Controllers\Apis\Auth\ResetPasswordController;
 use App\Http\Controllers\Apis\Dashboard\RolesAndPermissionsController;
 use App\Http\Controllers\Apis\Dashboard\UserController;
 use App\Http\Controllers\Apis\Dashboard\WebsiteSettingController;
+use App\Http\Controllers\Apis\GluCare\Appointments\AppointmentController;
 use App\Http\Controllers\Apis\GluCare\Detection\PatientData\PatientController;
 use App\Http\Controllers\Apis\GluCare\Doctors\DoctorController;
 use App\Http\Controllers\Apis\GluCare\LiveChat\ChatController;
@@ -172,4 +173,17 @@ use Illuminate\Support\Facades\Route;
                 Route::get('/show/{doctor}', [DoctorController::class, 'show']);
             });
         });
+
+        Route::prefix('appointments')->group(function () {
+            Route::middleware(['auth:sanctum'])->group(function () {
+                Route::get('/', [AppointmentController::class, 'index'])->middleware('role:admin|doctor|user');
+                Route::get('/create', [AppointmentController::class, 'create'])->middleware('role:admin|user');
+                Route::post('/store', [AppointmentController::class, 'store'])->middleware('role:admin|user');
+                Route::get('/show/{appointment}', [AppointmentController::class, 'show'])->middleware('role:admin|doctor|user');
+                Route::get('/edit/{appointment}', [AppointmentController::class, 'edit'])->middleware('role:admin|user');
+                Route::put('/update/{appointment}', [AppointmentController::class, 'update'])->middleware('role:admin|user');
+                Route::delete('/destroy/{appointment}', [AppointmentController::class, 'destroy'])->middleware('role:admin|user');
+            });
+        });
+
 
