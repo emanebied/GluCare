@@ -48,37 +48,26 @@ class PermissionRoleSeeder extends Seeder
                     'appointments_create','appointments_view','appointments_edit','appointments_delete',
 
 
+
                     'invoices_create', 'invoices_view', 'invoices_edit', 'invoices_delete',
                     'services',
                     'reports_patient', 'reports_doctors',
                     'email_answers'
                 ],
                 'employee' => [
-//                    'categories_view', 'categories_show',
-//                    'posts_view', 'posts_show',
-//                    'comments_create','comments_edit','comments_delete',
-//                    'likes_create',
-//                    'chat_get_chats','chat_create_chat','chat_get_chat_by_id','chat_send_text_message',
-//                    'chat_search_user','chat_message_status','chat_user/join_chat','chat_user/leave_chat',
-//                    'doctors_view','doctors_show',
 
 
                     'reports_patient', 'reports_doctors',
                     'invoices',
                     'email_answers'
                 ],
+
                 'doctor' => [
-//                    'categories_view', 'categories_show',
-//                    'posts_view', 'posts_show',
-//                    'comments_create','comments_edit','comments_delete',
-//                    'likes_create',
+
                     'chat_get_chats','chat_create_chat','chat_get_chat_by_id','chat_send_text_message',
                     'chat_search_user','chat_message_status','chat_user/join_chat','chat_user/leave_chat',
-                    'doctors_view','doctors_show',
-                     'appointments_view',
 
-
-                    'services', 'reports_patient'
+                    'reports_patient'
                 ],
             ];
 

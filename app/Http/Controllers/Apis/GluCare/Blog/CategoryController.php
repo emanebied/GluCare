@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Apis\Website\Blog;
+namespace App\Http\Controllers\Apis\GluCare\Blog;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Apis\Website\blog\CategoriesStoreRequest;
-use App\Http\Requests\Apis\Website\blog\CategoriesUpdateRequest;
+use App\Http\Requests\Apis\GluCare\blog\CategoriesStoreRequest;
+use App\Http\Requests\Apis\GluCare\blog\CategoriesUpdateRequest;
 use App\Http\traits\ApiTrait;
 use App\Http\traits\AuthorizeCheckTrait;
 use App\Models\GluCare\blog\Category;
@@ -20,6 +20,7 @@ class CategoryController extends Controller
 
     public function index()
     {
+        $this->authorizeCheck('categories_view');
         $request = request();
 
   /*      $categories = Category::leftJoin('categories as parents', 'parents.id', '=', 'categories.parent_id')
@@ -66,6 +67,7 @@ class CategoryController extends Controller
 
     public function show(Category $category)
     {
+        $this->authorizeCheck('categories_view');
 /*        $category = Category::leftJoin('categories as parents', 'parents.id', '=', 'categories.parent_id')
             ->select([
                 'categories.*',

@@ -9,17 +9,18 @@ use App\Http\traits\ApiTrait;
 use App\Http\traits\AuthorizeCheckTrait;
 use App\Models\Appointment;
 use App\Models\User;
+use App\Notifications\GluCare\Appointments\AppointmentCreated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class AppointmentController extends Controller
 {
 
-    use ApiTrait,AuthorizeCheckTrait;
+    use ApiTrait , AuthorizeCheckTrait;
 
         public function index()
         {
-            $this->authorizeCheck('appointments_view');
+            $this->AuthorizeCheck('appointments_view');
             $appointments = Appointment::all();
             return $this->data(compact('appointments'),'Appointments fetched successfully');
         }
@@ -27,7 +28,7 @@ class AppointmentController extends Controller
 
         public  function create(){
 
-            $this->authorizeCheck('appointments_create');
+            $this->AuthorizeCheck('appointments_create');
             $specializations = User::where('role', 'doctor')
                 ->select('specialization')
                 ->distinct() // Get unique specializations
@@ -70,8 +71,23 @@ class AppointmentController extends Controller
             ]);
             $appointment = Appointment::create($request->all());
 
-            return $this->data(compact('appointment'),'Appointment created successfully');
+            //notify the user
+            $user->notify(new AppointmentCreated($appointment));
 
+            //notify the admin
+            $admin = User::where('role', 'admin')->first();
+            if ($admin){
+                $admin->notify(new AppointmentCreated($appointment));
+            }
+
+            //notify the doctor
+            $doctor = User::where('role', 'doctor')->first();
+            if($doctor){
+                $doctor->notify(new AppointmentCreated($appointment));
+            }
+
+
+            return $this->data(compact('appointment'),'Appointment created successfully');
         }
 
         public function show($id)

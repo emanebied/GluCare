@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Apis\Website\Blog;
+namespace App\Http\Controllers\Apis\GluCare\Blog;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Apis\Website\blog\CommentStoreRequest;
-use App\Http\Requests\Apis\Website\blog\CommentUpdateRequest;
+use App\Http\Requests\Apis\GluCare\blog\CommentStoreRequest;
+use App\Http\Requests\Apis\GluCare\blog\CommentUpdateRequest;
 use App\Http\traits\ApiTrait;
 use App\Http\traits\AuthorizeCheckTrait;
 use App\Models\GluCare\blog\Comment;

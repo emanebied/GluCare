@@ -10,11 +10,18 @@ class PatientStoreRequest extends FormRequest
     use ApiTrait;
     public function authorize()
     {
-        if ($this->user()->hasAnyRole(['admin', 'user'])) {
-            return true;
+        // Check if the user is authenticated
+        if (auth()->check()) {
+            // Check if the authenticated user has the required permission
+            if ($this->user()->can('PatientDataOfDiabetes_create')) {
+                return true;
+            }
+            // User doesn't have the required permission
+            return $this->errorMessage([], 'Admin Only, Unauthorized.', 403);
         }
 
-        return $this->errorMessage([], 'Unauthorized access.', 403);
+        // User is not authenticated
+        return $this->errorMessage([], 'Unauthenticated.', 401);
     }
 
 

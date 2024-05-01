@@ -7,14 +7,21 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class AppointmentStoreRequest extends FormRequest
 {
-
-    use ApiTrait;
+  use ApiTrait;
     public function authorize()
     {
-        if($this->user()->can('appointments_create')){
-            return true;
+        // Check if the user is authenticated
+        if (auth()->check()) {
+            // Check if the authenticated user has the required permission
+            if ($this->user()->can('appointments_create')) {
+                return true;
+            }
+            // User doesn't have the required permission
+            return $this->errorMessage([], 'Admin Only, Unauthorized.', 403);
         }
-        return $this->errorMessage([],'Admin Only, Unauthorized .', 403);
+
+        // User is not authenticated
+        return $this->errorMessage([], 'Unauthenticated.', 401);
     }
 
 

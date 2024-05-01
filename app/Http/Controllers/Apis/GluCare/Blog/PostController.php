@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Apis\Website\Blog;
+namespace App\Http\Controllers\Apis\GluCare\Blog;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Apis\Website\blog\PostStoreRequest;
-use App\Http\Requests\Apis\Website\blog\PostUpdateRequest;
+use App\Http\Requests\Apis\GluCare\blog\PostStoreRequest;
+use App\Http\Requests\Apis\GluCare\blog\PostUpdateRequest;
 use App\Http\traits\ApiTrait;
 use App\Http\traits\AuthorizeCheckTrait;
 use App\Models\GluCare\blog\Post;

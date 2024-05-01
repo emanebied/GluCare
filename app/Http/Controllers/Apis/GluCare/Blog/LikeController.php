@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Apis\Website\Blog;
+namespace App\Http\Controllers\Apis\GluCare\Blog;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Apis\Website\blog\LikeStoreRequest;
+use App\Http\Requests\Apis\GluCare\blog\LikeStoreRequest;
 use App\Http\traits\ApiTrait;
 use App\Models\GluCare\blog\Comment;
 use App\Models\GluCare\blog\Post;

@@ -29,10 +29,10 @@ class User extends Authenticatable implements HasMedia
         'username',
         'email',
         'password',
+        'role',
         'is_online',
         'device_name',
         'code',
-        'role',
         'phone',
         'gender',
         'status',
@@ -60,8 +60,6 @@ class User extends Authenticatable implements HasMedia
         'phone_verified_at'=>'datetime',
     ];
 
-
-    protected $guarded =['id'];
     public function getImageAttribute()
     {
         $mediaItems = $this->getMedia('users_images');

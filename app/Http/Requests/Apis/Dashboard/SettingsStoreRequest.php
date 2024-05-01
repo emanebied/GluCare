@@ -2,18 +2,19 @@
 
 namespace App\Http\Requests\Apis\Dashboard;
 
+use App\Http\traits\ApiTrait;
 use Illuminate\Foundation\Http\FormRequest;
 
 class SettingsStoreRequest extends FormRequest
 {
-
+ use ApiTrait;
     public function authorize()
     {
         if($this->user()->can('settings_create')){
             return true;
         }
         //return false;
-        return abort(403, 'Admin Only, Unauthorized .');
+        return $this->errorMessage([],'Admin Only, Unauthorized .', 403);
     }
 
 
