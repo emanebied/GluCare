@@ -23,19 +23,17 @@ return new class extends Migration
             $table->integer('code')->nullable();
             $table->timestamp('code_expired_at')->nullable();
             $table->timestamp('email_verified_at')->nullable();
+
             $table->boolean('is_online')->default(false);
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
             $table->string('username')->nullable();
-            $table->string('phone')->unique()->nullable();
-            $table->timestamp('phone_verified_at')->nullable();
+            $table->string('image')->nullable();
             $table->enum('gender',['female','male'])->nullable();
             $table->enum('status',['active','inactive'])->default('active');
-            $table->string('image')->nullable();
+            $table->string('phone')->unique()->nullable();
+            $table->timestamp('phone_verified_at')->nullable();
             $table->date('birth_date')->nullable();
-            $table->integer('experience_years')->nullable();
-            $table->text('qualifications')->nullable();
-            $table->string('specialization')->nullable();
             $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();

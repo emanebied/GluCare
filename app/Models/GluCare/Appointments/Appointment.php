@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\GluCare\Appointments;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,20 +12,19 @@ class Appointment extends Model
 
     protected $fillable = [
         'user_id',
-        'user_name',
-        'user_email',
-        'user_phone',
+        'name',
+        'email',
+        'phone',
         'specialization',
         'doctor_name',
-//        'appointment_date',
-//        'appointment_time',
+        'status',
+        'appointments',
     ];
 
-
-
-
-
-
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
 
 

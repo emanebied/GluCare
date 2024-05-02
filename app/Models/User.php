@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
+use App\Models\GluCare\Appointments\Appointment;
 use App\Models\GluCare\blog\Comment;
 use App\Models\GluCare\blog\Post;
 use App\Models\GluCare\Detection\PatientDataOfDiabetes;
@@ -104,5 +105,10 @@ class User extends Authenticatable implements HasMedia
         return $this->belongsToMany(Chat::class);
     }
 
+
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class);
+    }
 
 }

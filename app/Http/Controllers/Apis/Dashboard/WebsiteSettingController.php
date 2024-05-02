@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Apis\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Apis\Dashboard\SettingsStoreRequest;
-use App\Http\Requests\Apis\Dashboard\SettingsUpdateRequest;
+use App\Http\Requests\Apis\Dashboard\SettingsManagement\SettingsStoreRequest;
+use App\Http\Requests\Apis\Dashboard\SettingsManagement\SettingsUpdateRequest;
 use App\Http\traits\ApiTrait;
 use App\Http\traits\AuthorizeCheckTrait;
 use App\Models\Dashboard\WebsiteSetting;

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Apis\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Apis\Dashboard\UserStoreRequest;
-use App\Http\Requests\Apis\Dashboard\UserUpdateRequest;
+use App\Http\Requests\Apis\Dashboard\UsersManagement\UserStoreRequest;
+use App\Http\Requests\Apis\Dashboard\UsersManagement\UserUpdateRequest;
 use App\Http\traits\ApiTrait;
 use App\Http\traits\AuthorizeCheckTrait;
 use App\Models\User;

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Apis\Dashboard;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Apis\Dashboard\RolesStoreRequest;
-use App\Http\Requests\Apis\Dashboard\RolesUpdateRequest;
+use App\Http\Requests\Apis\Dashboard\RolesManagement\RolesStoreRequest;
+use App\Http\Requests\Apis\Dashboard\RolesManagement\RolesUpdateRequest;
 use App\Http\traits\ApiTrait;
 use App\Http\traits\AuthorizeCheckTrait;
 use Spatie\Permission\Models\Permission;

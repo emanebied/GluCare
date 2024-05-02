@@ -31,8 +31,6 @@ class AppointmentUpdateRequest extends FormRequest
         return [
             'specialization' => 'required|string',
             'doctor_name' => 'required|string',
-//            'appointment_date' => 'required|date',
-//            'appointment_time' => 'required|date_format:H:i',
             ];
     }
 }

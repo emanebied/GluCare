@@ -19,6 +19,7 @@ use App\Http\Controllers\Apis\GluCare\Blog\CategoryController;
 use App\Http\Controllers\Apis\GluCare\Blog\CommentController;
 use App\Http\Controllers\Apis\GluCare\Blog\LikeController;
 use App\Http\Controllers\Apis\GluCare\Blog\PostController;
+use App\Notifications\GluCare\Appointments\AppointmentCreated;
 use Illuminate\Support\Facades\Broadcast;
 use Illuminate\Support\Facades\Route;
 
@@ -30,32 +31,31 @@ use Illuminate\Support\Facades\Route;
             Broadcast::routes(['middleware' => ['auth:sanctum']]);
 
 
-
+        Route::prefix('/user')->group(function () {
             Route::group(['middleware' => 'guest:sanctum'], function () {
-              Route::post('register', RegisterController::class);
-              Route::post('login', [LoginController::class, 'login']);
-              Route::post('forgot-password', [ForgotPasswordController::class, 'forgotPassword']);
+                Route::post('register', RegisterController::class);
+                Route::post('login', [LoginController::class, 'login']);
+                Route::post('forgot-password', [ForgotPasswordController::class, 'forgotPassword']);
             });
 
-             Route::group(['middleware' => 'auth:sanctum'], function () {
-                    Route::get('send-email-verification-code', [EmailVerificationController::class, 'sendCode']);
-                    Route::post('check-email-verification-code', [EmailVerificationController::class, 'checkCode']);
-                    Route::get('resend-email-verification-code',[EmailVerificationController::class,'resendCode']);
-                    Route::delete('logout', [LoginController::class, 'logout']);
-                    Route::delete('logout-all-devices', [LoginController::class, 'logoutAllDevices']);
-                    Route::get('send-password-reset-code', [ConfirmPasswordController::class, 'sendCode']);
-                    Route::post('check-password-reset-code', [ConfirmPasswordController::class, 'checkCode']);
-                    Route::get('resend-password-reset-code',[ConfirmPasswordController::class,'resendCode']);
-                    Route::post('reset-password', [ResetPasswordController::class, 'resetPassword']);
-                    Route::get('/profile', [ProfileController::class, 'profile']);
-                    Route::put('update-profile', [ProfileController::class, 'updateProfile']);
+            Route::group(['middleware' => 'auth:sanctum'], function () {
+                Route::get('send-email-verification-code', [EmailVerificationController::class, 'sendCode']);
+                Route::post('check-email-verification-code', [EmailVerificationController::class, 'checkCode']);
+                Route::get('resend-email-verification-code', [EmailVerificationController::class, 'resendCode']);
+                Route::delete('logout', [LoginController::class, 'logout']);
+                Route::delete('logout-all-devices', [LoginController::class, 'logoutAllDevices']);
+                Route::get('send-password-reset-code', [ConfirmPasswordController::class, 'sendCode']);
+                Route::post('check-password-reset-code', [ConfirmPasswordController::class, 'checkCode']);
+                Route::get('resend-password-reset-code', [ConfirmPasswordController::class, 'resendCode']);
+                Route::post('reset-password', [ResetPasswordController::class, 'resetPassword']);
+                Route::get('/profile', [ProfileController::class, 'profile']);
+                Route::put('update-profile', [ProfileController::class, 'updateProfile']);
 
-             });
-            /*      Route::get('/preview-mail', function () {
-                            $user = App\Models\User::findOrFail(4);
-                           return (new App\Notifications\PatientDataAddedNotification($user))
-                               ->toMail($user);
-                            });*/
+            });
+
+        });
+
+
 
             Route::group(['prefix' => 'notifications', 'middleware' => 'auth:sanctum'], function () {
                 Route::get('/', [NotificationController::class, 'getUserNotifications']);
@@ -64,7 +64,9 @@ use Illuminate\Support\Facades\Route;
                 Route::delete('destroy/{notificationId}', [NotificationController::class, 'deleteNotification']);
             });
 
+
    // Routes for Admin Dashboard
+        Route::prefix('dashboard/admin')->group(function () {
             Route::middleware(['role:admin', 'auth:sanctum'])->group(function () {
                 Route::group(['prefix' => 'user-management'], function () {
                     Route::group(['prefix' => 'role-permissions'], function () {
@@ -93,11 +95,13 @@ use Illuminate\Support\Facades\Route;
                 });
 
             });
+        });
 
 
 
 
-   // Routes for GluCare application
+       // Routes for GluCare application
+        Route::prefix('glucare')->group(function () {
             Route::prefix('categories')->group(function () {
                 Route::middleware(['role:admin'])->group(function () {
                     Route::post('/store', [CategoryController::class, 'store']);
@@ -194,5 +198,15 @@ use Illuminate\Support\Facades\Route;
                     Route::put('/update/{appointment}', [AppointmentController::class, 'update']);
                     Route::delete('/destroy/{appointment}', [AppointmentController::class, 'destroy']);
                 });
+                Route::middleware(['auth:sanctum','role:admin,doctor'])->group(function () {
+                    Route::put('/approve/{appointment}', [AppointmentController::class, 'approve']);
+                    Route::put('/cancel/{appointment}', [AppointmentController::class, 'cancel']);
+                });
             });
 
+        });
+                Route::get('/preview-mail', function () {
+                            $user = App\Models\User::findOrFail(1);
+                           return (new \App\Notifications\GluCare\Appointments\AppointmentConfirmationNotification($user))
+                               ->toMail($user);
+                            });

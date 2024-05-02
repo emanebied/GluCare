@@ -1,27 +1,29 @@
 <?php
 
-namespace App\Http\Requests\Apis\Dashboard;
+namespace App\Http\Requests\Apis\Dashboard\UsersManagement;
 
 use App\Http\traits\ApiTrait;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserUpdateRequest extends FormRequest
+class UserStoreRequest extends FormRequest
 {
-    use ApiTrait;
+use ApiTrait;
     public function authorize()
     {
-        if($this->user()->can('users_edit')){
+        if($this->user()->can('users_create')){
             return true;
         }
         return $this->errorMessage([],'Admin Only, Unauthorized .', 403);
     }
 
+
+
     public function rules()
     {
         $rules = [
             'name' => ['required', 'string', 'between:3,32'],
-            'first_name' => ['required', 'string', 'between:3,32'],
-            'last_name' => ['required', 'string', 'between:3,32'],
+            'first_name' => ['nullable', 'string', 'between:3,32'],
+            'last_name' => ['nullable', 'string', 'between:3,32'],
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', 'confirmed', 'string', 'min:8'],
             'role' => ['required', 'max:60'],
@@ -37,4 +39,5 @@ class UserUpdateRequest extends FormRequest
 
         return $rules;
     }
+
 }
