@@ -17,6 +17,11 @@ return new class extends Migration
             $table->string('specialization')->nullable()->after('image');
             $table->integer('experience_years')->nullable()->after('specialization');
             $table->text('qualifications')->nullable()->after('experience_years');
+            $table->float('amount')->nullable()->after('qualifications');
+            $table->string('currency')->nullable()->default('USD')->after('amount');
+            $table->json('availabilities')->nullable()->after('currency');
+
+
         });
     }
 
@@ -31,6 +36,9 @@ return new class extends Migration
             $table->dropColumn('specialization');
             $table->dropColumn('experience_years');
             $table->dropColumn('qualifications');
+            $table->dropColumn('amount');
+            $table->dropColumn('currency');
+            $table->dropColumn('availabilities');
         });
     }
 };

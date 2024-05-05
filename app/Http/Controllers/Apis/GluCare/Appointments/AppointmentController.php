@@ -36,6 +36,7 @@ class AppointmentController extends Controller
     public  function create(){
 
             $this->AuthorizeCheck('appointments_create');
+
             $specializations = User::where('role', 'doctor')
                 ->select('specialization')
                 ->distinct() // Get unique specializations
@@ -45,60 +46,58 @@ class AppointmentController extends Controller
                 ->select('name')
                 ->get();
 
-            $appointments= User::where('role', 'doctor')
-                ->select('appointments')
-                ->get();
 
-            return $this->data(compact('specializations', 'doctors','appointments'));
+            return $this->data(compact('specializations', 'doctors'));
 
         }
 
-        public function store(AppointmentStoreRequest $request)
-        {
-//            $user = $request->user();
+    public function store(AppointmentStoreRequest $request)
+    {
+        // Check if the user already has an appointment with the same doctor and datetime
+        $existingAppointment = Appointment::where('user_id', $request->user()->id)
+            ->where('doctor_name', $request->doctor_name)
+            ->where('specialization', $request->specialization)
+            ->first();
 
-            $user = User::where('name', $request->doctor_name)
-                ->where('specialization', $request->specialization)
-                ->first();
-
-            if (!$user) {
-                $errorMessage = "Doctor not found for specialization: {$request->specialization}, and doctor name: {$request->doctor_name}";
-                return $this->errorMessage(['error' => $errorMessage], $errorMessage);
-            }
-
-            // Check if appointment already exists for this user
-            $existingAppointment = Appointment::where('user_id', $user->id)
-                ->first();
-
-            if ($existingAppointment) {
-                return $this->errorMessage([],'Appointment already exists');
-            }
-
-            $request->merge([
-                'user_id' =>  $request->user()->id,
-                'name'=> $request->user()->name,
-                'email' =>$request->user()->email,
-                'phone' => $request->user()->phone,
-            ]);
-
-            $appointment = Appointment::create($request->all());
-
-            // Send notification to the authenticated user
-//            $user->notify(new AppointmentCreated($user));
-            try {
-                event(new AppointmentEvent($user)); // Dispatch AppointmentEvent
-            } catch (\Exception $e) {
-                return $this->errorMessage([], $e->getMessage(), 500);
-            }
-
-            //send notification to doctor role
-            $doctor = User::where('role', 'doctor')->first();
-            $doctor->notify(new AppointmentCreated($doctor));
-
-            return $this->data(compact('appointment'),'Appointment created successfully');
+        if ($existingAppointment) {
+            $errorMessage = "You already have an appointment with {$request->doctor_name}";
+            return $this->errorMessage(['error' => $errorMessage], $errorMessage);
         }
 
-        public function show($id)
+        // If no existing appointment found, proceed to create a new one
+        $user = User::where('name', $request->doctor_name)
+            ->where('specialization', $request->specialization)
+            ->first();
+
+        if (!$user) {
+            $errorMessage = "Doctor not found for specialization: {$request->specialization}, and doctor name: {$request->doctor_name}";
+            return $this->errorMessage(['error' => $errorMessage], $errorMessage);
+        }
+
+        $request->merge([
+            'user_id' =>  $request->user()->id,
+            'name'=> $request->user()->name,
+            'email' =>$request->user()->email,
+            'phone' => $request->user()->phone,
+        ]);
+
+        $appointment = Appointment::create($request->all());
+
+        try {
+            event(new AppointmentEvent($user)); // Dispatch AppointmentEvent
+        } catch (\Exception $e) {
+            return $this->errorMessage([], $e->getMessage(), 500);
+        }
+
+        //send notification to doctor role
+        $doctor = User::where('role', 'doctor')->first();
+        $doctor->notify(new AppointmentCreated($doctor));
+
+        return $this->data(compact('appointment'),'Appointment created successfully');
+    }
+
+
+    public function show($id)
         {
             $this->authorizeCheck('appointments_view');
             $appointment = Appointment::findOrFail($id);
@@ -119,39 +118,44 @@ class AppointmentController extends Controller
                 ->select('name')
                 ->get();
 
-            $appointments= User::where('role', 'doctor')
-                ->select('appointments')
-                ->get();
-
-            return $this->data(compact('appointment', 'specializations', 'doctors','appointments' ));
+            return $this->data(compact('appointment', 'specializations', 'doctors'));
         }
 
 
-        public function update(AppointmentUpdateRequest $request, $id)
-        {
-//            $user = $request->user();
-            $appointment = Appointment::findOrFail($id);
+    public function update(AppointmentUpdateRequest $request, $id)
+    {
+        $appointment = Appointment::findOrFail($id);
 
-            $user = User::where('name', $request->doctor_name)
-                ->where('specialization', $request->specialization)
-                ->first();
+        $user = User::where('name', $request->doctor_name)
+            ->where('specialization', $request->specialization)
+            ->first();
 
-
-            if (!$user) {
-                $errorMessage = "Doctor not found for specialization: {$request->specialization}, and doctor name: {$request->doctor_name}";
-                return $this->errorMessage(['error' => $errorMessage], $errorMessage);
-            }
-
-            $request->merge([
-                'user_id' => $user->id,
-                'user_name'=> $user->name,
-                'user_email' => $user->email,
-                'user_phone' => $user->phone,
-            ]);
-            $appointment->update($request->all());
-
-            return $this->data(compact('appointment'), 'Appointment updated successfully');
+        if (!$user) {
+            $errorMessage = "Doctor not found for specialization: {$request->specialization}, and doctor name: {$request->doctor_name}";
+            return $this->errorMessage(['error' => $errorMessage], $errorMessage);
         }
+
+        // Check if the updated appointment conflicts with any existing appointment
+        $existingAppointment = Appointment::where('id', '!=', $id)
+            ->where('user_id', $user->id)
+            ->first();
+
+        if ($existingAppointment) {
+            $errorMessage = "You already have an appointment with {$request->doctor_name}";
+            return $this->errorMessage(['error' => $errorMessage], $errorMessage);
+        }
+
+        $request->merge([
+            'user_id' => $user->id,
+            'user_name'=> $user->name,
+            'user_email' => $user->email,
+            'user_phone' => $user->phone,
+        ]);
+
+        $appointment->update($request->all());
+
+        return $this->data(compact('appointment'), 'Appointment updated successfully');
+    }
 
         public function destroy($id)
         {
@@ -169,19 +173,17 @@ class AppointmentController extends Controller
         $appointment->status = 'approved';
 
         // Update appointment datetime if provided in the request
-        if ($request->has('appointments')) {
-            $appointment->appointments = $request->appointments;
+        if ($request->has('appointment_datetime')) {
+            $appointment->appointment_datetime = $request->appointment_datetime;
         }
-        // Save the changes to the appointment
         $appointment->save();
 
-     // sending notifications to the user using event
 
 
         $user = User::where('id', $appointment->user_id)->first();
         $user->notify(new AppointmentConfirmationNotification($user));
 
-        return $this->successMessage('Appointment approved successfully. Appointment date and time: ' . $appointment->appointments);
+        return $this->successMessage('Appointment approved successfully. Appointment date and time: ' . $appointment->appointment_datetime);
 
     }
 
@@ -191,8 +193,6 @@ class AppointmentController extends Controller
             $appointment = Appointment::findOrFail($id);
             $appointment->status = 'cancelled';
             $appointment->save();
-
-            // Additional actions, such as sending notifications, logging, etc., can be performed here.
 
             return $this->successMessage('Appointment cancelled successfully. Appointment date and time: ' . $appointment->appointment_datetime);
         }

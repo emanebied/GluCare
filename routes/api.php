@@ -11,18 +11,17 @@ use App\Http\Controllers\Apis\Dashboard\RolesAndPermissionsController;
 use App\Http\Controllers\Apis\Dashboard\UserController;
 use App\Http\Controllers\Apis\Dashboard\WebsiteSettingController;
 use App\Http\Controllers\Apis\GluCare\Appointments\AppointmentController;
-use App\Http\Controllers\Apis\GluCare\Detection\PatientData\PatientController;
-use App\Http\Controllers\Apis\GluCare\Doctors\DoctorController;
-use App\Http\Controllers\Apis\GluCare\LiveChat\ChatController;
-use App\Http\Controllers\Apis\Notifications\NotificationController;
 use App\Http\Controllers\Apis\GluCare\Blog\CategoryController;
 use App\Http\Controllers\Apis\GluCare\Blog\CommentController;
 use App\Http\Controllers\Apis\GluCare\Blog\LikeController;
 use App\Http\Controllers\Apis\GluCare\Blog\PostController;
-use App\Notifications\GluCare\Appointments\AppointmentCreated;
+use App\Http\Controllers\Apis\GluCare\Detection\PatientData\PatientController;
+use App\Http\Controllers\Apis\GluCare\Doctors\DoctorController;
+use App\Http\Controllers\Apis\GluCare\LiveChat\ChatController;
+use App\Http\Controllers\Apis\GluCare\Payment\PaymentController;
+use App\Http\Controllers\Apis\Notifications\NotificationController;
 use Illuminate\Support\Facades\Broadcast;
 use Illuminate\Support\Facades\Route;
-
 
 
 // User routes
@@ -54,7 +53,6 @@ use Illuminate\Support\Facades\Route;
             });
 
         });
-
 
 
             Route::group(['prefix' => 'notifications', 'middleware' => 'auth:sanctum'], function () {
@@ -96,8 +94,6 @@ use Illuminate\Support\Facades\Route;
 
             });
         });
-
-
 
 
        // Routes for GluCare application
@@ -204,9 +200,20 @@ use Illuminate\Support\Facades\Route;
                 });
             });
 
+            Route::prefix('payments')->group(function () {
+                Route::middleware(['auth:sanctum','role:admin,user'])->group(function () {
+                    Route::post('/stripe-payment', [PaymentController::class, 'stripePayment']);
+                });
+            });
+
+
+
         });
-                Route::get('/preview-mail', function () {
+
+         //test mail
+/*                Route::get('/preview-mail', function () {
                             $user = App\Models\User::findOrFail(1);
-                           return (new \App\Notifications\GluCare\Appointments\AppointmentConfirmationNotification($user))
+                           return (new \App\Notifications\GluCare\Payments\PaymentStatusNotification($user))
                                ->toMail($user);
-                            });
+                            });*/
+

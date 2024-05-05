@@ -31,6 +31,7 @@ class AppointmentStoreRequest extends FormRequest
             'specialization' => 'required|string',
             'doctor_name' => 'required|string',
 
+
         ];
     }
 }

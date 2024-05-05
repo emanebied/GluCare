@@ -2,6 +2,7 @@
 
 namespace App\Models\GluCare\Appointments;
 
+use App\Models\GluCare\payment\Payment;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -18,7 +19,9 @@ class Appointment extends Model
         'specialization',
         'doctor_name',
         'status',
-        'appointments',
+        'appointments_datetime',
+        'note',
+        'payment_status',
     ];
 
     public function user()
@@ -26,7 +29,9 @@ class Appointment extends Model
         return $this->belongsTo(User::class);
     }
 
-
-
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
+    }
 
 }

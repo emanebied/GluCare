@@ -8,6 +8,7 @@ use App\Http\Requests\Apis\Dashboard\UsersManagement\UserUpdateRequest;
 use App\Http\traits\ApiTrait;
 use App\Http\traits\AuthorizeCheckTrait;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 
@@ -40,13 +41,18 @@ class UserController extends Controller
             return ApiTrait::errorMessage(['error' => 'Role not found'], 'Role not found');
         }
 
-        // Create user
-        $userData = $request->all();
+        // Encode appointments
+        $userData = $request->validated();
         $userData['password'] = Hash::make($request->password);
+
+
+        // Create user
         $user = User::create($userData);
 
         return ApiTrait::data(compact('user'), 'User Created successfully');
     }
+
+
 
 
     public function edit($id){
@@ -57,21 +63,21 @@ class UserController extends Controller
         return ApiTrait::data(compact('user','roles'),'User and Roles');
     }
 
+
+
     public function update(UserUpdateRequest $request, $id)
     {
+
         $user = User::findOrFail($id);
-        $user->name = $request->name;
-        $user->first_name = $request->first_name;
-        $user->last_name = $request->last_name;
-        $user->email = $request->email;
-        $user->role = $request->role;
+
+        $userData = $request->validated();
 
         // Only update the password if a new one is provided
         if ($request->filled('password')) {
-            $user->password = Hash::make($request->password);
+            $userData['password'] = Hash::make($request->password);
         }
+        $user->update($userData);
 
-        $user->save();
         return ApiTrait::data(compact('user'), 'User updated successfully');
     }
 

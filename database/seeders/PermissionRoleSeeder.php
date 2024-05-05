@@ -28,6 +28,7 @@ class PermissionRoleSeeder extends Seeder
                     'chat_search_user','chat_message_status','chat_user/join_chat','chat_user/leave_chat',
                     'doctors_view','doctors_show',
                     'appointments_create','appointments_view','appointments_edit','appointments_delete',
+                    'payment_create',
 
 
 
@@ -47,6 +48,7 @@ class PermissionRoleSeeder extends Seeder
                     'doctors_view','doctors_show',
                     'appointments_create','appointments_view','appointments_edit','appointments_delete',
                     'appointments_approve','appointments_cancel',
+                    'payment_create'
 
 
 

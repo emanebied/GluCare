@@ -38,7 +38,14 @@ class UserSeeder extends Seeder
                 'experience_years' => 5,
                 'qualifications' => 'MD, MBBS',
                 'specialization' => 'Cardiology',
+                'amount' => 100,
+                'currency' => 'USD',
+                 'availabilities' => [
+                    '2024-04-30 16:23',
+                    '2024-05-01 16:25',
+                 ],
             ],
+
         ];
 
         // Create or update users and assign roles
@@ -51,6 +58,9 @@ class UserSeeder extends Seeder
                 'experience_years' => $userData['experience_years'] ?? null,
                 'qualifications' => $userData['qualifications'] ?? null,
                 'specialization' => $userData['specialization'] ?? null,
+                'amount' => $userData['amount'] ?? null,
+                'currency' => $userData['currency'] ?? null,
+                'availabilities' => $userData['availabilities'] ?? null,
             ]);
 
             // Assign role to user

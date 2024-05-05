@@ -42,6 +42,9 @@ class User extends Authenticatable implements HasMedia
         'experience_years',
         'qualifications',
         'specialization',
+        'amount',
+        'currency',
+        'availabilities',
     ];
 
 
@@ -59,6 +62,7 @@ class User extends Authenticatable implements HasMedia
         'email_verified_at' => 'datetime',
         'code_expired_at' => 'datetime',
         'phone_verified_at'=>'datetime',
+        'availabilities' => 'array',
     ];
 
     public function getImageAttribute()

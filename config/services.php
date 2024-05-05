@@ -31,4 +31,16 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'stripe'=>[
+
+        'publishable_key'=>env('STRIPE_PUBLISHABLE_KEY'),
+        'secret_key'=>env('STRIPE_SECRET_KEY')
+    ],
+    'notification' => [
+        'database' => [
+            'driver' => 'database',
+            'table' => 'notifications',
+        ],
+    ],
+
 ];

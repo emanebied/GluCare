@@ -32,9 +32,15 @@ use ApiTrait;
 
         // Check if the user is a doctor
         if ($this->role == 'doctor') {
-            $rules['experience_years'] = ['nullable', 'integer'];
-            $rules['qualifications'] = ['nullable', 'string'];
-            $rules['specialization'] = ['nullable', 'string'];
+            $rules['experience_years'] = ['required', 'integer'];
+            $rules['qualifications'] = ['required', 'string'];
+            $rules['specialization'] = ['required', 'string'];
+            $rules['amount'] = ['required', 'numeric'];
+            $rules['currency'] = ['required', 'string'];
+            $rules['availabilities'] = ['array', 'required', `date_format:Y-m-d H:i`];
+
+
+
         }
 
         return $rules;
