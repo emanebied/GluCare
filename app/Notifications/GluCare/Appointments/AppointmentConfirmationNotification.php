@@ -16,41 +16,31 @@ class AppointmentConfirmationNotification extends Notification
     {
         $this->user = $user;
     }
-    /**
-     * Get the notification's delivery channels.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
+
     public function via($notifiable)
     {
         return ['mail'];
     }
 
-    /**
-     * Get the mail representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
-     */
+
     public function toMail($notifiable)
     {
-
         $appointment = $this->user->appointments()->latest()->first();
+
         return (new MailMessage)
             ->from('no-reply@example.com', 'GlueCare')
             ->subject('Confirmation of appointment.')
             ->greeting('Hello ' . $notifiable->name. '!')
-            ->line(' Appointment approved successfully.')
-            ->line('Your Appointment date and time: ' . $appointment->appointments);
+            ->line('Your appointment has been created successfully.')
+            ->action('View Appointment', url('/appointments/' . $appointment->id))
+            ->line('Your Appointment date and time: ' . $appointment->appointment_datetime)
+            ->line('Doctor Name: ' . $appointment->doctor_name)
+            ->line('Specialization: ' . $appointment->specialization)
+            ->line('Zoom Meeting URL: ' . $appointment->zoom_meeting_url)
+            ->line('Duration: ' . $appointment->duration_in_minute . ' minutes');
+
     }
 
-    /**
-     * Get the array representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
     public function toArray($notifiable)
     {
         return [

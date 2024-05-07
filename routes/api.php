@@ -206,14 +206,11 @@ use Illuminate\Support\Facades\Route;
                 });
             });
 
-
-
         });
 
          //test mail
-/*                Route::get('/preview-mail', function () {
-                            $user = App\Models\User::findOrFail(1);
-                           return (new \App\Notifications\GluCare\Payments\PaymentStatusNotification($user))
-                               ->toMail($user);
-                            });*/
-
+//               Route::get('/preview-mail', function () {
+//                            $user = App\Models\User::findOrFail(4);
+//                           return (new \App\Notifications\GluCare\Appointments\AppointmentConfirmationNotification($user))
+//                               ->toMail($user);
+//                            });

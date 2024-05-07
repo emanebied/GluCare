@@ -25,6 +25,9 @@ class CreateAppointmentsTable extends Migration
             $table->text('note')->nullable();
             $table->enum('payment_status', ['pending', 'paid', 'failed', 'cancelled'])->default('pending');
             $table->datetime('appointment_datetime')->nullable();
+            $table->string('zoom_meeting_url')->nullable();
+            $table->integer('duration_in_minute')->nullable();
+
             $table->softDeletes();
             $table->timestamps();
         });

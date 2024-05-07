@@ -22,6 +22,9 @@ class Appointment extends Model
         'appointments_datetime',
         'note',
         'payment_status',
+        'zoom_meeting_url',
+        'duration_in_minute',
+
     ];
 
     public function user()

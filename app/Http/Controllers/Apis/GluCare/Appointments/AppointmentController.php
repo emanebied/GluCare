@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Apis\GluCare\Appointments;
 
 use App\Events\GluCare\Appointments\AppointmentEvent;
+use App\Http\Controllers\Apis\GluCare\ZoomVideoCall\ZoomController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Apis\GluCare\Appointments\AppointmentStoreRequest;
 use App\Http\Requests\Apis\GluCare\Appointments\AppointmentUpdateRequest;
@@ -96,6 +97,55 @@ class AppointmentController extends Controller
         return $this->data(compact('appointment'),'Appointment created successfully');
     }
 
+    public function approve(Request $request, $id)
+    {
+        $this->authorizeCheck('appointments_approve');
+
+        $appointment = Appointment::findOrFail($id);
+
+        // Update appointment status, datetime and duration
+        $appointment->status = 'approved';
+        $appointment->appointment_datetime = $request->appointment_datetime;
+        $appointment->duration_in_minute = $request->duration_in_minute;
+
+        // Generate Zoom meeting link
+        $zoomController = new ZoomController();
+        $zoomMeetingData = [
+            'title' => 'Appointment with ' . $appointment->doctor_name,
+            'start_date_time' => $appointment->appointment_datetime,
+            'duration_in_minute' => $appointment->duration_in_minute,
+        ];
+
+        try {
+            $zoomMeetingUrl = $zoomController->createMeeting($zoomMeetingData);
+            $appointment->zoom_meeting_url = $zoomMeetingUrl;
+            $appointment->save();
+
+            // Send appointment confirmation notification with details including Zoom meeting URL
+            $user = User::where('id', $appointment->user_id)->first();
+            $user->notify(new AppointmentConfirmationNotification($user));
+
+            return $this->successMessage('Appointment approved successfully.');
+        } catch (\Exception $e) {
+            // Handle error if Zoom meeting creation fails
+            return $this->errorMessage([], 'Failed to approve appointment. Error: ' . $e->getMessage());
+        }
+    }
+
+
+    public function cancel($id)
+    {
+        $this->authorizeCheck('appointments_cancel');
+        $appointment = Appointment::findOrFail($id);
+        $appointment->status = 'cancelled';
+        $appointment->save();
+
+        return $this->successMessage('Appointment cancelled successfully. Appointment date and time: ' . $appointment->appointment_datetime);
+    }
+
+
+
+
 
     public function show($id)
         {
@@ -147,9 +197,9 @@ class AppointmentController extends Controller
 
         $request->merge([
             'user_id' => $user->id,
-            'user_name'=> $user->name,
-            'user_email' => $user->email,
-            'user_phone' => $user->phone,
+            'name' => $user->name,
+            'email' => $user->email,
+            'phone' => $user->phone,
         ]);
 
         $appointment->update($request->all());
@@ -157,7 +207,8 @@ class AppointmentController extends Controller
         return $this->data(compact('appointment'), 'Appointment updated successfully');
     }
 
-        public function destroy($id)
+
+    public function destroy($id)
         {
             $this->authorizeCheck('appointments_delete');
             $appointment = Appointment::findOrFail($id);
@@ -165,36 +216,6 @@ class AppointmentController extends Controller
 
             return $this->successMessage('Appointment deleted successfully');
         }
-    public function approve(Request $request, $id)
-    {
-        $this->authorizeCheck('appointments_approve');
-
-        $appointment = Appointment::findOrFail($id);
-        $appointment->status = 'approved';
-
-        // Update appointment datetime if provided in the request
-        if ($request->has('appointment_datetime')) {
-            $appointment->appointment_datetime = $request->appointment_datetime;
-        }
-        $appointment->save();
-
-
-
-        $user = User::where('id', $appointment->user_id)->first();
-        $user->notify(new AppointmentConfirmationNotification($user));
-
-        return $this->successMessage('Appointment approved successfully. Appointment date and time: ' . $appointment->appointment_datetime);
-
-    }
-
-    public function cancel($id)
-        {
-            $this->authorizeCheck('appointments_cancel');
-            $appointment = Appointment::findOrFail($id);
-            $appointment->status = 'cancelled';
-            $appointment->save();
-
-            return $this->successMessage('Appointment cancelled successfully. Appointment date and time: ' . $appointment->appointment_datetime);
-        }
 
 }
+
