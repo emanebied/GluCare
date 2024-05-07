@@ -21,7 +21,6 @@ class PasswordResetCodeListener implements ShouldQueue
     {
 
         try {
-        // Notification::send($event->user, new PasswordResetNotification($event->user));
             $event->user->notify(new PasswordResetNotification( $event->user));
             Log::info(' Password reset notification sent successfully to user ID ' . $event->user->id);
         } catch (Throwable $e) {

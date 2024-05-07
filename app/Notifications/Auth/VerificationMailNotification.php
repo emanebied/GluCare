@@ -39,12 +39,7 @@ class VerificationMailNotification extends Notification
             ->line('After '. ' ' .config('auth.code_timeout'). ' ' . 'seconds');
     }
 
-    /**
-     * Get the array representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
+
     public function toArray($notifiable)
     {
         return [

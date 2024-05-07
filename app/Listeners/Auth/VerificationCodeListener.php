@@ -22,7 +22,6 @@ class VerificationCodeListener implements shouldQueue
     public function handle( EmailVerificationCodeEvent $event)
     {
         try {
-//          Notification::send($event->user, new VerificationMailNotification($event->user));
             $event->user->notify(new VerificationMailNotification( $event->user));
             Log::info(' Verication Mail notification sent successfully to user ID ' . $event->user->id);
         } catch (Throwable $e) {

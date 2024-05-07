@@ -6,7 +6,7 @@ use App\Http\traits\ApiTrait;
 use App\Http\traits\HandlesVerificationCode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Notifications\Auth\ConfirmPasswordNotification;
+
 
 class ConfirmPasswordController extends Controller
 {

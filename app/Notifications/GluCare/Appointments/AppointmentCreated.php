@@ -16,12 +16,6 @@ class AppointmentCreated extends Notification
     {
         $this->user = $user;
     }
-    /**
-     * Get the notification's delivery channels.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
     public function via($notifiable)
     {
         return ['mail'];

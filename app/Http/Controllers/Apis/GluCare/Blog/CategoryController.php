@@ -109,11 +109,6 @@ class CategoryController extends Controller
        }
 
 
-         /*/Soft delete means that the record is not actually removed from the database
-              but is instead marked as deleted by setting a timestamp in the deleted_at column.
-           destroy() soft deletes the record, making it possible to restore it later if needed.
-           forceDelete() permanently removes the record from the database, and it cannot be restored.*/
-
         public function destroy(Category $category)
         {
             $this->authorizeCheck('categories_delete');

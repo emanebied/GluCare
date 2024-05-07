@@ -39,14 +39,14 @@ class RolesAndPermissionsController extends Controller
         return ApiTrait::data(compact('role'), 'Role created successfully with permissions.',201);
     }
 
-//    public function show($id){
-//
-//        $this->AuthorizeCheck('role-permissions-view');
-//
-//        $role = Role::findOrFail($id);
-//        $role->load('permissions'); //$role->permissions;
-//        return ApiTrait::data(compact('role'),'Role and associated permissions fetched successfully.');
-//    }
+    public function show($id){
+
+        $this->AuthorizeCheck('role-permissions-view');
+
+        $role = Role::findOrFail($id);
+        $role->load('permissions'); //$role->permissions;
+        return ApiTrait::data(compact('role'),'Role and associated permissions fetched successfully.');
+    }
 
     public function edit($id)
     {

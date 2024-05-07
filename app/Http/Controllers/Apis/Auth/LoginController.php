@@ -26,10 +26,7 @@ class LoginController extends Controller
 
         // Check if the user is admin, employee, or doctor
         if (in_array($user->role, ['admin', 'employee', 'doctor'])) {
-
-//            $token = $user->createToken($request->device_name)->plainTextToken;
-            $token = "Bearer " . $user->createToken($request->device_name)->plainTextToken;// Generate token without verifying email
-
+            $token = "Bearer " . $user->createToken($request->device_name)->plainTextToken;
             try {
                 event(new LoginEvent($user)); // Dispatch LoginEvent
             } catch (\Exception $e) {
@@ -43,15 +40,11 @@ class LoginController extends Controller
             ], 'You logged in successfully.');
         }
 
-        // Regular user login process
-        // Check if the user is verified
+        // Regular user login process:Check if the user is verified
         if (is_null($user->email_verified_at)) {
             return $this->data(compact('user'), 'User not verified', 401);
         }
-
-        // Generate token for regular users
         $token = "Bearer " . $user->createToken($request->device_name)->plainTextToken;
-
         try {
             event(new LoginEvent($user)); // Dispatch LoginEvent
         } catch (\Exception $e) {
@@ -81,7 +74,7 @@ class LoginController extends Controller
 
     public function logoutAllDevices(){
 
-       $user=Auth::guard('sanctum')->user(); //Currently Authenticated User
+       $user=Auth::guard('sanctum')->user();
         if (!$user) {
             return $this->errorMessage(['email' => 'User not found'], 'User not found', 404);
         }

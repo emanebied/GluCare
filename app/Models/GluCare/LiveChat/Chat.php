@@ -10,7 +10,10 @@ class Chat extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['data', 'direct_message'];
+    protected $fillable = [
+        'data',
+        'direct_message'
+    ];
     protected $casts = [
         'data'           => 'array',
         'direct_message' => 'boolean',

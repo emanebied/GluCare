@@ -14,7 +14,7 @@ class Category extends Model implements HasMedia
     use HasFactory, InteractsWithMedia ,SoftDeletes;
 
 
-    protected $fillable =   //whitelist
+    protected $fillable =
         [
             'name',
             'slug',
@@ -23,8 +23,6 @@ class Category extends Model implements HasMedia
             'status',
             'parent_id',
         ];
-    protected $guarded = ['id']; //blacklist
-
 
        public function parent()
          {

@@ -13,16 +13,11 @@ class SettingsStoreRequest extends FormRequest
         if($this->user()->can('settings_create')){
             return true;
         }
-        //return false;
         return $this->errorMessage([],'Admin Only, Unauthorized .', 403);
     }
 
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, mixed>
-     */
+
     public function rules()
     {
         return [

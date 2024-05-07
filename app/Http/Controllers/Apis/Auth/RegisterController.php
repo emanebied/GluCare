@@ -60,10 +60,7 @@ class RegisterController extends Controller
 
         try {
             $user = User::create($data);
-
-            // Assign default role to the user upon registration
             $user->assignRole('user');
-
             // Assign permissions based on user role if provided
             if ($request->has('role')) {
                 $this->assignPermissions($user, $request->role);

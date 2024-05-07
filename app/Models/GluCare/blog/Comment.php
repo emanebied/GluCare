@@ -18,7 +18,6 @@ class Comment extends Model
         'status',
     ];
 
-    protected $guarded = ['id'];
 
     public function user()
     {

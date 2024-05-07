@@ -20,7 +20,6 @@ class lRegistrationListener implements ShouldQueue
     public function handle(RegisterEvent $event)
     {
         try {
-//            Notification::send($event->user, new RegisterNotification($event->user));
             $event->user->notify(new RegisterNotification($event->user));
             Log::info(' Register notification sent successfully to user ID: ' . $event->user->id);
         } catch (Throwable $e) {

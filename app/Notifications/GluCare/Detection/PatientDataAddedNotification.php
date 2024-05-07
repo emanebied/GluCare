@@ -33,12 +33,7 @@ class PatientDataAddedNotification extends Notification
             ->line('Thank you for using our GluCare app !');
     }
 
-    /**
-     * Get the array representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
+
     public function toArray($notifiable)
     {
         return [

@@ -53,11 +53,7 @@ class User extends Authenticatable implements HasMedia
         'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
+
     protected $casts = [
         'email_verified_at' => 'datetime',
         'code_expired_at' => 'datetime',

@@ -28,7 +28,6 @@ class Post extends Model implements HasMedia
 
     ];
 
-    protected $guarded = ['id'];
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? null, function ($query, $value) {

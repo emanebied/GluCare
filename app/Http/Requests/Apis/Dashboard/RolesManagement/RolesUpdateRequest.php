@@ -17,11 +17,6 @@ class RolesUpdateRequest extends FormRequest
         return $this->errorMessage([],'Admin Only, Unauthorized .', 403);
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, mixed>
-     */
     public function rules()
     {
         $role_id= $this->route('role-permissions');

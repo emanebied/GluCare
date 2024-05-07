@@ -41,7 +41,7 @@ class PatientController extends Controller
 
     public function store(PatientStoreRequest $request)
     {
-        $user = $request->user(); // Retrieve authenticated user
+        $user = $request->user();
         $userId = $user->id;
         $bmi = $this->calculateBMI($request->post('height'), $request->post('weight'));
 
