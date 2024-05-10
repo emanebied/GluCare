@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Listeners\Auth;
+namespace App\Listeners\Auth\Login;
 
-use App\Events\Auth\LoginEvent;
+use App\Events\Auth\Login\LoginEvent;
 use App\Notifications\Auth\LoginNotification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;

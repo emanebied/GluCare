@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Events\Auth;
+namespace App\Events\Auth\ForgotPassword;
 
 use App\Models\User;
 use Illuminate\Broadcasting\InteractsWithSockets;

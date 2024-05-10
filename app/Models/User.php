@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
+use App\Models\Auth\Provider;
 use App\Models\GluCare\Appointments\Appointment;
 use App\Models\GluCare\blog\Comment;
 use App\Models\GluCare\blog\Post;

@@ -40,7 +40,7 @@
 
 namespace App\Http\Controllers\Apis\Auth\Registration;
 
-use App\Events\Auth\RegisterEvent;
+use App\Events\Auth\Registration\RegisterEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Apis\Auth\RegisterRequest;
 use App\Http\traits\ApiTrait;

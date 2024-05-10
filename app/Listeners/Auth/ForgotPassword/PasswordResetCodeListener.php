@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Listeners\Auth;
+namespace App\Listeners\Auth\ForgotPassword;
 
-use App\Events\Auth\PasswordResetCodeEvent;
+use App\Events\Auth\ForgotPassword\PasswordResetCodeEvent;
 use App\Notifications\Auth\PasswordResetNotification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;

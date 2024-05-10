@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Listeners\Auth;
+namespace App\Listeners\Auth\Registration;
 
-use App\Events\Auth\EmailVerificationCodeEvent;
+use App\Events\Auth\Registration\EmailVerificationCodeEvent;
 use App\Notifications\Auth\VerificationMailNotification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;

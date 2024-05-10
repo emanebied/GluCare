@@ -18,17 +18,17 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
 
-      \App\Events\Auth\RegisterEvent::class => [
-          \App\Listeners\Auth\lRegistrationListener::class,
+      \App\Events\Auth\Registration\RegisterEvent::class => [
+          \App\Listeners\Auth\Registration\registrationListener::class,
       ],
-        \App\Events\Auth\LoginEvent::class => [
-            \App\Listeners\Auth\LoginListener::class,
+        \App\Events\Auth\Login\LoginEvent::class => [
+            \App\Listeners\Auth\Login\LoginListener::class,
         ],
-        \App\Events\Auth\EmailVerificationCodeEvent::class => [
-            \App\Listeners\Auth\VerificationCodeListener::class,
+        \App\Events\Auth\Registration\EmailVerificationCodeEvent::class => [
+            \App\Listeners\Auth\Registration\VerificationCodeListener::class,
             ],
-        \App\Events\Auth\PasswordResetCodeEvent::class => [
-            \App\Listeners\Auth\PasswordResetCodeListener::class,
+        \App\Events\Auth\ForgotPassword\PasswordResetCodeEvent::class => [
+            \App\Listeners\Auth\ForgotPassword\PasswordResetCodeListener::class,
         ],
         \App\Events\GluCare\Detection\PatientDataAddedEvent::class => [
             \App\Listeners\GluCare\Detection\PatientDataAddedListener::class,

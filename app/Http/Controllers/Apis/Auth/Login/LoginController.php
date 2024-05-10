@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Apis\Auth\Login;
-use App\Events\Auth\LoginEvent;
+use App\Events\Auth\Login\LoginEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Apis\Auth\LoginRequest;
 use App\Http\traits\ApiTrait;
