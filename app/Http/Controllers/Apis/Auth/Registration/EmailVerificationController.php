@@ -1,17 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Apis\Auth;
+namespace App\Http\Controllers\Apis\Auth\Registration;
+
 use App\Http\Controllers\Controller;
 use App\Http\traits\ApiTrait;
 use App\Http\traits\HandlesVerificationCode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-
-class ConfirmPasswordController extends Controller
+class EmailVerificationController extends Controller
 {
-
-    use ApiTrait,HandlesVerificationCode;
+         use ApiTrait, HandlesVerificationCode;
     private function handleCodeSending(Request $request, bool $isResend)
     {
         $user = Auth::guard('sanctum')->user();
@@ -23,19 +22,19 @@ class ConfirmPasswordController extends Controller
         }
 
         try {
-            $this->generateAndSendVerificationCode($user,'password_reset');
+            $this->generateAndSendVerificationCode($user);
             return $this->data(compact('user'), 'Code sent successfully. Please check your email.');
         } catch (\Exception $e) {
             return $this->errorMessage(['mail' => $e->getMessage()], 'An error occurred while sending the email notification. Please try again.', 500);
         }
     }
-    public function sendCode(Request $request)
-    {
-        return $this->handleCodeSending($request, false);
-    }
+        public function sendCode(Request $request)
+        {
+            return $this->handleCodeSending($request, false);
+        }
 
-    public function resendCode(Request $request)
-    {
-        return $this->handleCodeSending($request, true);
-    }
+        public function resendCode(Request $request)
+        {
+            return $this->handleCodeSending($request, true);
+        }
 }

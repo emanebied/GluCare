@@ -1,15 +1,16 @@
 <?php
 
-use App\Http\Controllers\Apis\Auth\ConfirmPasswordController;
-use App\Http\Controllers\Apis\Auth\EmailVerificationController;
-use App\Http\Controllers\Apis\Auth\ForgotPasswordController;
-use App\Http\Controllers\Apis\Auth\LoginController;
-use App\Http\Controllers\Apis\Auth\ProfileController;
-use App\Http\Controllers\Apis\Auth\RegisterController;
-use App\Http\Controllers\Apis\Auth\ResetPasswordController;
-use App\Http\Controllers\Apis\Dashboard\RolesAndPermissionsController;
-use App\Http\Controllers\Apis\Dashboard\UserController;
-use App\Http\Controllers\Apis\Dashboard\WebsiteSettingController;
+use App\Http\Controllers\Apis\Auth\ForgotPassword\ConfirmPasswordController;
+use App\Http\Controllers\Apis\Auth\ForgotPassword\ForgotPasswordController;
+use App\Http\Controllers\Apis\Auth\ForgotPassword\ResetPasswordController;
+use App\Http\Controllers\Apis\Auth\Login\LoginController;
+use App\Http\Controllers\Apis\Auth\Registration\EmailVerificationController;
+use App\Http\Controllers\Apis\Auth\Registration\RegisterController;
+use App\Http\Controllers\Apis\Auth\SocialiteLogin\SocialLoginController;
+use App\Http\Controllers\Apis\Auth\UserProfile\ProfileController;
+use App\Http\Controllers\Apis\Dashboard\RolesManagement\RolesAndPermissionsController;
+use App\Http\Controllers\Apis\Dashboard\SettingsManagement\WebsiteSettingController;
+use App\Http\Controllers\Apis\Dashboard\UserManagement\UserController;
 use App\Http\Controllers\Apis\GluCare\Appointments\AppointmentController;
 use App\Http\Controllers\Apis\GluCare\Blog\CategoryController;
 use App\Http\Controllers\Apis\GluCare\Blog\CommentController;
@@ -35,6 +36,9 @@ use Illuminate\Support\Facades\Route;
                 Route::post('register', RegisterController::class);
                 Route::post('login', [LoginController::class, 'login']);
                 Route::post('forgot-password', [ForgotPasswordController::class, 'forgotPassword']);
+                Route::get('login/{provider}/redirect', [SocialLoginController::class, 'redirectToProvider']);
+                Route::post('login/{provider}/callback', [SocialLoginController::class, 'handleProviderCallback']);
+                Route::get('login/{provider}/user', [SocialLoginController::class, 'index']);
             });
 
             Route::group(['middleware' => 'auth:sanctum'], function () {
@@ -207,10 +211,23 @@ use Illuminate\Support\Facades\Route;
             });
 
         });
+                                  ///////////////test mail/////////////////////
+/*/
+               Route::get('/preview-mail', function () {
+                            $user = App\Models\User::findOrFail(4);
+                           return (new \App\Notifications\GluCare\Appointments\AppointmentConfirmationNotification($user))
+                               ->toMail($user);
+                            });*/
 
-         //test mail
-//               Route::get('/preview-mail', function () {
-//                            $user = App\Models\User::findOrFail(4);
-//                           return (new \App\Notifications\GluCare\Appointments\AppointmentConfirmationNotification($user))
-//                               ->toMail($user);
-//                            });
+
+
+
+
+
+
+
+
+
+
+
+

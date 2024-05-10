@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Apis\Dashboard;
+namespace App\Http\Controllers\Apis\Dashboard\UserManagement;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Apis\Dashboard\UsersManagement\UserStoreRequest;
@@ -8,7 +8,6 @@ use App\Http\Requests\Apis\Dashboard\UsersManagement\UserUpdateRequest;
 use App\Http\traits\ApiTrait;
 use App\Http\traits\AuthorizeCheckTrait;
 use App\Models\User;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 

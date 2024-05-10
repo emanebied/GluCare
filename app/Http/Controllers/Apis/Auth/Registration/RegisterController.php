@@ -38,7 +38,7 @@
 
 
 
-namespace App\Http\Controllers\Apis\Auth;
+namespace App\Http\Controllers\Apis\Auth\Registration;
 
 use App\Events\Auth\RegisterEvent;
 use App\Http\Controllers\Controller;

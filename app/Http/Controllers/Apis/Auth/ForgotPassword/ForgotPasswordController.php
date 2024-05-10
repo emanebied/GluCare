@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Apis\Auth;
+namespace App\Http\Controllers\Apis\Auth\ForgotPassword;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Apis\Auth\ForgotPasswordRequest;

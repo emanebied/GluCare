@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Apis\Auth;
+namespace App\Http\Controllers\Apis\Auth\Login;
 use App\Events\Auth\LoginEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Apis\Auth\LoginRequest;
@@ -83,5 +83,8 @@ class LoginController extends Controller
        return $this->successMessage('You have logged out successfully from all devices');
 
 
+   }
 }
-}
+
+
+

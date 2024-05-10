@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Apis\Auth;
+namespace App\Http\Controllers\Apis\Auth\UserProfile;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Apis\Auth\UpdateProfileRequest;
 use App\Http\traits\ApiTrait;

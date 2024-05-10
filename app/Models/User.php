@@ -61,6 +61,29 @@ class User extends Authenticatable implements HasMedia
         'availabilities' => 'array',
     ];
 
+    protected static function booted()
+    {
+        static::creating(function ($user) {
+            if ($user->role === 'doctor') {
+                $user->currency = $user->currency ?? 'USD';
+                $user->qualifications = $user->qualifications ? json_encode($user->qualifications) : null;
+                $user->availabilities = $user->availabilities ? json_encode($user->availabilities) : null;
+                $user->amount = $user->amount ?? 0;
+                $user->experience_years = $user->experience_years ?? 0;
+                $user->specialization = $user->specialization ?? '';
+            } else {
+                // If the user is not a doctor,
+                $user->currency = null;
+                $user->qualifications = null;
+                $user->availabilities = null;
+                $user->amount = null;
+                $user->experience_years = null;
+                $user->specialization = '';
+            }
+        });
+    }
+
+
     public function getImageAttribute()
     {
         $mediaItems = $this->getMedia('users_images');
@@ -109,6 +132,11 @@ class User extends Authenticatable implements HasMedia
     public function appointments()
     {
         return $this->hasMany(Appointment::class);
+    }
+
+    public function providers()
+    {
+        return $this->hasMany(Provider::class);
     }
 
 }

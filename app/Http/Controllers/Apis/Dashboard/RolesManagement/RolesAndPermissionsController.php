@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Apis\Dashboard;
+namespace App\Http\Controllers\Apis\Dashboard\RolesManagement;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Apis\Dashboard\RolesManagement\RolesStoreRequest;
