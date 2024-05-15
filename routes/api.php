@@ -16,11 +16,13 @@ use App\Http\Controllers\Apis\GluCare\Blog\CategoryController;
 use App\Http\Controllers\Apis\GluCare\Blog\CommentController;
 use App\Http\Controllers\Apis\GluCare\Blog\LikeController;
 use App\Http\Controllers\Apis\GluCare\Blog\PostController;
-use App\Http\Controllers\Apis\GluCare\Detection\PatientData\PatientController;
+use App\Http\Controllers\Apis\GluCare\Detection\PatientData\PatientDataController;
+use App\Http\Controllers\Apis\GluCare\Detection\PredictDiabetes\PredictDiabetesController;
 use App\Http\Controllers\Apis\GluCare\Doctors\DoctorController;
 use App\Http\Controllers\Apis\GluCare\LiveChat\ChatController;
 use App\Http\Controllers\Apis\GluCare\Payment\PaymentController;
 use App\Http\Controllers\Apis\Notifications\NotificationController;
+use App\Http\Controllers\BotManController;
 use Illuminate\Support\Facades\Broadcast;
 use Illuminate\Support\Facades\Route;
 
@@ -157,13 +159,13 @@ use Illuminate\Support\Facades\Route;
                 });
             });
 
-            Route::prefix('patients')->group(function () {
+            Route::prefix('predictDiabetesWithPatientData')->group(function () {
                 Route::middleware(['auth:sanctum','role:admin,user'])->group(function () {
-                    Route::get('/', [PatientController::class, 'index']);
-                    Route::get('show/{patient}', [PatientController::class, 'show']);
-                    Route::post('/store', [PatientController::class, 'store']);
-                    Route::put('/update/{patient}', [PatientController::class, 'update']);
-                    Route::delete('/destroy/{patient}', [PatientController::class, 'destroy']);
+                    Route::get('/', [PatientDataController::class, 'index']);
+                    Route::get('show/{patient}', [PatientDataController::class, 'show']);
+                    Route::post('/store', [PatientDataController::class, 'store']);
+                    Route::put('/update/{patient}', [PatientDataController::class, 'update']);
+                    Route::delete('/destroy/{patient}', [PatientDataController::class, 'destroy']);
                 });
             });
 
@@ -211,13 +213,16 @@ use Illuminate\Support\Facades\Route;
             });
 
         });
-                                  ///////////////test mail/////////////////////
-/*/
-               Route::get('/preview-mail', function () {
-                            $user = App\Models\User::findOrFail(4);
-                           return (new \App\Notifications\GluCare\Appointments\AppointmentConfirmationNotification($user))
-                               ->toMail($user);
-                            });*/
+
+
+/*
+ * Routes Test
+Route::get('/preview-mail', function () {
+$user = App\Models\User::findOrFail(4);
+return (new \App\Notifications\GluCare\Appointments\AppointmentConfirmationNotification($user))
+->toMail($user);
+});*/
+//Route::post('/predict_diabetes', [PredictDiabetesController::class, 'predictDiabetesWithPatientData']);
 
 
 

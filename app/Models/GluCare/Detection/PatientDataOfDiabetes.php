@@ -24,6 +24,7 @@ class PatientDataOfDiabetes extends Model
         'HbA1c_level',
         'blood_glucose_level',
         'bmi',
+        'diabetes_type'
 
     ];
 

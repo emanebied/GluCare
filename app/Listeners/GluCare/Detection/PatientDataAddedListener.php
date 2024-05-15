@@ -20,14 +20,18 @@ class PatientDataAddedListener
     }
 
 
-    public function handle( PatientDataAddedEvent $event)
+    public function handle(PatientDataAddedEvent $event)
     {
         try {
+            $user = $event->user;
+            $patientData = $event->patientData;
+            $prediction = $event->prediction;
+            $type = $event->type;
 
-            $event->user->notify(new PatientDataAddedNotification($event->user));
-            Log::info(' PatientDataAdded notification sent successfully to user ID ' . $event->user->id);
+            $user->notify(new PatientDataAddedNotification($user, $patientData, $prediction, $type));
+            Log::info('PatientDataAdded notification sent successfully to user ID ' . $user->id);
         } catch (Throwable $e) {
-            Log::error('Failed to send PatientDataAdded notification to user ID: ' . $event->user->id . ' Error: ' . $e->getMessage());
+            Log::error('Failed to send PatientDataAdded notification to user ID: ' . $user->id . ' Error: ' . $e->getMessage());
             throw $e;
         }
     }
