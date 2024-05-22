@@ -18,11 +18,16 @@ return [
         'passwords' => 'users',
     ],
 
-    'guards' => [
+    'guards' => [ //stateful
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+//        'api' => [
+//            'driver' => 'sanctum',
+//            'provider' => 'users',
+//        ],
     ],
 
 

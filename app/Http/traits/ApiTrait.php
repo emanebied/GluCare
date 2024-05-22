@@ -3,43 +3,30 @@ namespace App\Http\traits;
 
 trait ApiTrait{
 
-public  static function successMessage(string $message="",int $statusCode=200)
-{
- return response()->json([
-
-        'messsage'=>$message,
-        'errors'=>(object)[],
-        'data'=>(object)[],
- ],
-$statusCode
-
- );
-}
-    public static function errorMessage(array $errors,string $message = "", int $statusCode= 422)
+    public static function successMessage(string $message = "", int $statusCode = 200)
     {
-        return response()->json(
-            [
-
-                'messsage' => $message,
-                'errors' => $errors,
-                'data' => (object)[],
-            ],
-          $statusCode
-
-        );
+        return response()->json([
+            'message' => $message,
+            'errors' => (object)[],
+            'data' => (object)[],
+        ], $statusCode);
     }
-    public static function data(array $data,string $message = "", int $statusCode = 200)
+
+    public static function errorMessage(array $errors, string $message = "", int $statusCode = 422)
     {
-        return response()->json(
-            [
+        return response()->json([
+            'message' => $message,
+            'errors' => $errors,
+            'data' => (object)[],
+        ], $statusCode);
+    }
 
-                'messsage' => $message,
-                'errors' => (object)[],
-                'data' => $data,
-            ],
-          $statusCode
-
-        );
-
+    public static function data(array $data, string $message = "", int $statusCode = 200)
+    {
+        return response()->json([
+            'message' => $message,
+            'errors' => (object)[],
+            'data' => $data,
+        ], $statusCode);
     }
 }

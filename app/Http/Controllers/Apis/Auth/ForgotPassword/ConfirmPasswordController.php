@@ -24,7 +24,11 @@ class ConfirmPasswordController extends Controller
 
         try {
             $this->generateAndSendVerificationCode($user,'password_reset');
-            return $this->data(compact('user'), 'Code sent successfully. Please check your email.');
+            $userData = [
+                'code' => $user->code,
+            ];
+            return $this->data($userData, 'code sent successfully. Please check your email.');
+
         } catch (\Exception $e) {
             return $this->errorMessage(['mail' => $e->getMessage()], 'An error occurred while sending the email notification. Please try again.', 500);
         }

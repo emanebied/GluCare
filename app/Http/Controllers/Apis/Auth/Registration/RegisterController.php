@@ -74,7 +74,14 @@ class RegisterController extends Controller
         // Generate token
         $user->token = "Bearer " . $user->createToken($request->device_name)->plainTextToken;
 
-        return $this->data(compact('user'), 'User Created Successfully', 201);
+        $userData = [
+            'name' => $user->name,
+            'email' => $user->email,
+            'id' => $user->id,
+            'token' => $user->token,
+        ];
+
+        return $this->data($userData, 'User Created Successfully', 201);
     }
 
     private function assignPermissions(User $user, ?string $roleName)

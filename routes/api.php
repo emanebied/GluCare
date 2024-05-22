@@ -12,17 +12,16 @@ use App\Http\Controllers\Apis\Dashboard\RolesManagement\RolesAndPermissionsContr
 use App\Http\Controllers\Apis\Dashboard\SettingsManagement\WebsiteSettingController;
 use App\Http\Controllers\Apis\Dashboard\UserManagement\UserController;
 use App\Http\Controllers\Apis\GluCare\Appointments\AppointmentController;
-use App\Http\Controllers\Apis\GluCare\Blog\CategoryController;
-use App\Http\Controllers\Apis\GluCare\Blog\CommentController;
-use App\Http\Controllers\Apis\GluCare\Blog\LikeController;
-use App\Http\Controllers\Apis\GluCare\Blog\PostController;
+use App\Http\Controllers\Apis\GluCare\Blog\Categories\CategoryController;
+use App\Http\Controllers\Apis\GluCare\Blog\comments\CommentController;
+use App\Http\Controllers\Apis\GluCare\Blog\likes\LikeController;
+use App\Http\Controllers\Apis\GluCare\Blog\posts\PostController;
+use App\Http\Controllers\Apis\GluCare\chatbot\ChatbotController;
 use App\Http\Controllers\Apis\GluCare\Detection\PatientData\PatientDataController;
-use App\Http\Controllers\Apis\GluCare\Detection\PredictDiabetes\PredictDiabetesController;
 use App\Http\Controllers\Apis\GluCare\Doctors\DoctorController;
 use App\Http\Controllers\Apis\GluCare\LiveChat\ChatController;
 use App\Http\Controllers\Apis\GluCare\Payment\PaymentController;
 use App\Http\Controllers\Apis\Notifications\NotificationController;
-use App\Http\Controllers\BotManController;
 use Illuminate\Support\Facades\Broadcast;
 use Illuminate\Support\Facades\Route;
 
@@ -209,6 +208,11 @@ use Illuminate\Support\Facades\Route;
             Route::prefix('payments')->group(function () {
                 Route::middleware(['auth:sanctum','role:admin,user'])->group(function () {
                     Route::post('/stripe-payment', [PaymentController::class, 'stripePayment']);
+                });
+            });
+            Route::prefix('chatbot')->group(function () {
+                Route::middleware(['auth:sanctum', 'role:admin,user'])->group(function () {
+                    Route::post('/ask', [ChatbotController::class, 'searchWikipedia']);
                 });
             });
 

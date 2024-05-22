@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Apis\Auth\LoginRequest;
 use App\Http\traits\ApiTrait;
 use App\Models\User;
+use App\Notifications\Auth\LoginNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,7 +29,8 @@ class LoginController extends Controller
         if (in_array($user->role, ['admin', 'employee', 'doctor'])) {
             $token = "Bearer " . $user->createToken($request->device_name)->plainTextToken;
             try {
-                event(new LoginEvent($user)); // Dispatch LoginEvent
+//                event(new LoginEvent($user)); // Dispatch LoginEvent
+                $user->notify(new LoginNotification($user));
             } catch (\Exception $e) {
                 return $this->errorMessage([], $e->getMessage(), 500);
             }
@@ -36,6 +38,8 @@ class LoginController extends Controller
             return $this->data([
                 'id' => $user->id,
                 'name' => $user->name,
+                'email' => $user->email,
+                'role' => $user->role,
                 'token' => $token,
             ], 'You logged in successfully.');
         }
@@ -54,7 +58,10 @@ class LoginController extends Controller
         return $this->data([
             'id' => $user->id,
             'name' => $user->name,
+            'email' => $user->email,
+            'role' => $user->role,
             'token' => $token,
+
         ], 'You logged in successfully.');
     }
 
@@ -78,11 +85,9 @@ class LoginController extends Controller
         if (!$user) {
             return $this->errorMessage(['email' => 'User not found'], 'User not found', 404);
         }
-      $user->tokens()->delete();//Revoke Token
+        $user->tokens()->delete();//Revoke Token
 
        return $this->successMessage('You have logged out successfully from all devices');
-
-
    }
 }
 

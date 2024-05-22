@@ -140,10 +140,8 @@ class AppointmentController extends Controller
         $appointment->status = 'cancelled';
         $appointment->save();
 
-        return $this->successMessage('Appointment cancelled successfully. Appointment date and time: ' . $appointment->appointment_datetime);
+        return $this->successMessage('Appointment cancelled successfully.');
     }
-
-
 
 
 

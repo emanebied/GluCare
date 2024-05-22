@@ -17,8 +17,8 @@ class ForgotPasswordController extends Controller
             return $this->errorMessage(['email' => 'User not found'], 'User not found', 404);
         }
         //Generate token
-        $user->token = "Bearer " . $user->createToken($request->device_name)->plainTextToken;
-        return $this->data(compact('user'), 'Mail Valid');
+       $token = "Bearer " . $user->createToken($request->device_name)->plainTextToken;
+        return $this->data(compact('token'),'Mail Valid');
 
 
 

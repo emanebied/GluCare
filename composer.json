@@ -8,6 +8,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
+        "ext-curl": "*",
         "beyondcode/laravel-websockets": "^1.14",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.19",
@@ -15,11 +16,11 @@
         "laravel/socialite": "^5.14",
         "laravel/tinker": "^2.7",
         "opcodesio/log-viewer": "^3.6",
+        "openai-php/laravel": "^0.9.0",
         "pusher/pusher-php-server": "^7.2",
         "spatie/laravel-medialibrary": "10.2.*",
         "spatie/laravel-permission": "^6.4",
-        "stripe/stripe-php": "^14.5",
-        "ext-curl": "*"
+        "stripe/stripe-php": "^14.5"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
@@ -69,7 +70,8 @@
         "sort-packages": true,
         "allow-plugins": {
             "pestphp/pest-plugin": true,
-            "phpstan/extension-installer": true
+            "phpstan/extension-installer": true,
+            "php-http/discovery": true
         }
     },
     "minimum-stability": "stable",

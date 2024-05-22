@@ -25,13 +25,13 @@ class PatientUpdateRequest extends FormRequest
         return [
             'gender' => ['required', 'in:female,male'],
             'age' => ['required', 'integer', 'min:0'],
-            'hypertension' => ['required', 'in:have,Do not have'],
-            'heart_disease' => ['required', 'in:have,Do not have'],
-            'smoking_history' => ['required', 'in:former,No info,never'],
+            'hypertension' => ['required', 'in:0,1'],
+            'heart_disease' => ['required', 'in:0,1'],
+            'smoking_history' => ['required', 'in:former,No info,never,current,not current'],
             'HbA1c_level' => ['required', 'numeric', 'min:0'],
             'blood_glucose_level' => ['required', 'integer', 'min:0'],
-            'height' => 'required|numeric|min:1',
-            'weight' => 'required|numeric|min:1',
+            'height'=>['required','numeric','min:1'],
+            'weight'=>['required','numeric','min:1'],
         ];
     }
 }

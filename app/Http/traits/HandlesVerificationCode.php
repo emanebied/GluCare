@@ -1,6 +1,5 @@
 <?php
-namespace App\Http\traits;
-
+namespace App\Http\Traits;
 
 use App\Events\Auth\ForgotPassword\PasswordResetCodeEvent;
 use App\Events\Auth\Registration\EmailVerificationCodeEvent;
@@ -8,9 +7,12 @@ use App\Http\Requests\Apis\Auth\CheckCodeRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
-trait HandlesVerificationCode {
- use ApiTrait;
-    public function generateAndSendVerificationCode(User $user, $action = 'verification') {
+trait HandlesVerificationCode
+{
+    use ApiTrait;
+
+    public function generateAndSendVerificationCode(User $user, $action = 'verification')
+    {
         $code = rand(10000, 99999);
         $codeExpiredAt = now()->addSeconds(config('auth.code_timeout'));
 
@@ -27,17 +29,16 @@ trait HandlesVerificationCode {
             } else {
                 throw new \InvalidArgumentException("Invalid action specified.");
             }
-        } catch(\Exception $e) {
-            return ApiTrait::errorMessage([], $e->getMessage(), 500);
+        } catch (\Exception $e) {
+            return $this->errorMessage([], $e->getMessage(), 500);
         }
-        return $this->data(compact('user'), 'Code Sent Successfully.');
+
+        return $this->successMessage('Code Sent Successfully');
     }
 
-
-
-    public function CheckCode(CheckCodeRequest $request)
+    public function checkCode(CheckCodeRequest $request)
     {
-        $now = date('Y-m-d H:i:s');
+        $now = now();
 
         $user = Auth::guard('sanctum')->user();
         if (!$user) {
@@ -45,19 +46,17 @@ trait HandlesVerificationCode {
         }
 
         if ($user->code != $request->code) {
-            return $this->data(compact('user'), 'Code Invalid',422);
+            return $this->errorMessage([], 'Invalid Code', 422);
         }
+
         if ($user->code_expired_at < $now) {
-
-            return $this->data(compact('user'), 'Code Expired',422);
-
-        } else {
-
-            $user->email_verified_at = $now;
-            $user->save();
-            return $this->data(compact('user'), 'Correct Code');
+            return $this->errorMessage([], 'Code Expired', 422);
         }
-    }
 
+        $user->email_verified_at = $now;
+        $user->save();
+        return $this->successMessage('Code Verified Successfully');
+    }
 }
+
 

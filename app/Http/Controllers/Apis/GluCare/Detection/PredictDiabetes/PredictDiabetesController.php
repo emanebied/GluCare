@@ -19,14 +19,21 @@ class PredictDiabetesController extends Controller
             // Send data to Flask API
             $response = Http::post($flaskApiUrl, $jsonData);
 
-            $responseData = $response->json();
-            if (isset($responseData['prediction'], $responseData['type'])) {
-                $prediction = $responseData['prediction'];
-                $type = $responseData['type'];
+            // Check if response is successful
+            if ($response->successful()) {
+                $responseData = $response->json();
 
-                return ['prediction' => $prediction, 'type' => $type];
+                // Check if prediction and type are present in response
+                if (isset($responseData['prediction'], $responseData['type'])) {
+                    $prediction = $responseData['prediction'];
+                    $type = $responseData['type'];
+
+                    return ['prediction' => $prediction, 'type' => $type];
+                } else {
+                    return ['error' => 'Failed to get prediction from Flask API'];
+                }
             } else {
-                return ['error' => 'Failed to get prediction from Flask API'];
+                return ['error' => 'Failed to communicate with Flask API'];
             }
         } catch (\Exception $e) {
             return ['error' => $e->getMessage()];

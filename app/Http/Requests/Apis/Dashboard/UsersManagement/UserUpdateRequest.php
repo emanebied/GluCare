@@ -22,7 +22,7 @@ class UserUpdateRequest extends FormRequest
             'name' => ['required', 'string', 'between:3,32'],
             'first_name' => ['nullable', 'string', 'between:3,32'],
             'last_name' => ['nullable', 'string', 'between:3,32'],
-            'email' => ['required', 'email', 'unique:users,email'],
+            'email' => ['required', 'email', 'unique:users,email,' . $this->route('user') . ',id'],
             'password' => ['required', 'confirmed', 'string', 'min:8'],
             'role' => ['required', 'max:60'],
             'role.*' => ['exists:roles,name'],

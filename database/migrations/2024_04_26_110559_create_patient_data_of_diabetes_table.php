@@ -18,9 +18,9 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->enum('gender', ['female', 'male']);
             $table->integer('age');
-            $table->enum('hypertension', ['have', 'Do not have']);
-            $table->enum('heart_disease', ['have', 'Do not have']);
-            $table->enum('smoking_history', ['former', 'No info', 'never']);
+            $table->integer('hypertension');
+            $table->integer('heart_disease');
+            $table->enum('smoking_history', ['former', 'No info', 'never','current','not current']);
             $table->float('bmi');
             $table->float('height');
             $table->float('weight');

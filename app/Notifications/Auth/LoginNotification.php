@@ -20,7 +20,7 @@ class LoginNotification extends Notification
 
     public function via($notifiable)
     {
-        return ['mail', 'database'];
+        return ['database','mail' ];
     }
 
 
@@ -34,17 +34,14 @@ class LoginNotification extends Notification
 
     }
 
-    public function toDatabase($notifiable)
-    {
-        return [
-            'message' => 'Your Login was successful.',
-        ];
-    }
 
     public function toArray($notifiable)
     {
         return [
-            //
+            'message' => 'Your login was successful.',
+            'name' => $this->user->name,
+            'email' => $this->user->email,
         ];
     }
+
 }

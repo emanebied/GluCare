@@ -75,6 +75,7 @@ class UserController extends Controller
         if ($request->filled('password')) {
             $userData['password'] = Hash::make($request->password);
         }
+
         $user->update($userData);
 
         return ApiTrait::data(compact('user'), 'User updated successfully');
