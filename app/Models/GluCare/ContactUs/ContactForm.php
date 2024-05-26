@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\GluCare\Contact;
+namespace App\Models\GluCare\ContactUs;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -16,4 +16,5 @@ class ContactForm extends Model
        'message',
        'answered'
     ];
+
 }

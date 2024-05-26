@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Apis\GluCare\ContactUs\SubmitContactFormRequest;
 use App\Http\traits\ApiTrait;
 use App\Http\traits\AuthorizeCheckTrait;
-use App\Models\GluCare\Contact\ContactForm;
+use App\Models\GluCare\ContactUs\ContactForm;
 use Illuminate\Http\Request;
 
 class ContactFormController extends Controller
@@ -26,6 +26,7 @@ class ContactFormController extends Controller
         $unansweredQuestions = ContactForm::where('answered', false)->get();
         return response()->json($unansweredQuestions);
     }
+
 
 
     public function answerQuestion(Request $request, $id)
