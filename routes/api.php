@@ -17,10 +17,13 @@ use App\Http\Controllers\Apis\GluCare\Blog\comments\CommentController;
 use App\Http\Controllers\Apis\GluCare\Blog\likes\LikeController;
 use App\Http\Controllers\Apis\GluCare\Blog\posts\PostController;
 use App\Http\Controllers\Apis\GluCare\chatbot\ChatbotController;
+use App\Http\Controllers\Apis\GluCare\ContactUs\ContactFormController;
 use App\Http\Controllers\Apis\GluCare\Detection\PatientData\PatientDataController;
 use App\Http\Controllers\Apis\GluCare\Doctors\DoctorController;
 use App\Http\Controllers\Apis\GluCare\LiveChat\ChatController;
 use App\Http\Controllers\Apis\GluCare\Payment\PaymentController;
+use App\Http\Controllers\Apis\GluCare\Reports\DoctorReports\DoctorReportsReadingController;
+use App\Http\Controllers\Apis\GluCare\Reports\PatientReports\PatientReportsReadingController;
 use App\Http\Controllers\Apis\Notifications\NotificationController;
 use Illuminate\Support\Facades\Broadcast;
 use Illuminate\Support\Facades\Route;
@@ -103,7 +106,17 @@ use Illuminate\Support\Facades\Route;
 
        // Routes for GluCare application
         Route::prefix('glucare')->group(function () {
-            Route::prefix('categories')->group(function () {
+            Route::prefix('contact-form')->group(function () {
+                Route::middleware(['role:admin,user'])->group(function () {
+                    Route::post('/submit', [ContactFormController::class, 'submit']);
+                });
+                Route::middleware(['role:admin,employee'])->group(function () {
+                    Route::get('/view-unanswered', [ContactFormController::class, 'viewUnanswered']);
+                    Route::put('/answer-question/{question}', [ContactFormController::class, 'answerQuestion']);
+                });
+            });
+
+            Route::prefix('blog/categories')->group(function () {
                 Route::middleware(['role:admin'])->group(function () {
                     Route::post('/store', [CategoryController::class, 'store']);
                     Route::put('/update/{category}', [CategoryController::class, 'update']);
@@ -119,7 +132,7 @@ use Illuminate\Support\Facades\Route;
                 });
             });
 
-            Route::prefix('posts')->group(function () {
+            Route::prefix('blog/posts')->group(function () {
                 Route::middleware(['role:admin', 'auth:sanctum'])->group(function () {
                     Route::post('/store', [PostController::class, 'store']);
                     Route::put('/update/{post}', [PostController::class, 'update']);
@@ -134,7 +147,7 @@ use Illuminate\Support\Facades\Route;
                });
             });
 
-            Route::prefix('comments')->group(function () {
+            Route::prefix('blog/comments')->group(function () {
                 Route::middleware(['auth:sanctum','role:admin,user'])->group(function () {
                     Route::get('/', [CommentController::class, 'index']);
                     Route::get('show/{comment}', [CommentController::class, 'show']);
@@ -151,7 +164,7 @@ use Illuminate\Support\Facades\Route;
                 });
             });
 
-            Route::prefix('likes')->group(function () {
+            Route::prefix('blog/likes')->group(function () {
                 Route::middleware(['auth:sanctum','role:admin,user'])->group(function () {
                     Route::post('/like', [LikeController::class, 'toggleLike']);
                     Route::post('/dislike', [LikeController::class, 'toggleDislike']);
@@ -161,11 +174,32 @@ use Illuminate\Support\Facades\Route;
             Route::prefix('predictDiabetesWithPatientData')->group(function () {
                 Route::middleware(['auth:sanctum','role:admin,user'])->group(function () {
                     Route::get('/', [PatientDataController::class, 'index']);
-                    Route::get('show/{patient}', [PatientDataController::class, 'show']);
+                    Route::get('show/{PatientDataOfDiabetes}', [PatientDataController::class, 'show']);
                     Route::post('/store', [PatientDataController::class, 'store']);
-                    Route::put('/update/{patient}', [PatientDataController::class, 'update']);
-                    Route::delete('/destroy/{patient}', [PatientDataController::class, 'destroy']);
+                    Route::put('/update/{PatientDataOfDiabetes}', [PatientDataController::class, 'update']);
+                    Route::delete('/destroy/{PatientDataOfDiabetes}', [PatientDataController::class, 'destroy']);
                 });
+            });
+
+            Route::prefix('/reports')->group(function () {
+              Route::middleware(['auth:sanctum','role:admin,user,doctor'])->group(function () {
+                  Route::prefix('/patientReports')->group(function () {
+                      Route::get('/glucose-readings/{PatientDataOfDiabetes}', [PatientReportsReadingController::class, 'getBloodGlucoseLevels']);
+                      Route::get('/age_readings/{PatientDataOfDiabetes}', [PatientReportsReadingController::class, 'getAge']);
+                      Route::get('/hypertension_readings/{PatientDataOfDiabetes}', [PatientReportsReadingController::class, 'getHypertension']);
+                      Route::get('/heart-disease_readings/{PatientDataOfDiabetes}', [PatientReportsReadingController::class, 'getHeartDisease']);
+                      Route::get('/smoking-history_readings/{PatientDataOfDiabetes}', [PatientReportsReadingController::class, 'getSmokingHistory']);
+                      Route::get('/HbA1c-level_readings/{PatientDataOfDiabetes}', [PatientReportsReadingController::class, 'getHbA1cLevel']);
+                      Route::get('/bmi_readings/{PatientDataOfDiabetes}', [PatientReportsReadingController::class, 'getBMI']);
+                  });
+              });
+              Route::middleware(['auth:sanctum','role:admin,doctor'])->group(function () {
+                  Route::prefix('/doctorReports')->group(function () {
+                      Route::get('/total-patients/{appointment}', [DoctorReportsReadingController::class, 'getTotalPatients']);
+                      Route::get('/today-appointments/{appointment}', [DoctorReportsReadingController::class, 'getTodayAppointments']);
+                      Route::get('/money-transfers/{payment}', [DoctorReportsReadingController::class, 'getMoneyTransfers']);
+                  });
+              });
             });
 
             Route::prefix('chat')->group(function () {
@@ -227,16 +261,3 @@ return (new \App\Notifications\GluCare\Appointments\AppointmentConfirmationNotif
 ->toMail($user);
 });*/
 //Route::post('/predict_diabetes', [PredictDiabetesController::class, 'predictDiabetesWithPatientData']);
-
-
-
-
-
-
-
-
-
-
-
-
-

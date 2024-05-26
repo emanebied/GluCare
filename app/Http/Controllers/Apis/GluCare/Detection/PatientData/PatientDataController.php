@@ -134,13 +134,13 @@ class PatientDataController extends Controller
 
 
 
-    public function destroy($id)
-        {
-            $this->authorizeCheck('PatientDataOfDiabetes_delete');
-            $patient = PatientDataOfDiabetes::findOrFail($id);
-            $patient->delete();
-            return $this->successMessage('Patient data deleted successfully');
-        }
+     public function destroy($id)
+     {
+        $this->authorizeCheck('PatientDataOfDiabetes_delete');
+        $patient = PatientDataOfDiabetes::findOrFail($id);
+        $patient->delete();
+        return $this->successMessage('Patient data deleted successfully');
+     }
 
 
 }

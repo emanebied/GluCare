@@ -73,16 +73,20 @@ class User extends Authenticatable implements HasMedia
                 $user->experience_years = $user->experience_years ?? 0;
                 $user->specialization = $user->specialization ?? '';
             } else {
-                // If the user is not a doctor,
-                $user->currency = null;
-                $user->qualifications = null;
-                $user->availabilities = null;
-                $user->amount = null;
-                $user->experience_years = null;
-                $user->specialization = '';
+                // If the user is not a doctor, hide these columns
+                $user->makeHidden([
+                    'currency',
+                    'qualifications',
+                    'availabilities',
+                    'amount',
+                    'experience_years',
+                    'specialization'
+                ]);
             }
         });
     }
+
+
 
 
     public function getImageAttribute()

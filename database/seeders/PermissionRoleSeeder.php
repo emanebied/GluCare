@@ -31,6 +31,8 @@ class PermissionRoleSeeder extends Seeder
                     'appointments_create','appointments_view','appointments_edit','appointments_delete',
                     'payment_create',
                     'ask_chatbot',
+                    'glucose-readings','age_readings','hypertension_readings','heart-disease-readings','smoking-history-readings','bmi_readings','HbA1c_level_readings',
+                    'submit_contact_form',
 
 
 
@@ -51,25 +53,27 @@ class PermissionRoleSeeder extends Seeder
                     'appointments_create','appointments_view','appointments_edit','appointments_delete',
                     'appointments_approve','appointments_cancel',
                     'payment_create',
-                    'ask_chatbot'
+                    'ask_chatbot',
+                    'glucose-readings','age_readings','hypertension_readings','heart-disease-readings','smoking-history-readings','bmi_readings','HbA1c_level_readings',
+                    'today_appointments_reports','money_transfers_reports','total_patients_reports',
+                    'submit_contact_form','answer_question_from_contact_form'
+                  //recommendation
 
-
-//                    'reports_patient', 'reports_doctors',
-//                    'email_answers'
+//
                 ],
                 'employee' => [
-
-//               'reports_patient', 'reports_doctors',
-//               'email_answers'
+                       'answer_question_from_contact_form'
                 ],
 
                 'doctor' => [
                     'chat_get_chats','chat_create_chat','chat_get_chat_by_id','chat_send_text_message',
                     'chat_search_user','chat_message_status','chat_user/join_chat','chat_user/leave_chat',
                     'appointments_approve','appointments_cancel',
-//                    'reports_patient'
+                    'glucose-readings','age_readings','hypertension_readings','heart-disease-readings','smoking-history-readings','bmi_readings','HbA1c_level_readings',
+                    'today_appointments_reports','money_transfers_reports','total_patients_reports',
                 ],
             ];
+
 
             foreach ($rolesPermissions as $roleName => $permissions) {
                 $role = Role::firstOrCreate(['name' => $roleName]);
