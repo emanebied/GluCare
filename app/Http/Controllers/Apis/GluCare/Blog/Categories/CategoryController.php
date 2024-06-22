@@ -46,6 +46,7 @@ class CategoryController extends Controller
 
     public function store(CategoriesStoreRequest $request)
      {
+
          $request->merge([
                 'slug' => Str::slug($request->post('name'))
             ]);

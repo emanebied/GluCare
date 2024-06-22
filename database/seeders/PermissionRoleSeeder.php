@@ -33,6 +33,8 @@ class PermissionRoleSeeder extends Seeder
                     'ask_chatbot',
                     'glucose-readings','age_readings','hypertension_readings','heart-disease-readings','smoking-history-readings','bmi_readings','HbA1c_level_readings',
                     'submit_contact_form',
+                    'food_create','food_view','food_edit','food_delete',
+                    'PatientDataOfDiabetes_view','recommend','foodByUserId_view'
 
 
 
@@ -56,10 +58,12 @@ class PermissionRoleSeeder extends Seeder
                     'ask_chatbot',
                     'glucose-readings','age_readings','hypertension_readings','heart-disease-readings','smoking-history-readings','bmi_readings','HbA1c_level_readings',
                     'today_appointments_reports','money_transfers_reports','total_patients_reports',
-                    'submit_contact_form','answer_question_from_contact_form'
-                  //recommendation
+                    'submit_contact_form','answer_question_from_contact_form',
+                    'foods_create','foods_view','foods_edit','foods_delete',
+                    'PatientDataOfDiabetes_view','recommend','foodByUserId_view'
 
-//
+
+
                 ],
                 'employee' => [
                        'answer_question_from_contact_form'

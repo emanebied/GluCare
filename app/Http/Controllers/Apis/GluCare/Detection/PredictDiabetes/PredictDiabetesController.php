@@ -40,3 +40,4 @@ class PredictDiabetesController extends Controller
         }
     }
 }
+//

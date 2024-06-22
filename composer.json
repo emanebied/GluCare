@@ -15,6 +15,7 @@
         "laravel/sanctum": "^3.3",
         "laravel/socialite": "^5.14",
         "laravel/tinker": "^2.7",
+        "league/csv": "^9.16",
         "opcodesio/log-viewer": "^3.6",
         "openai-php/laravel": "^0.9.0",
         "pusher/pusher-php-server": "^7.2",

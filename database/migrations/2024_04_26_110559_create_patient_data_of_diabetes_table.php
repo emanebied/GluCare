@@ -26,7 +26,8 @@ return new class extends Migration
             $table->float('weight');
             $table->float('HbA1c_level');
             $table->integer('blood_glucose_level');
-            $table->enum('diabetes_type', ['normal','type1', 'type2']);
+            $table->enum('diabetes_type', ['normal','diabetes']);
+            
             $table->softDeletes();
             $table->timestamps();
         });

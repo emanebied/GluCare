@@ -19,6 +19,9 @@ use App\Http\Controllers\Apis\GluCare\Blog\posts\PostController;
 use App\Http\Controllers\Apis\GluCare\chatbot\ChatbotController;
 use App\Http\Controllers\Apis\GluCare\ContactUs\ContactFormController;
 use App\Http\Controllers\Apis\GluCare\Detection\PatientData\PatientDataController;
+use App\Http\Controllers\Apis\GluCare\DietaryRecommendation\DietaryRecommendationController;
+use App\Http\Controllers\Apis\GluCare\DietaryRecommendation\FoodController;
+use App\Http\Controllers\Apis\GluCare\DietaryRecommendation\patientRatingFood;
 use App\Http\Controllers\Apis\GluCare\Doctors\DoctorController;
 use App\Http\Controllers\Apis\GluCare\LiveChat\ChatController;
 use App\Http\Controllers\Apis\GluCare\Payment\PaymentController;
@@ -29,11 +32,7 @@ use Illuminate\Support\Facades\Broadcast;
 use Illuminate\Support\Facades\Route;
 
 
-// User routes
-//  Route::group(['prefix'=>'users'],function() {
-
-            Broadcast::routes(['middleware' => ['auth:sanctum']]);
-
+Broadcast::routes(['middleware' => ['auth:sanctum']]);
 
         Route::prefix('/user')->group(function () {
             Route::group(['middleware' => 'guest:sanctum'], function () {
@@ -250,9 +249,33 @@ use Illuminate\Support\Facades\Route;
                 });
             });
 
+            Route::prefix('dietaryRecommendation')->group(function () {
+                Route::middleware(['auth:sanctum', 'role:admin,user'])->group(function () {
+                    Route::get('/foods', [FoodController::class, 'index']);
+                    Route::get('/patientRatingFood/{user}', [patientRatingFood::class, 'getFoodByUserId']);
+                    Route::get('/getPatientData/{user}', [DietaryRecommendationController::class, 'getPatientData']);
+                    Route::post('/recommend/{user}', [DietaryRecommendationController::class, 'recommend']);
+                });
+            });
         });
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Route::get('/test', function () {
+//    return response()->json(['message' => 'Hello World']);
+//});
 /*
  * Routes Test
 Route::get('/preview-mail', function () {
