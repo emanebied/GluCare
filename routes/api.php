@@ -7,10 +7,12 @@ use App\Http\Controllers\Apis\Auth\Login\LoginController;
 use App\Http\Controllers\Apis\Auth\Registration\EmailVerificationController;
 use App\Http\Controllers\Apis\Auth\Registration\RegisterController;
 use App\Http\Controllers\Apis\Auth\SocialiteLogin\SocialLoginController;
-use App\Http\Controllers\Apis\Auth\UserProfile\ProfileController;
 use App\Http\Controllers\Apis\Dashboard\RolesManagement\RolesAndPermissionsController;
 use App\Http\Controllers\Apis\Dashboard\SettingsManagement\WebsiteSettingController;
 use App\Http\Controllers\Apis\Dashboard\UserManagement\UserController;
+use App\Http\Controllers\Apis\GluCare\ActivityRecommendation\ActivityController;
+use App\Http\Controllers\Apis\GluCare\ActivityRecommendation\ActivityRecommendaionController;
+use App\Http\Controllers\Apis\GluCare\ActivityRecommendation\PatientRatingActivityController;
 use App\Http\Controllers\Apis\GluCare\Appointments\AppointmentController;
 use App\Http\Controllers\Apis\GluCare\Blog\Categories\CategoryController;
 use App\Http\Controllers\Apis\GluCare\Blog\comments\CommentController;
@@ -28,6 +30,7 @@ use App\Http\Controllers\Apis\GluCare\Payment\PaymentController;
 use App\Http\Controllers\Apis\GluCare\Reports\DoctorReports\DoctorReportsReadingController;
 use App\Http\Controllers\Apis\GluCare\Reports\PatientReports\PatientReportsReadingController;
 use App\Http\Controllers\Apis\Notifications\NotificationController;
+use App\Http\Controllers\Apis\UserProfile\ProfileController;
 use Illuminate\Support\Facades\Broadcast;
 use Illuminate\Support\Facades\Route;
 
@@ -257,8 +260,15 @@ Broadcast::routes(['middleware' => ['auth:sanctum']]);
                     Route::post('/recommend/{user}', [DietaryRecommendationController::class, 'recommend']);
                 });
             });
+            Route::prefix('activityRecommendation')->group(function () {
+                Route::middleware(['auth:sanctum', 'role:admin,user'])->group(function () {
+                    Route::get('/activities', [ActivityController::class, 'index']);
+                    Route::get('/getPatientData/{user}', [ActivityRecommendaionController::class, 'getPatientData']);
+                    Route::get('/patientRatingActivity/{user}', [patientRatingActivityController::class, 'getActivityByUserId']);
+                    Route::post('/recommend/{user}', [ActivityRecommendaionController::class, 'recommend']);
+                });
+            });
         });
-
 
 
 

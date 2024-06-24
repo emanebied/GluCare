@@ -32,6 +32,8 @@ class DatabaseSeeder extends Seeder
             WebsiteSettingSeeder::class,
             FoodSeeder::class,
             LikedFoodSeeder::class,
+            ActivitySeeder::class,
+            LikedActivitySeeder::class,
 
         ]);
     }

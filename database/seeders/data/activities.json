@@ -1,0 +1,601 @@
+[
+    {
+
+        "morning": "runing fo thirty mint's ",
+        "noon": "go to gem",
+        "night": "yoga"
+    },
+    {
+
+        "morning": "30-minute brisk walk",
+        "noon": "15-minute stretching exercises",
+        "night": "10-minute meditation"
+    },
+    {
+
+        "morning": "20-minute yoga session",
+        "noon": "Light strength training (upper body)",
+        "night": "Short evening walk"
+    },
+    {
+
+        "morning": "25-minute cycling",
+        "noon": "10-minute relaxation exercises",
+        "night": "Gentle stretching before bed"
+    },
+    {
+
+        "morning": "30-minute swimming",
+        "noon": "15-minute resistance band workout",
+        "night": "5-minute breathing exercises"
+    },
+    {
+
+        "morning": "30-minute jog",
+        "noon": "20-minute Pilates",
+        "night": "Light stretching"
+    },
+    {
+
+        "morning": "25-minute aerobic exercises",
+        "noon": "15-minute Tai Chi",
+        "night": "10-minute yoga session"
+    },
+    {
+
+        "morning": "30-minute brisk walk",
+        "noon": "10-minute core workout",
+        "night": "5-minute breathing exercises"
+    },
+    {
+
+        "morning": "20-minute dance workout",
+        "noon": "Light strength training (lower body)",
+        "night": "Short evening walk"
+    },
+    {
+
+        "morning": "25-minute treadmill walk",
+        "noon": "10-minute relaxation exercises",
+        "night": "Gentle stretching before bed"
+    },
+    {
+
+        "morning": "30-minute cycling",
+        "noon": "15-minute chair exercises",
+        "night": "10-minute meditation"
+    },
+    {
+
+        "morning": "30-minute brisk walk",
+        "noon": "20-minute yoga session",
+        "night": "15-minute meditation"
+    },
+    {
+
+        "morning": "25-minute swimming",
+        "noon": "15-minute strength training (upper body)",
+        "night": "10-minute stretching"
+    },
+    {
+
+        "morning": "30-minute dance workout",
+        "noon": "10-minute core workout",
+        "night": "5-minute breathing exercises"
+    },
+    {
+
+        "morning": "20-minute treadmill walk",
+        "noon": "25-minute Pilates",
+        "night": "15-minute relaxation exercises"
+    },
+    {
+
+        "morning": "35-minute cycling",
+        "noon": "15-minute Tai Chi",
+        "night": "10-minute yoga session"
+    },
+    {
+
+        "morning": "30-minute jog",
+        "noon": "20-minute resistance band workout",
+        "night": "5-minute breathing exercises"
+    },
+    {
+
+        "morning": "25-minute aerobic exercises",
+        "noon": "15-minute chair exercises",
+        "night": "10-minute meditation"
+    },
+    {
+
+        "morning": "20-minute yoga session",
+        "noon": "10-minute relaxation exercises",
+        "night": "Short evening walk"
+    },
+    {
+
+        "morning": "30-minute brisk walk",
+        "noon": "20-minute strength training (lower body)",
+        "night": "Gentle stretching before bed"
+    },
+    {
+
+        "morning": "25-minute cycling",
+        "noon": "15-minute core workout",
+        "night": "10-minute relaxation exercises"
+    },
+    {
+
+        "morning": "25-minute cycling",
+        "noon": "15-minute core workout",
+        "night": "10-minute relaxation exercises"
+    },
+    {
+
+        "morning": "30-minute yoga",
+        "noon": "20-minute walk",
+        "night": "5-minute meditation"
+    },
+    {
+
+        "morning": "20-minute jog",
+        "noon": "10-minute stretching",
+        "night": "15-minute deep breathing"
+    },
+    {
+
+        "morning": "15-minute HIIT workout",
+        "noon": "20-minute lunchtime walk",
+        "night": "10-minute bedtime yoga"
+    },
+    {
+
+        "morning": "40-minute weightlifting",
+        "noon": "15-minute office stretches",
+        "night": "10-minute mindfulness practice"
+    },
+    {
+
+        "morning": "45-minute run",
+        "noon": "10-minute desk yoga",
+        "night": "20-minute progressive muscle relaxation"
+    },
+    {
+
+        "morning": "20-minute bike ride",
+        "noon": "10-minute plank",
+        "night": "15-minute guided meditation"
+    },
+    {
+
+        "morning": "30-minute dance workout",
+        "noon": "15-minute walk in the park",
+        "night": "10-minute bedtime stretches"
+    },
+    {
+
+        "morning": "20-minute jump rope",
+        "noon": "5-minute office yoga",
+        "night": "15-minute mindfulness session"
+    },
+    {
+
+        "morning": "10-minute bodyweight exercises",
+        "noon": "20-minute lunch break walk",
+        "night": "10-minute deep breathing before bed"
+    },
+    {
+
+        "morning": "15-minute jog",
+        "noon": "10-minute desk stretches",
+        "night": "20-minute yoga for relaxation"
+    },
+    {
+
+        "morning": "25-minute bike ride",
+        "noon": "10-minute core workout",
+        "night": "15-minute meditation"
+    },
+    {
+        "morning": "30-minute Pilates",
+        "noon": "15-minute walk around the block",
+        "night": "10-minute bedtime yoga sequence"
+    },
+    {
+
+        "morning": "20-minute interval training",
+        "noon": "10-minute stretch break",
+        "night": "15-minute guided sleep meditation"
+    },
+    {
+
+        "morning": "45-minute hike",
+        "noon": "20-minute lunchtime stroll",
+        "night": "10-minute wind-down yoga"
+    },
+    {
+
+        "morning": "15-minute bike ride",
+        "noon": "10-minute yoga at your desk",
+        "night": "20-minute mindfulness meditation"
+    },
+    {
+
+        "morning": "20-minute jog",
+        "noon": "15-minute stretch session",
+        "night": "10-minute bedtime yoga routine"
+    },
+    {
+
+        "morning": "30-minute cardio workout",
+        "noon": "10-minute desk yoga flow",
+        "night": "15-minute deep breathing exercises"
+    },
+    {
+
+        "morning": "25-minute walk",
+        "noon": "15-minute core-strengthening exercises",
+        "night": "10-minute guided relaxation"
+    },
+    {
+
+        "morning": "40-minute bike ride",
+        "noon": "10-minute stretching break",
+        "night": "15-minute meditation for sleep"
+    },
+    {
+
+        "morning": "15-minute jog",
+        "noon": "20-minute lunchtime walk",
+        "night": "10-minute bedtime stretches"
+    },
+    {
+
+        "morning": "30-minute yoga flow",
+        "noon": "15-minute office yoga",
+        "night": "10-minute deep breathing before bed"
+    },
+    {
+
+        "morning": "20-minute HIIT workout",
+        "noon": "10-minute stretching routine",
+        "night": "15-minute guided sleep meditation"
+    },
+    {
+
+        "morning": "45-minute run",
+        "noon": "20-minute lunchtime jog",
+        "night": "10-minute wind-down yoga sequence"
+    },
+    {
+
+        "morning": "25-minute bike ride",
+        "noon": "10-minute core workout",
+        "night": "15-minute meditation for relaxation"
+    },
+    {
+
+        "morning": "30-minute Pilates session",
+        "noon": "15-minute walk in nature",
+        "night": "10-minute bedtime yoga"
+    },
+    {
+
+        "morning": "20-minute interval training",
+        "noon": "10-minute stretch",
+        "night": "15-minute guided sleep meditation"
+    },
+    {
+
+        "morning": "45-minute hike",
+        "noon": "20-minute lunchtime walk",
+        "night": "10-minute yoga for relaxation"
+    },
+    {
+
+        "morning": "15-minute bike ride",
+        "noon": "10-minute desk yoga",
+        "night": "20-minute mindfulness meditation"
+    },
+    {
+
+        "morning": "20-minute jog",
+        "noon": "15-minute stretch session",
+        "night": "10-minute bedtime yoga routine"
+    },
+    {
+
+        "morning": "30-minute cardio workout",
+        "noon": "10-minute desk yoga flow",
+        "night": "15-minute deep breathing exercises"
+    },
+    {
+
+        "morning": "25-minute walk",
+        "noon": "15-minute core-strengthening exercises",
+        "night": "10-minute guided relaxation"
+    },
+    {
+
+        "morning": "40-minute bike ride",
+        "noon": "10-minute stretching break",
+        "night": "15-minute meditation for sleep"
+    },
+    {
+
+        "morning": "15-minute jog",
+        "noon": "20-minute lunchtime walk",
+        "night": "10-minute bedtime stretches"
+    },
+    {
+
+        "morning": "30-minute yoga flow",
+        "noon": "15-minute office yoga",
+        "night": "10-minute deep breathing before bed"
+    },
+    {
+
+        "morning": "20-minute HIIT workout",
+        "noon": "10-minute stretching routine",
+        "night": "15-minute guided sleep meditation"
+    },
+    {
+
+        "morning": "45-minute run",
+        "noon": "20-minute lunchtime jog",
+        "night": "10-minute wind-down yoga sequence"
+    },
+    {
+
+        "morning": "25-minute bike ride",
+        "noon": "10-minute core workout",
+        "night": "15-minute meditation for relaxation"
+    },
+    {
+
+        "morning": "30-minute Pilates session",
+        "noon": "15-minute walk in nature",
+        "night": "10-minute bedtime yoga"
+    },
+    {
+
+        "morning": "20-minute interval training",
+        "noon": "10-minute stretch",
+        "night": "15-minute guided sleep meditation"
+    },
+    {
+
+        "morning": "45-minute hike",
+        "noon": "20-minute lunchtime walk",
+        "night": "10-minute yoga for relaxation"
+    },
+    {
+
+        "morning": "15-minute bike ride",
+        "noon": "10-minute desk yoga",
+        "night": "20-minute mindfulness meditation"
+    },
+    {
+
+        "morning": "20-minute jog",
+        "noon": "15-minute stretch session",
+        "night": "10-minute bedtime yoga routine"
+    },
+    {
+
+        "morning": "30-minute cardio workout",
+        "noon": "10-minute desk yoga flow",
+        "night": "15-minute deep breathing exercises"
+    },
+    {
+
+        "morning": "25-minute walk",
+        "noon": "15-minute core-strengthening exercises",
+        "night": "10-minute guided relaxation"
+    },
+    {
+
+        "morning": "40-minute bike ride",
+        "noon": "10-minute stretching break",
+        "night": "15-minute meditation for sleep"
+    },
+    {
+
+        "morning": "25-minute jogging",
+        "noon": "20-minute pilates",
+        "night": "10-minute stretching"
+    },
+    {
+
+        "morning": "30-minute swimming",
+        "noon": "15-minute mindfulness walk",
+        "night": "10-minute meditation"
+    },
+    {
+
+        "morning": "20-minute HIIT",
+        "noon": "20-minute yoga",
+        "night": "15-minute reading"
+    },
+    {
+
+        "morning": "40-minute cycling",
+        "noon": "10-minute desk exercises",
+        "night": "10-minute journaling"
+    },
+    {
+
+        "morning": "30-minute brisk walk",
+        "noon": "15-minute dance break",
+        "night": "10-minute deep breathing"
+    },
+    {
+
+        "morning": "15-minute bodyweight workout",
+        "noon": "20-minute elliptical",
+        "night": "5-minute progressive muscle relaxation"
+    },
+    {
+
+        "morning": "45-minute hike",
+        "noon": "10-minute core exercises",
+        "night": "10-minute guided imagery"
+    },
+    {
+
+        "morning": "20-minute interval running",
+        "noon": "15-minute tai chi",
+        "night": "10-minute stretching"
+    },
+    {
+
+        "morning": "30-minute rowing",
+        "noon": "20-minute stair climbing",
+        "night": "10-minute yoga nidra"
+    },
+    {
+
+        "morning": "25-minute dance workout",
+        "noon": "10-minute posture exercises",
+        "night": "10-minute body scan meditation"
+    },
+    {
+
+        "morning": "35-minute power walk",
+        "noon": "15-minute resistance band workout",
+        "night": "10-minute gratitude practice"
+    },
+    {
+
+        "morning": "20-minute crossfit",
+        "noon": "20-minute meditation walk",
+        "night": "15-minute coloring"
+    },
+    {
+
+        "morning": "30-minute treadmill",
+        "noon": "15-minute shoulder exercises",
+        "night": "10-minute guided breathing"
+    },
+    {
+
+        "morning": "25-minute skipping rope",
+        "noon": "10-minute neck stretches",
+        "night": "10-minute bedtime yoga"
+    },
+    {
+
+        "morning": "40-minute kayaking",
+        "noon": "20-minute leg exercises",
+        "night": "10-minute reading"
+    },
+    {
+
+        "morning": "30-minute strength training",
+        "noon": "15-minute seated exercises",
+        "night": "5-minute meditation"
+    },
+    {
+
+        "morning": "15-minute circuit training",
+        "noon": "10-minute shoulder stretches",
+        "night": "10-minute progressive relaxation"
+    },
+    {
+
+        "morning": "45-minute swimming",
+        "noon": "20-minute resistance training",
+        "night": "15-minute visualization"
+    },
+    {
+
+        "morning": "20-minute power yoga",
+        "noon": "10-minute wrist exercises",
+        "night": "10-minute aromatherapy"
+    },
+    {
+
+        "morning": "30-minute mountain biking",
+        "noon": "15-minute balance exercises",
+        "night": "10-minute bedtime storytelling"
+    },
+    {
+
+        "morning": "25-minute running",
+        "noon": "20-minute kickboxing",
+        "night": "10-minute self-massage"
+    },
+    {
+
+        "morning": "35-minute rowing",
+        "noon": "10-minute hip stretches",
+        "night": "10-minute tai chi"
+    },
+    {
+
+        "morning": "30-minute Tai Chi",
+        "noon": "15-minute Pilates",
+        "night": "10-minute guided imagery"
+    },
+    {
+
+        "morning": "20-minute kettlebell workout",
+        "noon": "10-minute resistance band exercises",
+        "night": "15-minute gratitude journaling"
+    },
+    {
+
+        "morning": "35-minute nature walk",
+        "noon": "10-minute wall sits",
+        "night": "10-minute deep breathing"
+    },
+    {
+
+        "morning": "25-minute hula hooping",
+        "noon": "15-minute stair climbing",
+        "night": "10-minute body scan meditation"
+    },
+    {
+
+        "morning": "40-minute rollerblading",
+        "noon": "10-minute chair yoga",
+        "night": "15-minute yoga Nidra"
+    },
+    {
+
+        "morning": "30-minute trail run",
+        "noon": "10-minute shadow boxing",
+        "night": "10-minute progressive relaxation"
+    },
+    {
+
+        "morning": "20-minute elliptical workout",
+        "noon": "15-minute chair exercises",
+        "night": "10-minute tai chi"
+    },
+    {
+
+        "morning": "35-minute strength training",
+        "noon": "10-minute leg stretches",
+        "night": "10-minute mantra meditation"
+    },
+    {
+
+        "morning": "25-minute rowing",
+        "noon": "15-minute arm workout",
+        "night": "10-minute yoga breathing"
+    },
+    {
+
+        "morning": "40-minute swimming",
+        "noon": "10-minute core exercises",
+        "night": "15-minute bedtime reading"
+    },
+    {
+
+        "morning": "30-minute kickboxing",
+        "noon": "10-minute resistance training",
+        "night": "10-minute self-reflection"
+    }
+]

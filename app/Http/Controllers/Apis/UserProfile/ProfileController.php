@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Apis\Auth\UserProfile;
+namespace App\Http\Controllers\Apis\UserProfile;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Apis\Auth\UpdateProfileRequest;
 use App\Http\traits\ApiTrait;
@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Spatie\MediaLibrary\InteractsWithMedia;
-use Illuminate\Support\Arr;
 
 class ProfileController extends Controller
 {
