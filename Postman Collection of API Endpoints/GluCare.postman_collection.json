@@ -1,0 +1,5846 @@
+{
+	"info": {
+		"_postman_id": "d650de05-914a-442a-98ec-1c516f3c59f9",
+		"name": "GluCare",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30369130"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Registration",
+					"item": [
+						{
+							"name": "Register",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Eman",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "eman@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "eman@1234",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "eman@1234",
+											"type": "text"
+										},
+										{
+											"key": "device_name",
+											"value": "iphone",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/user/register",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"user",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "send-email-verification-code",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 2|y1mh4fEcMEJIXhGbkumH3AQX6Yt6VHZDmkz7933Qec81e210"
+									},
+									{
+										"key": "",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/user/send-email-verification-code",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"user",
+										"send-email-verification-code"
+									],
+									"query": [
+										{
+											"key": "Accept",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "check-email-verification-code",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 2|y1mh4fEcMEJIXhGbkumH3AQX6Yt6VHZDmkz7933Qec81e210"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "code",
+											"value": " 21798",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/user/check-email-verification-code",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"user",
+										"check-email-verification-code"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "resend-email-verification-code",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 2|LfjIceaDXSx9lzcWNMJ22N4CrSjc1uvet8tFUhFR45e47561"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/user/resend-email-verification-code",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"user",
+										"resend-email-verification-code"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"item": [
+						{
+							"name": "Login",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "admin@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "admin@1234",
+											"type": "text"
+										},
+										{
+											"key": "device_name",
+											"value": "iphone",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/user/login",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"user",
+										"login"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Login",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "email",
+													"value": "eman@gmail.com",
+													"type": "text"
+												},
+												{
+													"key": "password",
+													"value": "eman@1234",
+													"type": "text"
+												},
+												{
+													"key": "device_name",
+													"value": "iphone",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "127.0.0.1:8000/api/user/login",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"user",
+												"login"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 16 May 2024 13:03:01 GMT"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 16 May 2024 13:03:01 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.4"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "59"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"You logged in successfully.\",\n    \"errors\": {},\n    \"data\": {\n        \"id\": 4,\n        \"name\": \"Eman\",\n        \"email\": \"eman@gmail.com\",\n        \"role\": \"user\",\n        \"token\": \"Bearer 2|C8vluQ49woq8cpJANiMzOS14pfM2HapozWi71TXn0045a9f9\"\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "Logout",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 3|jrIKT8Zlf1xMQ9jzN441jnhcX2FKpyAFK52hrGut38eb35f7"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/user/logout",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"user",
+										"logout"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Logout ALL",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 5|6z7ib4dq4CjPfPCSlNwCx1rkQBKgSrPLDDV8JO5l7dd2edb0"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/user/logout-all-devices",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"user",
+										"logout-all-devices"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Forgot Password",
+					"item": [
+						{
+							"name": "Forgot Pasword",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "eman@gmail.com ",
+											"type": "text"
+										},
+										{
+											"key": "device_name",
+											"value": "iphone",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/user/forgot-password",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"user",
+										"forgot-password"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "send-password-reset-code",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 6|mEe7K5jexKSLMIpCLz0QVvFmA8XxeHogIggoqEwm40292d5c"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/user/send-password-reset-code",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"user",
+										"send-password-reset-code"
+									],
+									"query": [
+										{
+											"key": "a",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "check-password-reset-code",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 6|mEe7K5jexKSLMIpCLz0QVvFmA8XxeHogIggoqEwm40292d5c"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "code",
+											"value": "67940",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/user/check-password-reset-code",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"user",
+										"check-password-reset-code"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "reset-password",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 6|mEe7K5jexKSLMIpCLz0QVvFmA8XxeHogIggoqEwm40292d5c"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "password",
+											"value": "emanebied@1234",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "emanebied@1234",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/user/reset-password",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"user",
+										"reset-password"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "resend-password-reset-code",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 8|Ho5y54X7blpErIAvar3QbyCD08twp26lDWdeNGDz898b963c"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/user/resend-password-reset-code",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"user",
+										"resend-password-reset-code"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "LoginWithSocial",
+					"item": [
+						{
+							"name": "REdirect",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/user/login/google/redirect",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"user",
+										"login",
+										"google",
+										"redirect"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Callback",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"provider\": \"google\",\r\n    \"access_provider_token\": \"ya29.a0AXooCguri9ZjpLsa6lAezWlJH81ffbJTgnmF89GZmG8UG7d4lkokhYkreF-EH6_gfHSiNs4nvFSMtmqXVABtGWE2_TNK_0Fi95X0sX7JPOJpCyTGgUmkrF8aeLt0z8ruevDYE6RT2VzQ7kDGqwQ3jZfjbYNicVIc3JFaaCgYKASUSARASFQHGX2MihWQf__eUqFSNRtzYPIbmsQ0171\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/user/login/google/callback",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"user",
+										"login",
+										"google",
+										"callback"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "User Profile",
+			"item": [
+				{
+					"name": "Get Profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer 8|rlG6Fc2Q7bPuVm4x6itpIsrR7Ioq3qoK6voj0G8a07a83e35"
+							}
+						],
+						"url": {
+							"raw": "127.0.0.1:8000/api/user/profile",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"user",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Profile",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer 8|rlG6Fc2Q7bPuVm4x6itpIsrR7Ioq3qoK6voj0G8a07a83e35"
+							},
+							{
+								"key": "first_name",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "_method",
+									"value": "put",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "mohamed92",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "mohamed@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "first_name",
+									"value": "mohamed",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "mahamehoo",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "mohamed123",
+									"type": "text"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "mohamed123",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "011244567895",
+									"type": "text"
+								},
+								{
+									"key": "gender",
+									"value": "male",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "postman-cloud:///1eefb25e-012e-4340-8e9e-7490191f8671"
+								}
+							]
+						},
+						"url": {
+							"raw": "127.0.0.1:8000/api/user/update-profile",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"user",
+								"update-profile"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Notifications",
+			"item": [
+				{
+					"name": "getUserNotifications",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer 12|8ZtD44uG46oofoOqj69fyCJd811vLwfxEUtSYGK905aeb886"
+							}
+						],
+						"url": {
+							"raw": "127.0.0.1:8000/api/notifications",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"notifications"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "markNotificationAsRead",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer 11|tB2aqRuHag8QGZMHaDF0fWA3pxwJnFcPmGcWEE1Fe0e9a7ba"
+							}
+						],
+						"url": {
+							"raw": "127.0.0.1:8000/api/notifications/mark-as-read/4e4b3356-ea65-4908-aeba-6e5c7da31c88",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"notifications",
+								"mark-as-read",
+								"4e4b3356-ea65-4908-aeba-6e5c7da31c88"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getNotificationDetails",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "127.0.0.1:8000/api/notifications/details/",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"notifications",
+								"details",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteNotification",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer 99|x8DkV3LnIAzyetgfqCuNe9MDx4icOPGVbD9pP26e58e06c95",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "127.0.0.1:8000/api/notifications/destroy/5a1d04ed-ea68-47d2-b394-9c7e00a0347c",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"notifications",
+								"destroy",
+								"5a1d04ed-ea68-47d2-b394-9c7e00a0347c"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Dashboard",
+			"item": [
+				{
+					"name": "WebsiteSettings Mangement",
+					"item": [
+						{
+							"name": "Settings",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 9|DkpVmqUUHGZmJ4DqvbpqwyWx6alo1mvbCZ7lwsx155c9ddc4"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/dashboard/admin/website-settings",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"dashboard",
+										"admin",
+										"website-settings"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Store Settings",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 9|DkpVmqUUHGZmJ4DqvbpqwyWx6alo1mvbCZ7lwsx155c9ddc4"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "GlueCare",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "gl@gl.com",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "Diabetic application",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "postman-cloud:///1eefb2ce-c54f-4e70-b9b6-93a876083627"
+										},
+										{
+											"key": "facebook_link",
+											"value": "https://www.facebook.com/Gl",
+											"type": "text"
+										},
+										{
+											"key": "twitter_link",
+											"value": "https://twitter.com/Gl",
+											"type": "text"
+										},
+										{
+											"key": "instagram_link",
+											"value": "https://www.instagram.com/Gl",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/dashboard/admin/website-settings/store",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"dashboard",
+										"admin",
+										"website-settings",
+										"store"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Settings",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 19|vliFqigw5ifEEDLtdblv7ce1XY14lPiXKOzeRxjQee68a787"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "_method",
+											"value": "put",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "GluCarej",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "glucare@glucare.com",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "A website for diabetics offering information,resources, and support tailored to individuals living with diabetes",
+											"type": "text"
+										},
+										{
+											"key": "image",
+											"type": "file",
+											"src": "postman-cloud:///1eef1eda-0d80-4980-a8cb-eb223a507f46"
+										},
+										{
+											"key": "facebook_link",
+											"value": "https://www.facebook.com/GluCare",
+											"type": "text"
+										},
+										{
+											"key": "twitter_link",
+											"value": "https://twitter.com/GluCare",
+											"type": "text"
+										},
+										{
+											"key": "instagram_link",
+											"value": "https://www.instagram.com/GluCare",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/dashboard/admin/website-settings/update/2",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"dashboard",
+										"admin",
+										"website-settings",
+										"update",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Settings",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 1|MuTRpwWWfHBggy9BEGiF2VAXZHSXTUzQubCgzWeg5f23a694"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/dashboard/admin/website-settings/destroy/5",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"dashboard",
+										"admin",
+										"website-settings",
+										"destroy",
+										"5"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Users Mangement",
+					"item": [
+						{
+							"name": "roles-permissions",
+							"item": [
+								{
+									"name": "role-permissions",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 19|vliFqigw5ifEEDLtdblv7ce1XY14lPiXKOzeRxjQee68a787"
+											}
+										],
+										"url": {
+											"raw": "127.0.0.1:8000/api/dashboard/admin/user-management/role-permissions",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"dashboard",
+												"admin",
+												"user-management",
+												"role-permissions"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "permissions",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 19|vliFqigw5ifEEDLtdblv7ce1XY14lPiXKOzeRxjQee68a787"
+											}
+										],
+										"url": {
+											"raw": "127.0.0.1:8000/api/dashboard/admin/user-management/role-permissions/create",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"dashboard",
+												"admin",
+												"user-management",
+												"role-permissions",
+												"create"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "store-role-permissions",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 4|BruLyvvstWgKKAkLFa97FgemLFKR647YiyNHQlwV743e3b7c"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "role",
+													"value": "sub admin",
+													"type": "text"
+												},
+												{
+													"key": "permissionName[0]",
+													"value": "settings_view",
+													"type": "text"
+												},
+												{
+													"key": "permissionName[1]",
+													"value": "settings_edit",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "127.0.0.1:8000/api/dashboard/admin/user-management/role-permissions/store",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"dashboard",
+												"admin",
+												"user-management",
+												"role-permissions",
+												"store"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "edit-role-permissions",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 19|vliFqigw5ifEEDLtdblv7ce1XY14lPiXKOzeRxjQee68a787"
+											}
+										],
+										"url": {
+											"raw": "127.0.0.1:8000/api/dashboard/admin/user-management/role-permissions/edit/5",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"dashboard",
+												"admin",
+												"user-management",
+												"role-permissions",
+												"edit",
+												"5"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "update-role-permissions",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 19|vliFqigw5ifEEDLtdblv7ce1XY14lPiXKOzeRxjQee68a787"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "role",
+													"value": "super Admin",
+													"type": "text"
+												},
+												{
+													"key": "permissionName[0]",
+													"value": "users_view",
+													"type": "text"
+												},
+												{
+													"key": "permissionName[1]",
+													"value": "users_edit",
+													"type": "text"
+												},
+												{
+													"key": "_method",
+													"value": "put",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "127.0.0.1:8000/api/dashboard/admin/user-management/role-permissions/update/5",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"dashboard",
+												"admin",
+												"user-management",
+												"role-permissions",
+												"update",
+												"5"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "delete-role-permissions",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 2|E5zhLpqg1mPyjAJnXOGkAFH5jGR0nyapjxOUS8kZ5d992483"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": []
+										},
+										"url": {
+											"raw": "127.0.0.1:8000/api/dashboard/admin/user-management/role-permissions/7",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"dashboard",
+												"admin",
+												"user-management",
+												"role-permissions",
+												"7"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Users",
+							"item": [
+								{
+									"name": "Users",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 19|vliFqigw5ifEEDLtdblv7ce1XY14lPiXKOzeRxjQee68a787"
+											}
+										],
+										"url": {
+											"raw": "127.0.0.1:8000/api/dashboard/admin/user-management/user",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"dashboard",
+												"admin",
+												"user-management",
+												"user"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create User",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 19|vliFqigw5ifEEDLtdblv7ce1XY14lPiXKOzeRxjQee68a787"
+											}
+										],
+										"url": {
+											"raw": "127.0.0.1:8000/api/dashboard/admin/user-management/user/create",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"dashboard",
+												"admin",
+												"user-management",
+												"user",
+												"create"
+											],
+											"query": [
+												{
+													"key": "",
+													"value": null,
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Store User",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 19|vliFqigw5ifEEDLtdblv7ce1XY14lPiXKOzeRxjQee68a787"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "\r\n{\r\n    \"name\": \"Bassem\",\r\n    \"password\": \"baseem@1234\",\r\n    \"password_confirmation\": \"baseem@1234\",\r\n    \"role\": \"doctor\",\r\n    \"specialization\": \"Heart\",\r\n    \"email\": \"baseem@gmail.com\",\r\n    \"amount\": \"10000\",\r\n    \"currency\": \"usd\",\r\n    \"experience_years\": \"5\",\r\n    \"qualifications\": \"uuuu\",\r\n    \"availabilities\": [\r\n        \"2024-08-08 05:20\",\r\n        \"2024-08-09 10:00\",\r\n        \"2024-08-10 14:30\"\r\n    ]\r\n\r\n}\r\n    \r\n\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "127.0.0.1:8000/api/dashboard/admin/user-management/user/store",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"dashboard",
+												"admin",
+												"user-management",
+												"user",
+												"store"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "edit user",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 19|vliFqigw5ifEEDLtdblv7ce1XY14lPiXKOzeRxjQee68a787"
+											}
+										],
+										"url": {
+											"raw": "127.0.0.1:8000/api/dashboard/admin/user-management/user/edit/8",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"dashboard",
+												"admin",
+												"user-management",
+												"user",
+												"edit",
+												"8"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Update User",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 19|vliFqigw5ifEEDLtdblv7ce1XY14lPiXKOzeRxjQee68a787"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"Bassemhhhh\",\r\n    \"password\": \"baseem@1234\",\r\n    \"password_confirmation\": \"baseem@1234\",\r\n    \"role\": \"doctor\",\r\n    \"specialization\": \"Heart\",\r\n    \"amount\": \"10000\",\r\n    \"email\": \"baseem@gmail.com\",\r\n    \"currency\": \"usd\",\r\n    \"experience_years\": \"5\",\r\n    \"qualifications\": \"uuuu\",\r\n    \"availabilities\": [\r\n        \"2024-08-08 05:20\",\r\n        \"2024-08-09 10:00\",\r\n        \"2024-08-10 14:30\"\r\n    ]\r\n\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "127.0.0.1:8000/api/dashboard/admin/user-management/user/update/9",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"dashboard",
+												"admin",
+												"user-management",
+												"user",
+												"update",
+												"9"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete User",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 2|E5zhLpqg1mPyjAJnXOGkAFH5jGR0nyapjxOUS8kZ5d992483"
+											},
+											{
+												"key": "",
+												"value": "",
+												"disabled": true
+											}
+										],
+										"url": {
+											"raw": "127.0.0.1:8000/api/dashboard/admin/user-management/user/destroy/7",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"dashboard",
+												"admin",
+												"user-management",
+												"user",
+												"destroy",
+												"7"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "GluCare",
+			"item": [
+				{
+					"name": "ContactUs",
+					"item": [
+						{
+							"name": "submit",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 1|Dw1afNXzeJuQal6cCBsInxJnt2LdcPCGDfEB24M2c0ffd47d"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"admin\",\r\n    \"email\": \"admin@gmail.com\",\r\n    \"subject\": \"Inquiry about services\",\r\n    \"message\": \"I would like to know more about your services.\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/glucare/contact-form/submit",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"glucare",
+										"contact-form",
+										"submit"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "submit",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 1|Dw1afNXzeJuQal6cCBsInxJnt2LdcPCGDfEB24M2c0ffd47d"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"admin\",\r\n    \"email\": \"admin@gmail.com\",\r\n    \"subject\": \"Inquiry about services\",\r\n    \"message\": \"I would like to know more about your services.\"\r\n}\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "127.0.0.1:8000/api/glucare/contact-form/submit",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"glucare",
+												"contact-form",
+												"submit"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 26 May 2024 14:16:43 GMT"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 26 May 2024 14:16:43 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.4"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "59"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Contact form submitted successfully.\"\n}"
+								}
+							]
+						},
+						{
+							"name": "View Unanswered Questions",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 2|zyHe62vY6QETk9XJ3yn6DgRnTqhxzJaTz6MVlTRgb6400a7a"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/glucare/contact-form/view-unanswered",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"glucare",
+										"contact-form",
+										"view-unanswered"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "New Request",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 2|zyHe62vY6QETk9XJ3yn6DgRnTqhxzJaTz6MVlTRgb6400a7a"
+											}
+										],
+										"url": {
+											"raw": "127.0.0.1:8000/api/glucare/contact-form/view-unanswered",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"glucare",
+												"contact-form",
+												"view-unanswered"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 26 May 2024 14:16:59 GMT"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 26 May 2024 14:16:59 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.4"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "58"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "[\n    {\n        \"id\": 2,\n        \"name\": \"admin\",\n        \"email\": \"admin@gmail.com\",\n        \"subject\": \"Inquiry about services\",\n        \"message\": \"I would like to know more about your services.\",\n        \"answered\": 0,\n        \"created_at\": \"2024-05-26T14:16:43.000000Z\",\n        \"updated_at\": \"2024-05-26T14:16:43.000000Z\"\n    }\n]"
+								}
+							]
+						},
+						{
+							"name": "Answer a Question",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 2|zyHe62vY6QETk9XJ3yn6DgRnTqhxzJaTz6MVlTRgb6400a7a"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/glucare/contact-form/answer-question/1",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"glucare",
+										"contact-form",
+										"answer-question",
+										"1"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Answer a Question",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 2|zyHe62vY6QETk9XJ3yn6DgRnTqhxzJaTz6MVlTRgb6400a7a"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "127.0.0.1:8000/api/glucare/contact-form/answer-question/1",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"glucare",
+												"contact-form",
+												"answer-question",
+												"1"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 26 May 2024 14:17:11 GMT"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 26 May 2024 14:17:11 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.4"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "60"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "57"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Question marked as answered.\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "blog",
+					"item": [
+						{
+							"name": "Categories",
+							"item": [
+								{
+									"name": "Categories",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 9|DkpVmqUUHGZmJ4DqvbpqwyWx6alo1mvbCZ7lwsx155c9ddc4"
+											}
+										],
+										"url": {
+											"raw": "127.0.0.1:8000/api/glucare/blog/categories",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"glucare",
+												"blog",
+												"categories"
+											],
+											"query": [
+												{
+													"key": "search",
+													"value": "manameno",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Store Category",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 9|DkpVmqUUHGZmJ4DqvbpqwyWx6alo1mvbCZ7lwsx155c9ddc4"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "FITNESS hh",
+													"type": "text"
+												},
+												{
+													"key": "description",
+													"value": "fit is bla bla",
+													"type": "text"
+												},
+												{
+													"key": "status",
+													"value": "active",
+													"type": "text"
+												},
+												{
+													"key": "parent_id",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "image",
+													"type": "file",
+													"src": "postman-cloud:///1eeeef44-6dd1-4930-a783-8b13ac60c8fc"
+												}
+											]
+										},
+										"url": {
+											"raw": "127.0.0.1:8000/api/glucare/blog/categories/store",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"glucare",
+												"blog",
+												"categories",
+												"store"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Category details",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 21|pCd7KRGNH2HzXnH78RrktgVSWNMaZqA8DgCw9ubH15d29006"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": []
+										},
+										"url": {
+											"raw": "127.0.0.1:8000/api/glucare/blog/categories/show/1",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"glucare",
+												"blog",
+												"categories",
+												"show",
+												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Update Category",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 21|pCd7KRGNH2HzXnH78RrktgVSWNMaZqA8DgCw9ubH15d29006"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "_method",
+													"value": "put",
+													"type": "text"
+												},
+												{
+													"key": "name",
+													"value": "Health",
+													"type": "text"
+												},
+												{
+													"key": "description",
+													"value": "health is good and healthy",
+													"type": "text"
+												},
+												{
+													"key": "parent_id",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "image",
+													"type": "file",
+													"src": "postman-cloud:///1eeeef44-6dd1-4930-a783-8b13ac60c8fc"
+												},
+												{
+													"key": "status",
+													"value": "active",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "127.0.0.1:8000/api/glucare/blog/categories/update/1",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"glucare",
+												"blog",
+												"categories",
+												"update",
+												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete Category",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 1|VemF6TSJUjZJWRnmLpHnCcP5KESzZZLngrhx0jzQa4bda738"
+											}
+										],
+										"url": {
+											"raw": "127.0.0.1:8000/api/glucare/blog/categories/destroy/1",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"glucare",
+												"blog",
+												"categories",
+												"destroy",
+												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Trash Category",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 1|VemF6TSJUjZJWRnmLpHnCcP5KESzZZLngrhx0jzQa4bda738"
+											}
+										],
+										"url": {
+											"raw": "127.0.0.1:8000/api/glucare/blog/categories/trash",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"glucare",
+												"blog",
+												"categories",
+												"trash"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Restore Category",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 1|VemF6TSJUjZJWRnmLpHnCcP5KESzZZLngrhx0jzQa4bda738"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "_method",
+													"value": "put",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "127.0.0.1:8000/api/glucare/blog/categories/restore/1",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"glucare",
+												"blog",
+												"categories",
+												"restore",
+												"1"
+											],
+											"query": [
+												{
+													"key": "category",
+													"value": "1",
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Force Delete Category",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 1|VemF6TSJUjZJWRnmLpHnCcP5KESzZZLngrhx0jzQa4bda738"
+											}
+										],
+										"url": {
+											"raw": "127.0.0.1:8000/api/glucare/blog/categories/force-delete/1",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"glucare",
+												"blog",
+												"categories",
+												"force-delete",
+												"1"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Posts",
+							"item": [
+								{
+									"name": "Posts",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 9|DkpVmqUUHGZmJ4DqvbpqwyWx6alo1mvbCZ7lwsx155c9ddc4"
+											}
+										],
+										"url": {
+											"raw": "127.0.0.1:8000/api/glucare/blog/posts",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"glucare",
+												"blog",
+												"posts"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Store Post",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 9|DkpVmqUUHGZmJ4DqvbpqwyWx6alo1mvbCZ7lwsx155c9ddc4"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "title",
+													"value": "Importance of fitness gg kk uu i u jj",
+													"type": "text"
+												},
+												{
+													"key": "body",
+													"value": "fittness is very important for every one",
+													"type": "text"
+												},
+												{
+													"key": "image",
+													"type": "file",
+													"src": "postman-cloud:///1eeeef44-6dd1-4930-a783-8b13ac60c8fc"
+												},
+												{
+													"key": "category_id",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "is_published",
+													"value": "published",
+													"type": "text"
+												},
+												{
+													"key": "tags",
+													"value": "fitness , heaith",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "127.0.0.1:8000/api/glucare/blog/posts/store",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"glucare",
+												"blog",
+												"posts",
+												"store"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Post Details",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 22|NPf2QGm9x7PWbVTSF668v1ukcP9hN6SrUtVxdqppbf5f3875"
+											}
+										],
+										"url": {
+											"raw": "127.0.0.1:8000/api/glucare/blog/posts/show/1",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"glucare",
+												"blog",
+												"posts",
+												"show",
+												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Update Post",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 22|NPf2QGm9x7PWbVTSF668v1ukcP9hN6SrUtVxdqppbf5f3875"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "_method",
+													"value": "put",
+													"type": "text"
+												},
+												{
+													"key": "title",
+													"value": "manmoun ppptt",
+													"type": "text"
+												},
+												{
+													"key": "body",
+													"value": "manmona alamoura awittt",
+													"type": "text"
+												},
+												{
+													"key": "image",
+													"type": "file",
+													"src": "postman-cloud:///1eeeef44-6dd1-4930-a783-8b13ac60c8fc"
+												},
+												{
+													"key": "category_id",
+													"value": "",
+													"type": "text"
+												},
+												{
+													"key": "user_id",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "is_published",
+													"value": "published",
+													"type": "text"
+												},
+												{
+													"key": "tags",
+													"value": "hhhhheatyj,iiii",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "127.0.0.1:8000/api/glucare/blog/posts/update/1",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"glucare",
+												"blog",
+												"posts",
+												"update",
+												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete Post",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 22|NPf2QGm9x7PWbVTSF668v1ukcP9hN6SrUtVxdqppbf5f3875"
+											}
+										],
+										"url": {
+											"raw": "127.0.0.1:8000/api/glucare/blog/posts/destroy/1",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"glucare",
+												"blog",
+												"posts",
+												"destroy",
+												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Trash Post",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 1|VemF6TSJUjZJWRnmLpHnCcP5KESzZZLngrhx0jzQa4bda738"
+											}
+										],
+										"url": {
+											"raw": "127.0.0.1:8000/api/glucare/blog/posts/trash",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"glucare",
+												"blog",
+												"posts",
+												"trash"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Restore Post",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 1|VemF6TSJUjZJWRnmLpHnCcP5KESzZZLngrhx0jzQa4bda738"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "_method",
+													"value": "put",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "127.0.0.1:8000/api/glucare/blog/posts/restore/6",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"glucare",
+												"blog",
+												"posts",
+												"restore",
+												"6"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Force Delete Post",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 1|VemF6TSJUjZJWRnmLpHnCcP5KESzZZLngrhx0jzQa4bda738"
+											}
+										],
+										"url": {
+											"raw": "127.0.0.1:8000/api/glucare/blog/posts/force-delete/6",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"glucare",
+												"blog",
+												"posts",
+												"force-delete",
+												"6"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Comments",
+							"item": [
+								{
+									"name": "Store Comment",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 9|DkpVmqUUHGZmJ4DqvbpqwyWx6alo1mvbCZ7lwsx155c9ddc4"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "post_id",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "body",
+													"value": " good hhh gg jj",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "127.0.0.1:8000/api/glucare/blog/comments/store",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"glucare",
+												"blog",
+												"comments",
+												"store"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "All Comments",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": ""
+											}
+										],
+										"url": {
+											"raw": "127.0.0.1:8000/api/glucare/blog/comments",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"glucare",
+												"blog",
+												"comments"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Update Comment",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 1|2PSO0WrZAsA367LhHrs7iA1qODWzWXI6LExLmg4b3006d847"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "post_id",
+													"value": "1",
+													"type": "text"
+												},
+												{
+													"key": "body",
+													"value": " good jjj",
+													"type": "text"
+												},
+												{
+													"key": "_method",
+													"value": "put",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "127.0.0.1:8000/api/glucare/blog/comments/update/1",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"glucare",
+												"blog",
+												"comments",
+												"update",
+												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Comment Details",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 22|NPf2QGm9x7PWbVTSF668v1ukcP9hN6SrUtVxdqppbf5f3875"
+											}
+										],
+										"url": {
+											"raw": "127.0.0.1:8000/api/glucare/blog/comments/show/1",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"glucare",
+												"blog",
+												"comments",
+												"show",
+												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Destroy Comment",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 1|2PSO0WrZAsA367LhHrs7iA1qODWzWXI6LExLmg4b3006d847"
+											}
+										],
+										"url": {
+											"raw": "127.0.0.1:8000/api/glucare/blog/comments/destroy/1",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"glucare",
+												"blog",
+												"comments",
+												"destroy",
+												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Approve Comment",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 22|NPf2QGm9x7PWbVTSF668v1ukcP9hN6SrUtVxdqppbf5f3875"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "_method",
+													"value": "put",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "127.0.0.1:8000/api/glucare/blog/comments/approve/1",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"glucare",
+												"blog",
+												"comments",
+												"approve",
+												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Reject Comment",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 1|VF1AqKmgxA6mxDgOiTy2IvkTtJmswYX3uLWVieMZce999810"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "_method",
+													"value": "put",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "127.0.0.1:8000/api/glucare/blog/comments/reject/1",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"glucare",
+												"blog",
+												"comments",
+												"reject",
+												"1"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "LikesAndUnlikes",
+							"item": [
+								{
+									"name": "like",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 9|DkpVmqUUHGZmJ4DqvbpqwyWx6alo1mvbCZ7lwsx155c9ddc4"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "likeable_type",
+													"value": "posts",
+													"type": "text"
+												},
+												{
+													"key": "likeable_id",
+													"value": "1",
+													"type": "text"
+												}
+											]
+										},
+										"url": {
+											"raw": "127.0.0.1:8000/api/glucare/blog/likes/like",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"glucare",
+												"blog",
+												"likes",
+												"like"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "liveChat",
+					"item": [
+						{
+							"name": "Create Chat",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 9|DkpVmqUUHGZmJ4DqvbpqwyWx6alo1mvbCZ7lwsx155c9ddc4"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"users\": [1, 3,2],\r\n  \"isPrivate\": true\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/glucare/chat/create-chat",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"glucare",
+										"chat",
+										"create-chat"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Send Text Message",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 9|DkpVmqUUHGZmJ4DqvbpqwyWx6alo1mvbCZ7lwsx155c9ddc4"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "chat_id",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "message",
+											"value": "السلام عليكم",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/glucare/chat/send-text-message",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"glucare",
+										"chat",
+										"send-text-message"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Message Status",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 5|xVBp7fndgHQfiZVyvAM92oaZnfqI3yHB4WpjxdIO6bf5d52b"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/glucare/chat/message-status/1",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"glucare",
+										"chat",
+										"message-status",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Chat By ID",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 22|NPf2QGm9x7PWbVTSF668v1ukcP9hN6SrUtVxdqppbf5f3875"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/glucare/chat/get-chat-by-id/1",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"glucare",
+										"chat",
+										"get-chat-by-id",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Chats",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 22|NPf2QGm9x7PWbVTSF668v1ukcP9hN6SrUtVxdqppbf5f3875"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/glucare/chat/get-chats",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"glucare",
+										"chat",
+										"get-chats"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Search Users",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 22|NPf2QGm9x7PWbVTSF668v1ukcP9hN6SrUtVxdqppbf5f3875"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "admin@admin.com",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/glucare/chat/search-user",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"glucare",
+										"chat",
+										"search-user"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Doctors",
+					"item": [
+						{
+							"name": "Doctors",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 6|rXWam67AG3VrqWgq1Br5f0qJ3nTqyzhoEDbjAM0H5f4f3628"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/glucare/doctors",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"glucare",
+										"doctors"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Doctor Details",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 6|rXWam67AG3VrqWgq1Br5f0qJ3nTqyzhoEDbjAM0H5f4f3628"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/glucare/doctors/show/3",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"glucare",
+										"doctors",
+										"show",
+										"3"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "appoinment",
+					"item": [
+						{
+							"name": "Appointments",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 23|TGBX8OpRSxk7D7pmO1TjH3N3NDTjpxHlLik33swj977d28f5"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/glucare/appointments",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"glucare",
+										"appointments"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Appointment",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 23|TGBX8OpRSxk7D7pmO1TjH3N3NDTjpxHlLik33swj977d28f5"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/glucare/appointments/create",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"glucare",
+										"appointments",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Store Appointment",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 2|AaY3zWvHEEwCkljMm82FFeq3jnchg2egDqwTAPLH8dea9c24"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "specialization",
+											"value": "Cardiology",
+											"type": "text"
+										},
+										{
+											"key": "doctor_name",
+											"value": "Doctor",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/glucare/appointments/store",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"glucare",
+										"appointments",
+										"store"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Appointment Details",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 23|TGBX8OpRSxk7D7pmO1TjH3N3NDTjpxHlLik33swj977d28f5"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/glucare/appointments/show/2",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"glucare",
+										"appointments",
+										"show",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edit Appointment",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 23|TGBX8OpRSxk7D7pmO1TjH3N3NDTjpxHlLik33swj977d28f5"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/glucare/appointments/edit/2",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"glucare",
+										"appointments",
+										"edit",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Appointment",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 23|TGBX8OpRSxk7D7pmO1TjH3N3NDTjpxHlLik33swj977d28f5"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "_method",
+											"value": "put",
+											"type": "text"
+										},
+										{
+											"key": "doctor_name",
+											"value": "Bassem",
+											"type": "text"
+										},
+										{
+											"key": "specialization",
+											"value": "Heart",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/glucare/appointments/update/2",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"glucare",
+										"appointments",
+										"update",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Destroy Appointment",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 2|luApFcihvw9hHQdzIxQtr7g6i7Lhq7Rl58OrELc7eb9d1e53"
+									}
+								],
+								"url": {
+									"raw": "127.0.0.1:8000/api/glucare/appointments/destroy/",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"glucare",
+										"appointments",
+										"destroy",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Approve Appointment",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 1|i7ZLZuh481QNjK8tbWGQF0j3uRytqlqHixUJPgkE0647c178"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "_method",
+											"value": "put",
+											"type": "text"
+										},
+										{
+											"key": "appointment_datetime",
+											"value": "2024-05-02 22:08",
+											"type": "text"
+										},
+										{
+											"key": "duration_in_minute",
+											"value": "30",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/glucare/appointments/approve/1",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"glucare",
+										"appointments",
+										"approve",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cancel Appointment",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 24|F34qtdgoany2gqImckukFzqLH5aCDMb64fdVaqU6b0f0e4e3"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "_method",
+											"value": "put",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/glucare/appointments/cancel/4",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"glucare",
+										"appointments",
+										"cancel",
+										"4"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "payment",
+					"item": [
+						{
+							"name": "Payments",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 1|TSdcMAMnKarPHDr8MNEh9z4lbj092BtyHMjZtPYY9310687f"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "payment_method",
+											"value": "pm_card_visa",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "Eman Ebied",
+											"type": "text"
+										},
+										{
+											"key": "card_number",
+											"value": "4242424242424242",
+											"type": "text"
+										},
+										{
+											"key": "exp_month",
+											"value": "12",
+											"type": "text"
+										},
+										{
+											"key": "exp_year",
+											"value": "2023",
+											"type": "text"
+										},
+										{
+											"key": "cvc",
+											"value": "123",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "127.0.0.1:8000/api/glucare/payments/stripe-payment",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"glucare",
+										"payments",
+										"stripe-payment"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Detection",
+					"item": [
+						{
+							"name": "predictDiabetesWithPatientDataer",
+							"item": [
+								{
+									"name": "PatientData",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 1|Q74p5NBLwLSqJnsuW43cVxkemQzTgvO55sbKJNL2c8caf0e3"
+											}
+										],
+										"url": {
+											"raw": "127.0.0.1:8000/api/glucare/predictDiabetesWithPatientData",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"glucare",
+												"predictDiabetesWithPatientData"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Store PatientData",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 1|B5s4dWGUpftMMutZLz2cURznQJxtDTWANQGld5hVb83de0c6"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"gender\": \"female\",\r\n    \"age\": \"24\",\r\n    \"hypertension\": 0,\r\n    \"heart_disease\": 0,\r\n    \"smoking_history\": \"never\",\r\n    \"height\": \"157.1\",\r\n    \"weight\": \"58.8\",\r\n    \"HbA1c_level\": \"6.6\",\r\n    \"blood_glucose_level\": \"140\"\r\n}\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "127.0.0.1:8000/api/glucare/predictDiabetesWithPatientData/store",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"glucare",
+												"predictDiabetesWithPatientData",
+												"store"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Update PatientData",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 25|IW78hGNZC1VUBQenujc4vYm9vXyTy4hCUhUuKIOida98d892"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"gender\": \"male\",\r\n    \"age\": \"67\",\r\n    \"hypertension\": \"Do not have\",\r\n    \"heart_disease\": \"Do not have\",\r\n    \"smoking_history\": \"former\",\r\n    // \"height\": \"157.1\",\r\n    // \"weight\": \"58.8\",\r\n    \"bmi\":\"27.32\",\r\n    \"HbA1c_level\": \"6.5\",\r\n    \"blood_glucose_level\": \"200\"\r\n}\t\t\r\n\t\t\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "127.0.0.1:8000/api/glucare/predictDiabetesWithPatientData/update/1",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"glucare",
+												"predictDiabetesWithPatientData",
+												"update",
+												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "PatientData Details",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 25|IW78hGNZC1VUBQenujc4vYm9vXyTy4hCUhUuKIOida98d892"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": []
+										},
+										"url": {
+											"raw": "127.0.0.1:8000/api/glucare/predictDiabetesWithPatientData/show/1",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"glucare",
+												"predictDiabetesWithPatientData",
+												"show",
+												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete PatientData",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 1|nRCXzFJBJWqDFWWUsugpB0Xhig0Oo5MjOS8vVHLT6a9427fd"
+											}
+										],
+										"url": {
+											"raw": "127.0.0.1:8000/api/glucare/predictDiabetesWithPatientData/destroy/1",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"glucare",
+												"predictDiabetesWithPatientData",
+												"destroy",
+												"1"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "predictDiabetesTest",
+							"item": [
+								{
+									"name": "Predict Diabetes",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"gender\": \"Female\",\r\n    \"age\": 80.0,\r\n    \"hypertension\": 1,\r\n    \"heart_disease\": 0,\r\n    \"smoking_history\": \"never\",\r\n    \"bmi\": 27.32,\r\n    \"HbA1c_level\": 6.8,\r\n    \"blood_glucose_level\": 280\r\n}\r\n\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "127.0.0.1:8000/api/predict_diabetes",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"predict_diabetes"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Reports",
+					"item": [
+						{
+							"name": "PatienReports",
+							"item": [
+								{
+									"name": "getBloodGlucoseLevels",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 1|ENVf0E5Oh3HTixNpy5gUGjikf3fWOzoIIvkYtO6S7ad76647"
+											}
+										],
+										"url": {
+											"raw": "127.0.0.1:8000/api/glucare/reports/patientReports/glucose-readings/1",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"glucare",
+												"reports",
+												"patientReports",
+												"glucose-readings",
+												"1"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "getBloodGlucoseLevels",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													},
+													{
+														"key": "Authorization",
+														"value": "Bearer 1|p7k49ustOf1WMFxFSkGTRQ4VvyKljzmc9TJZqJzqa25dd6bf"
+													}
+												],
+												"url": {
+													"raw": "127.0.0.1:8000/api/glucare/reports/patientReports/glucose-readings/1",
+													"host": [
+														"127",
+														"0",
+														"0",
+														"1"
+													],
+													"port": "8000",
+													"path": [
+														"api",
+														"glucare",
+														"reports",
+														"patientReports",
+														"glucose-readings",
+														"1"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Host",
+													"value": "127.0.0.1:8000"
+												},
+												{
+													"key": "Date",
+													"value": "Sun, 26 May 2024 10:30:18 GMT"
+												},
+												{
+													"key": "Date",
+													"value": "Sun, 26 May 2024 10:30:18 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "close"
+												},
+												{
+													"key": "X-Powered-By",
+													"value": "PHP/8.2.4"
+												},
+												{
+													"key": "Cache-Control",
+													"value": "no-cache, private"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "X-RateLimit-Limit",
+													"value": "60"
+												},
+												{
+													"key": "X-RateLimit-Remaining",
+													"value": "57"
+												},
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"Blood glucose levels retrieved successfully\",\n    \"errors\": {},\n    \"data\": {\n        \"bloodGlucoseLevels\": [\n            140\n        ]\n    }\n}"
+										}
+									]
+								},
+								{
+									"name": "getAgeReadings",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 1|ENVf0E5Oh3HTixNpy5gUGjikf3fWOzoIIvkYtO6S7ad76647"
+											}
+										],
+										"url": {
+											"raw": "127.0.0.1:8000/api/glucare/reports/patientReports/age_readings/1",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"glucare",
+												"reports",
+												"patientReports",
+												"age_readings",
+												"1"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "getAgeReadings",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													},
+													{
+														"key": "Authorization",
+														"value": "Bearer 1|p7k49ustOf1WMFxFSkGTRQ4VvyKljzmc9TJZqJzqa25dd6bf"
+													}
+												],
+												"url": {
+													"raw": "127.0.0.1:8000/api/glucare/reports/patientReports/age_readings/1",
+													"host": [
+														"127",
+														"0",
+														"0",
+														"1"
+													],
+													"port": "8000",
+													"path": [
+														"api",
+														"glucare",
+														"reports",
+														"patientReports",
+														"age_readings",
+														"1"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Host",
+													"value": "127.0.0.1:8000"
+												},
+												{
+													"key": "Date",
+													"value": "Sun, 26 May 2024 10:29:53 GMT"
+												},
+												{
+													"key": "Date",
+													"value": "Sun, 26 May 2024 10:29:53 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "close"
+												},
+												{
+													"key": "X-Powered-By",
+													"value": "PHP/8.2.4"
+												},
+												{
+													"key": "Cache-Control",
+													"value": "no-cache, private"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "X-RateLimit-Limit",
+													"value": "60"
+												},
+												{
+													"key": "X-RateLimit-Remaining",
+													"value": "58"
+												},
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"Age retrieved successfully\",\n    \"errors\": {},\n    \"data\": {\n        \"age\": [\n            24\n        ]\n    }\n}"
+										}
+									]
+								},
+								{
+									"name": "getHypertensionReadings",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 1|ENVf0E5Oh3HTixNpy5gUGjikf3fWOzoIIvkYtO6S7ad76647"
+											}
+										],
+										"url": {
+											"raw": "127.0.0.1:8000/api/glucare/reports/patientReports/hypertension_readings/1",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"glucare",
+												"reports",
+												"patientReports",
+												"hypertension_readings",
+												"1"
+											],
+											"query": [
+												{
+													"key": "a",
+													"value": null,
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "getHypertensionReadings",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													},
+													{
+														"key": "Authorization",
+														"value": "Bearer 1|p7k49ustOf1WMFxFSkGTRQ4VvyKljzmc9TJZqJzqa25dd6bf"
+													}
+												],
+												"url": {
+													"raw": "127.0.0.1:8000/api/glucare/reports/patientReports/hypertension_readings/1",
+													"host": [
+														"127",
+														"0",
+														"0",
+														"1"
+													],
+													"port": "8000",
+													"path": [
+														"api",
+														"glucare",
+														"reports",
+														"patientReports",
+														"hypertension_readings",
+														"1"
+													],
+													"query": [
+														{
+															"key": "a",
+															"value": null,
+															"disabled": true
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Host",
+													"value": "127.0.0.1:8000"
+												},
+												{
+													"key": "Date",
+													"value": "Sun, 26 May 2024 10:34:26 GMT"
+												},
+												{
+													"key": "Date",
+													"value": "Sun, 26 May 2024 10:34:26 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "close"
+												},
+												{
+													"key": "X-Powered-By",
+													"value": "PHP/8.2.4"
+												},
+												{
+													"key": "Cache-Control",
+													"value": "no-cache, private"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "X-RateLimit-Limit",
+													"value": "60"
+												},
+												{
+													"key": "X-RateLimit-Remaining",
+													"value": "59"
+												},
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"Hypertension retrieved successfully\",\n    \"errors\": {},\n    \"data\": {\n        \"hypertension\": [\n            0\n        ]\n    }\n}"
+										}
+									]
+								},
+								{
+									"name": "getheartDiseaseReadings",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 1|ENVf0E5Oh3HTixNpy5gUGjikf3fWOzoIIvkYtO6S7ad76647"
+											}
+										],
+										"url": {
+											"raw": "127.0.0.1:8000/api/glucare/reports/patientReports/heart-disease_readings/1",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"glucare",
+												"reports",
+												"patientReports",
+												"heart-disease_readings",
+												"1"
+											],
+											"query": [
+												{
+													"key": "",
+													"value": null,
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "getheartDiseaseReadings",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													},
+													{
+														"key": "Authorization",
+														"value": "Bearer 1|ENVf0E5Oh3HTixNpy5gUGjikf3fWOzoIIvkYtO6S7ad76647"
+													}
+												],
+												"url": {
+													"raw": "127.0.0.1:8000/api/glucare/reports/patientReports/heart-disease_readings/1",
+													"host": [
+														"127",
+														"0",
+														"0",
+														"1"
+													],
+													"port": "8000",
+													"path": [
+														"api",
+														"glucare",
+														"reports",
+														"patientReports",
+														"heart-disease_readings",
+														"1"
+													],
+													"query": [
+														{
+															"key": "",
+															"value": null,
+															"disabled": true
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Host",
+													"value": "127.0.0.1:8000"
+												},
+												{
+													"key": "Date",
+													"value": "Sun, 26 May 2024 10:39:49 GMT"
+												},
+												{
+													"key": "Date",
+													"value": "Sun, 26 May 2024 10:39:49 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "close"
+												},
+												{
+													"key": "X-Powered-By",
+													"value": "PHP/8.2.4"
+												},
+												{
+													"key": "Cache-Control",
+													"value": "no-cache, private"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "X-RateLimit-Limit",
+													"value": "60"
+												},
+												{
+													"key": "X-RateLimit-Remaining",
+													"value": "56"
+												},
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"Heart disease retrieved successfully\",\n    \"errors\": {},\n    \"data\": {\n        \"heartDisease\": [\n            0\n        ]\n    }\n}"
+										}
+									]
+								},
+								{
+									"name": "getsmokingHistoryReadings",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 1|ENVf0E5Oh3HTixNpy5gUGjikf3fWOzoIIvkYtO6S7ad76647"
+											}
+										],
+										"url": {
+											"raw": "127.0.0.1:8000/api/glucare/reports/patientReports/smoking-history_readings/1",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"glucare",
+												"reports",
+												"patientReports",
+												"smoking-history_readings",
+												"1"
+											],
+											"query": [
+												{
+													"key": "",
+													"value": null,
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "getsmokingHistoryReadings",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													},
+													{
+														"key": "Authorization",
+														"value": "Bearer 1|ENVf0E5Oh3HTixNpy5gUGjikf3fWOzoIIvkYtO6S7ad76647"
+													}
+												],
+												"url": {
+													"raw": "127.0.0.1:8000/api/glucare/reports/patientReports/smoking-history_readings/1",
+													"host": [
+														"127",
+														"0",
+														"0",
+														"1"
+													],
+													"port": "8000",
+													"path": [
+														"api",
+														"glucare",
+														"reports",
+														"patientReports",
+														"smoking-history_readings",
+														"1"
+													],
+													"query": [
+														{
+															"key": "",
+															"value": null,
+															"disabled": true
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Host",
+													"value": "127.0.0.1:8000"
+												},
+												{
+													"key": "Date",
+													"value": "Sun, 26 May 2024 10:42:08 GMT"
+												},
+												{
+													"key": "Date",
+													"value": "Sun, 26 May 2024 10:42:08 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "close"
+												},
+												{
+													"key": "X-Powered-By",
+													"value": "PHP/8.2.4"
+												},
+												{
+													"key": "Cache-Control",
+													"value": "no-cache, private"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "X-RateLimit-Limit",
+													"value": "60"
+												},
+												{
+													"key": "X-RateLimit-Remaining",
+													"value": "59"
+												},
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"Smoking history retrieved successfully\",\n    \"errors\": {},\n    \"data\": {\n        \"smokingHistory\": [\n            \"never\"\n        ]\n    }\n}"
+										}
+									]
+								},
+								{
+									"name": "getHbA1cLevelReadings",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 1|ENVf0E5Oh3HTixNpy5gUGjikf3fWOzoIIvkYtO6S7ad76647"
+											}
+										],
+										"url": {
+											"raw": "127.0.0.1:8000/api/glucare/reports/patientReports/HbA1c-level_readings/1",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"glucare",
+												"reports",
+												"patientReports",
+												"HbA1c-level_readings",
+												"1"
+											],
+											"query": [
+												{
+													"key": "",
+													"value": null,
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "getHbA1cLevelReadings",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													},
+													{
+														"key": "Authorization",
+														"value": "Bearer 1|ENVf0E5Oh3HTixNpy5gUGjikf3fWOzoIIvkYtO6S7ad76647"
+													}
+												],
+												"url": {
+													"raw": "127.0.0.1:8000/api/glucare/reports/patientReports/HbA1c-level_readings/1",
+													"host": [
+														"127",
+														"0",
+														"0",
+														"1"
+													],
+													"port": "8000",
+													"path": [
+														"api",
+														"glucare",
+														"reports",
+														"patientReports",
+														"HbA1c-level_readings",
+														"1"
+													],
+													"query": [
+														{
+															"key": "",
+															"value": null,
+															"disabled": true
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Host",
+													"value": "127.0.0.1:8000"
+												},
+												{
+													"key": "Date",
+													"value": "Sun, 26 May 2024 11:05:00 GMT"
+												},
+												{
+													"key": "Date",
+													"value": "Sun, 26 May 2024 11:05:00 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "close"
+												},
+												{
+													"key": "X-Powered-By",
+													"value": "PHP/8.2.4"
+												},
+												{
+													"key": "Cache-Control",
+													"value": "no-cache, private"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "X-RateLimit-Limit",
+													"value": "60"
+												},
+												{
+													"key": "X-RateLimit-Remaining",
+													"value": "58"
+												},
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"HbA1c level retrieved successfully\",\n    \"errors\": {},\n    \"data\": {\n        \"HbA1cLevel\": [\n            6.6\n        ]\n    }\n}"
+										}
+									]
+								},
+								{
+									"name": "getBimReadings",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 1|ENVf0E5Oh3HTixNpy5gUGjikf3fWOzoIIvkYtO6S7ad76647"
+											}
+										],
+										"url": {
+											"raw": "127.0.0.1:8000/api/glucare/reports/patientReports/bmi_readings/1",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"glucare",
+												"reports",
+												"patientReports",
+												"bmi_readings",
+												"1"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "getBimReadings",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													},
+													{
+														"key": "Authorization",
+														"value": "Bearer 1|ENVf0E5Oh3HTixNpy5gUGjikf3fWOzoIIvkYtO6S7ad76647"
+													}
+												],
+												"url": {
+													"raw": "127.0.0.1:8000/api/glucare/reports/patientReports/bmi_readings/1",
+													"host": [
+														"127",
+														"0",
+														"0",
+														"1"
+													],
+													"port": "8000",
+													"path": [
+														"api",
+														"glucare",
+														"reports",
+														"patientReports",
+														"bmi_readings",
+														"1"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Host",
+													"value": "127.0.0.1:8000"
+												},
+												{
+													"key": "Date",
+													"value": "Sun, 26 May 2024 11:06:01 GMT"
+												},
+												{
+													"key": "Date",
+													"value": "Sun, 26 May 2024 11:06:01 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "close"
+												},
+												{
+													"key": "X-Powered-By",
+													"value": "PHP/8.2.4"
+												},
+												{
+													"key": "Cache-Control",
+													"value": "no-cache, private"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "X-RateLimit-Limit",
+													"value": "60"
+												},
+												{
+													"key": "X-RateLimit-Remaining",
+													"value": "59"
+												},
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"BMI retrieved successfully\",\n    \"errors\": {},\n    \"data\": {\n        \"bmi\": [\n            23.8\n        ]\n    }\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "DoctorReports",
+							"item": [
+								{
+									"name": "appointmentCounts",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 1|i7ZLZuh481QNjK8tbWGQF0j3uRytqlqHixUJPgkE0647c178"
+											}
+										],
+										"url": {
+											"raw": "127.0.0.1:8000/api/glucare/reports/doctorReports/today-appointments/1",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"glucare",
+												"reports",
+												"doctorReports",
+												"today-appointments",
+												"1"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "appointmentCounts",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													},
+													{
+														"key": "Authorization",
+														"value": "Bearer 1|i7ZLZuh481QNjK8tbWGQF0j3uRytqlqHixUJPgkE0647c178"
+													}
+												],
+												"url": {
+													"raw": "127.0.0.1:8000/api/glucare/reports/doctorReports/today-appointments/1",
+													"host": [
+														"127",
+														"0",
+														"0",
+														"1"
+													],
+													"port": "8000",
+													"path": [
+														"api",
+														"glucare",
+														"reports",
+														"doctorReports",
+														"today-appointments",
+														"1"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Host",
+													"value": "127.0.0.1:8000"
+												},
+												{
+													"key": "Date",
+													"value": "Sun, 26 May 2024 13:12:15 GMT"
+												},
+												{
+													"key": "Date",
+													"value": "Sun, 26 May 2024 13:12:15 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "close"
+												},
+												{
+													"key": "X-Powered-By",
+													"value": "PHP/8.2.4"
+												},
+												{
+													"key": "Cache-Control",
+													"value": "no-cache, private"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "X-RateLimit-Limit",
+													"value": "60"
+												},
+												{
+													"key": "X-RateLimit-Remaining",
+													"value": "56"
+												},
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"Today Appointments\",\n    \"errors\": {},\n    \"data\": {\n        \"appointmentCount\": 1\n    }\n}"
+										}
+									]
+								},
+								{
+									"name": "transferMoney",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 1|i7ZLZuh481QNjK8tbWGQF0j3uRytqlqHixUJPgkE0647c178"
+											}
+										],
+										"url": {
+											"raw": "127.0.0.1:8000/api/glucare/reports/doctorReports/money-transfers/1",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"glucare",
+												"reports",
+												"doctorReports",
+												"money-transfers",
+												"1"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "transferMoney",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													},
+													{
+														"key": "Authorization",
+														"value": "Bearer 1|i7ZLZuh481QNjK8tbWGQF0j3uRytqlqHixUJPgkE0647c178"
+													}
+												],
+												"url": {
+													"raw": "127.0.0.1:8000/api/glucare/reports/doctorReports/money-transfers/1",
+													"host": [
+														"127",
+														"0",
+														"0",
+														"1"
+													],
+													"port": "8000",
+													"path": [
+														"api",
+														"glucare",
+														"reports",
+														"doctorReports",
+														"money-transfers",
+														"1"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Host",
+													"value": "127.0.0.1:8000"
+												},
+												{
+													"key": "Date",
+													"value": "Sun, 26 May 2024 13:11:33 GMT"
+												},
+												{
+													"key": "Date",
+													"value": "Sun, 26 May 2024 13:11:33 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "close"
+												},
+												{
+													"key": "X-Powered-By",
+													"value": "PHP/8.2.4"
+												},
+												{
+													"key": "Cache-Control",
+													"value": "no-cache, private"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "X-RateLimit-Limit",
+													"value": "60"
+												},
+												{
+													"key": "X-RateLimit-Remaining",
+													"value": "59"
+												},
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"Total Money Transfers\",\n    \"errors\": {},\n    \"data\": {\n        \"totalMoney\": 0\n    }\n}"
+										}
+									]
+								},
+								{
+									"name": "PatientCounts",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 1|i7ZLZuh481QNjK8tbWGQF0j3uRytqlqHixUJPgkE0647c178"
+											}
+										],
+										"url": {
+											"raw": "127.0.0.1:8000/api/glucare/reports/doctorReports/total-patients/1",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"glucare",
+												"reports",
+												"doctorReports",
+												"total-patients",
+												"1"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "PatientCounts",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json"
+													},
+													{
+														"key": "Authorization",
+														"value": "Bearer 1|i7ZLZuh481QNjK8tbWGQF0j3uRytqlqHixUJPgkE0647c178"
+													}
+												],
+												"url": {
+													"raw": "127.0.0.1:8000/api/glucare/reports/doctorReports/total-patients/1",
+													"host": [
+														"127",
+														"0",
+														"0",
+														"1"
+													],
+													"port": "8000",
+													"path": [
+														"api",
+														"glucare",
+														"reports",
+														"doctorReports",
+														"total-patients",
+														"1"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Host",
+													"value": "127.0.0.1:8000"
+												},
+												{
+													"key": "Date",
+													"value": "Sun, 26 May 2024 13:10:56 GMT"
+												},
+												{
+													"key": "Date",
+													"value": "Sun, 26 May 2024 13:10:56 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "close"
+												},
+												{
+													"key": "X-Powered-By",
+													"value": "PHP/8.2.4"
+												},
+												{
+													"key": "Cache-Control",
+													"value": "no-cache, private"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "X-RateLimit-Limit",
+													"value": "60"
+												},
+												{
+													"key": "X-RateLimit-Remaining",
+													"value": "57"
+												},
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"Total Patients\",\n    \"errors\": {},\n    \"data\": {\n        \"totalPatients\": 1\n    }\n}"
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "chatbot",
+					"item": [
+						{
+							"name": "Ask",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer 1|RsvsSzPueuXbNjvyv4rI35LQdIviPgZgKhlq6iZreed8a5df"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"question\":\"what is containers\"\r\n}\r\n\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/glucare/chatbot/ask",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"glucare",
+										"chatbot",
+										"ask"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Recommendation",
+					"item": [
+						{
+							"name": "Dietary",
+							"item": [
+								{
+									"name": "All Foods",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 1|i8ZX7gGV9bOiE0hzr6qVhurY0vl7deMnceihTMWQ06fe7160",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "127.0.0.1:8000/api/glucare/dietaryRecommendation/foods",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"glucare",
+												"dietaryRecommendation",
+												"foods"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "PatientData",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 1|i8ZX7gGV9bOiE0hzr6qVhurY0vl7deMnceihTMWQ06fe7160",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "127.0.0.1:8000/api/glucare/dietaryRecommendation/getPatientData/1",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"glucare",
+												"dietaryRecommendation",
+												"getPatientData",
+												"1"
+											],
+											"query": [
+												{
+													"key": "",
+													"value": null,
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "patientRatingFood",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 1|i8ZX7gGV9bOiE0hzr6qVhurY0vl7deMnceihTMWQ06fe7160",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "127.0.0.1:8000/api/glucare/dietaryRecommendation/patientRatingFood/2",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"glucare",
+												"dietaryRecommendation",
+												"patientRatingFood",
+												"2"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "DietaryRecommendation",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 1|i8ZX7gGV9bOiE0hzr6qVhurY0vl7deMnceihTMWQ06fe7160",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"user_id\": 32,\r\n    \"bmi\": 22.5,\r\n    \"diabetes_type\": 1,\r\n    \"blood_glucose_level\": 90,\r\n    \"favorite_food\": \"Grilled chicken salad\"\r\n  }",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "127.0.0.1:8000/api/glucare/dietaryRecommendation/recommend/1",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"glucare",
+												"dietaryRecommendation",
+												"recommend",
+												"1"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Activity",
+							"item": [
+								{
+									"name": "All Activities",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 1|B5s4dWGUpftMMutZLz2cURznQJxtDTWANQGld5hVb83de0c6",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "127.0.0.1:8000/api/glucare/activityRecommendation/activities",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"glucare",
+												"activityRecommendation",
+												"activities"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "PatientData",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 1|B5s4dWGUpftMMutZLz2cURznQJxtDTWANQGld5hVb83de0c6",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "127.0.0.1:8000/api/glucare/activityRecommendation/getPatientData/1",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"glucare",
+												"activityRecommendation",
+												"getPatientData",
+												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "PatientRatingActivity",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 1|B5s4dWGUpftMMutZLz2cURznQJxtDTWANQGld5hVb83de0c6",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "127.0.0.1:8000/api/glucare/activityRecommendation/patientRatingActivity/1",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"glucare",
+												"activityRecommendation",
+												"patientRatingActivity",
+												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "ActivityRecommendation",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Authorization",
+												"value": "Bearer 1|B5s4dWGUpftMMutZLz2cURznQJxtDTWANQGld5hVb83de0c6",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"user_id\": 1,\r\n    \"bmi\": 22.5,\r\n    \"diabetes_type\": 1,\r\n    \"blood_glucose_level\": 90,\r\n    \"favorite_food\": \"yoga\"\r\n  }",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "127.0.0.1:8000/api/glucare/activityRecommendation/recommend/1",
+											"host": [
+												"127",
+												"0",
+												"0",
+												"1"
+											],
+											"port": "8000",
+											"path": [
+												"api",
+												"glucare",
+												"activityRecommendation",
+												"recommend",
+												"1"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}
