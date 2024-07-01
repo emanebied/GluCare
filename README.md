@@ -44,12 +44,12 @@ The Diabetes Management System is designed to address the specific needs and cha
 
 ## Screenshots:
 
-
 ### Home Page:
 
 ![Home Page](https://github.com/emanebied/GluCare/assets/165226378/4eee699d-70b3-42a5-a3cd-f225d5bf9fa6)
 
 ### Diabetes Detection Page:
+
 ![detection](https://github.com/emanebied/GluCare/assets/165226378/bdb6bbb3-6888-4c76-a99a-4d9fa3b4608d)
 
 ### Dietary Recommendations Page:
@@ -61,18 +61,23 @@ The Diabetes Management System is designed to address the specific needs and cha
 ![activity Recommendation](https://github.com/emanebied/GluCare/assets/165226378/7fdc915b-94de-407c-88b0-a2c39bd832cf)
 
 ### Blog Page:
+
 ![Blog](https://github.com/emanebied/GluCare/assets/165226378/a94e6fb1-9c2d-409b-9f72-360b943d82bf)
 
 ### Live Chat Page:
+
 ![LiveChat](https://github.com/emanebied/GluCare/assets/165226378/03c3d2fa-5c01-486e-82a0-982cb1f0d38d)
 
 ### Chatbot Page:
+
 ![Chatbot](https://github.com/emanebied/GluCare/assets/165226378/a3108aca-0e03-402b-ba6c-df36df7afed7)
 
 ### Appointment Page:
+
 ![Appointment](https://github.com/emanebied/GluCare/assets/165226378/106ec8ee-3666-47d0-a08f-81364a3a3607)
 
 ### Reports Page:
+
 ![reports](https://github.com/emanebied/GluCare/assets/165226378/f226dee2-6ecb-4975-a1dc-60bc2d6992df)
 
 ### Admin Panel:
@@ -80,21 +85,22 @@ The Diabetes Management System is designed to address the specific needs and cha
 ![Admin Dashboard](https://github.com/emanebied/GluCare/assets/165226378/40d362b1-42d1-4509-b1c7-55b9c726b3c4)
 
 ### Doctor Panel:
+
 ![Doctor Dashboard](https://github.com/emanebied/GluCare/assets/165226378/1a6966ae-d9af-46d5-8d4f-674acc092329)
 
 ### Employee Panel:
+
 ![Employee Dashboard](https://github.com/emanebied/GluCare/assets/165226378/41b155ac-0b5d-4fa6-b818-fc5bc3462f0a)
 
+## Application
 
-## Application 
+1- **GluCare**: The public-facing website can be accessed at http://127.0.0.1:8000/api/glucare This is where users/patients can interact with the website in general.
 
-1- **GluCare**: The public-facing website can be accessed at http://127.0.0.1:8000/glucare This is where users/patients can  interact with the website in general. 
-
-2- **Admin Panel**: The Admin Panel for managing the application is available at http://127.0.0.1:8000/dashboard/admin secure area is exclusively accessible to authorized administrators where only authenticated admin, doctors, and employees can access. It grants access to the administrative functionalities of the application, such as adding new  features, users management, creating and editing website settings, etc.
+2- **Admin Panel**: The Admin Panel for managing the application is available at http://127.0.0.1:8000/api/dashboard/admin secure area is exclusively accessible to authorized administrators where only authenticated admin, doctors, and employees can access. It grants access to the administrative functionalities of the application, such as adding new features, users management, creating and editing website settings, etc.
 
 ## Application Routes and API Endpoints:
 
-All application routes & API endpoints are defined in the  **[api.php](routes/api.php)** file (API Endpoints).
+All application routes & API endpoints are defined in the **[api.php](routes/api.php)** file (API Endpoints).
 
 ## API Endpoints:
 
@@ -108,12 +114,11 @@ All application routes & API endpoints are defined in the  **[api.php](routes/ap
 
 2- Navigate/Change into (using the **cd** command) to the project root directory, then run the '**_composer install_**' command.
 
-
 4- Create a MySQL database named **\`glucare\`**, then import the **[glucare database SQL Dump File](<database-glucare/glucare-SQL Dump File - phpMyAdmin Export.sql>)** into your **\`glucare\`** database.
 
 5- Navigate to the **[.env](.env)** file and configure/update it with your MySQL database credentials and other configuration settings.
 
-6- Run the '**_php artisan serve_**' command, and then open your browser and visit **http://127.0.0.1:8000** 
+6- Run the '**_php artisan serve_**' command, and then open your browser and visit **http://127.0.0.1:8000**
 
 \*\* Ready-to-use registered accounts credentials you can use to log in:
 
